@@ -1,0 +1,68 @@
+import cup_cakes from "./cupcakes.png"
+import logo from "./logo.png"
+import search_icon from "./Search.png"
+import cart_icon from "./Shopping Bag.png"
+import logo2 from "./favicon.svg"
+import chocoChipCookie1 from "./chocoChipCooki1.png"
+import chocoChipCookie2 from "./chocoChipCooki2.png"
+import chocoChipCookie3 from "./chocoChipCooki3.png"
+import chocoChipCookiebg1 from "./chocoChipCookibg1.png"
+import chocoChipCookiebg2 from "./chocoChipCookibg2.png"
+import chocoChipCookiebg3 from "./chocoChipCookibg3.png"
+import banner1 from "./banner1.png"
+import banner2 from "./banner2.png"
+import banner3 from "./banner3.png"
+import banner4 from "./banner4.png"
+import banner5 from "./banner5.png"
+import left_arrow from "./LeftArrow.png"
+import right_arrow from "./RightArrow.png"
+import hampers from "./hampers.png"
+import rapper1 from "./rapper1.png"
+import rapper2 from "./rapper2.png"
+import cust_review1 from "./cust_review1.png"
+import cust_review2 from "./cust_review2.png"
+import cust_review3 from "./cust_review3.png"
+import insta_icon from "./INSTAGRAM.png"
+import youtube_icon from "./YOUTUBE (1).png"
+import facebook_icon from "./FACEBOOK (1).png"
+import twitter_icon from "./X.png"
+import location_icon from "./LOCATION.png"
+import phone_icon from "./PHONE (1).png"
+import email_icon from "./EMAIL.png"
+import subscriberBtn_icon from "./subscriber.png"
+import wave_bg from "./Rectangle with shadow 1.png"
+
+export const assets = {
+	cup_cakes,
+	search_icon,
+	logo,
+	cart_icon,
+	logo2,
+	chocoChipCookie1,
+	chocoChipCookie2,
+	chocoChipCookie3,
+	chocoChipCookiebg1,
+	chocoChipCookiebg2,
+	chocoChipCookiebg3,
+	banner1,
+	banner2,
+	banner3,
+	banner4,
+	banner5,
+	left_arrow,
+	right_arrow,
+	rapper1,
+	rapper2,
+	hampers,
+	cust_review1,
+	cust_review2,
+	cust_review3,
+	insta_icon,
+	youtube_icon,
+	facebook_icon,
+	twitter_icon,
+	location_icon,
+	phone_icon,
+	email_icon,
+	subscriberBtn_icon,
+}

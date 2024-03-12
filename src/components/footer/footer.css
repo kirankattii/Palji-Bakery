@@ -1,0 +1,95 @@
+.footer {
+  /* height: 534px; */
+  width: 100%;
+  background: #EFE2D7;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 20px;
+}
+
+.left-footer {
+  display: flex;
+  align-items: center;
+}
+
+.left-footer .pulji-footer-logo {
+  width: 200px;
+}
+
+.left-footer .social-icons {
+  display: flex;
+  gap: 10px;
+  margin-top: -40px;
+}
+
+.left-footer .social-icons img {
+  width: 50px;
+}
+
+.middle-footer {
+  width: 50%;
+}
+
+.middle-footer ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  font-family: Kumbh Sans;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 30px;
+  letter-spacing: 0.15em;
+  text-align: center;
+  color: #AE7B37;
+}
+
+.right-footer {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.right-footer div {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
+.right-footer div img {
+  width: 50px;
+
+}
+
+.right-footer div ul {
+  font-family: Kumbh Sans;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 20px;
+  letter-spacing: 0.1em;
+  /* text-align: left; */
+  color: #AE7B37;
+}
+
+.palji-location ul {
+  /* width: 80%; */
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+
+
+}
+
+.palji-phoneno, .palji-mail {
+  display: flex;
+  align-items: center;
+}
+
+.palji-phoneno ul {
+  display: flex;
+  gap: 25px;
+}
+
+.right-footer .palji-location {
+  display: flex;
+  align-items: start;
+}
