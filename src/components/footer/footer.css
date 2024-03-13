@@ -1,3 +1,10 @@
+.footer-container {
+  background: #EFE2D7;
+  display: flex;
+  flex-direction: column;
+  gap: 80px;
+}
+
 .footer {
   /* height: 534px; */
   width: 100%;
@@ -92,4 +99,19 @@
 .right-footer .palji-location {
   display: flex;
   align-items: start;
+}
+
+.copyright {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 20px;
+  font-family: Perpetua Titling MT;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 19px;
+  letter-spacing: 0.03em;
+  text-align: left;
+  color: #AE7B37;
+
 }

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react"
 import user_icon from "../../assets/Male User.png"
-import { Link } from "react-router-dom"
+import { Link, useLocation } from "react-router-dom"
 import { assets } from "../../assets/assets"
 import "./navbar.css"
 
@@ -15,22 +15,29 @@ const Navbar = () => {
 		return () => clearTimeout(timeoutId)
 	}, [])
 
+	const location = useLocation()
+
+	const shouldApplySpecialStyles = () => {
+		return location.pathname === "/contact" // Change '/about' to the route you want to apply special styles to
+	}
 	return showNavbar ? (
 		<div className="navbar">
 			<div className="left-navbar">
-				<img
-					src={user_icon}
-					alt=""
-				/>
+				<Link to="/login">
+					<img
+						src={user_icon}
+						alt=""
+					/>
+				</Link>
 				<ul>
 					<li>
 						<Link to="/">HOME</Link>
 					</li>
 					<li>
-						<Link to="/">Products</Link>
+						<Link to="/products">Products</Link>
 					</li>
 					<li>
-						<Link to="/">ABOUT US</Link>
+						<Link to="/aboutus">ABOUT US</Link>
 					</li>
 				</ul>
 			</div>
@@ -41,11 +48,13 @@ const Navbar = () => {
 			/>
 			<div className="right-navbar">
 				<ul>
-					<li>
-						<Link>CONTACT US</Link>
+					<li className={shouldApplySpecialStyles() ? "special-navbar" : null}>
+						<Link to="/contact">CONTACT US</Link>
 					</li>
 				</ul>
-				<div className="search">
+				<div
+					className={shouldApplySpecialStyles() ? "special-search" : "search"}
+				>
 					<input
 						type="text"
 						placeholder="SEARCH"

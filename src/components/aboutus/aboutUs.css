@@ -1,0 +1,151 @@
+.aboutus {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  min-height: 100vh;
+  background: linear-gradient(to right,
+      #EFE2D7 0%,
+      #EFE2D7 50%,
+      #FEA59F 50%,
+      #FEA59F 100%)
+}
+
+.aboutus h1 {
+  font-family: Perpetua Titling MT;
+  font-size: 120px;
+  font-weight: 700;
+  line-height: 500px;
+  letter-spacing: 0.1em;
+  /* text-align: left; */
+  margin-left: -50px;
+
+}
+
+h1 span {
+  color: white;
+}
+
+.cup-cakes {
+  position: absolute;
+  bottom: 0px;
+}
+
+.cup-cakes img {
+  /* position: absolute; */
+  width: 900px;
+}
+
+.company-history {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #EFE2D7;
+  gap: 20px;
+  padding: 50px;
+}
+
+.company-history h1 {
+  text-transform: uppercase;
+  color: #E5087E;
+  text-align: center;
+  font-family: Perpetua Titling MT;
+  font-size: 55px;
+  font-weight: 700;
+  line-height: 77px;
+  letter-spacing: 0.1em;
+  text-align: left;
+
+
+}
+
+.company-history p {
+  font-family: Kumbh Sans;
+  font-size: 20px;
+  width: 90%;
+  font-weight: 400;
+  line-height: 30px;
+  letter-spacing: 0.1em;
+  text-align: justify;
+  color: #AE7B37;
+}
+
+.ours {
+  width: 100%;
+  height: 100vh;
+
+  display: flex;
+  gap: 50px;
+  flex-direction: column;
+  align-items: center;
+  color: white;
+  background: linear-gradient(to top,
+      #EFE2D7 0%,
+      #EFE2D7 30%,
+      #FEA59F 30%,
+      #FEA59F 100%);
+
+}
+
+.our-values, .our-mission {
+  display: flex;
+  gap: 20px;
+  flex-direction: column;
+  align-items: center;
+}
+
+.our-values h2, .our-mission h2 {
+  font-family: Perpetua Titling MT;
+  /* margin-top: 20px; */
+  font-size: 50px;
+  font-weight: 700;
+  line-height: 77px;
+  letter-spacing: 0.1em;
+  text-align: left;
+
+}
+
+.our-mission {
+  background-image: url('../../assets/Rectangle with shadow 1.png');
+  height: 100%;
+  background-position: bottom;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.our-values .valued-features {
+  width: 100%;
+  display: flex;
+  gap: 50px;
+  align-items: center;
+}
+
+.our-values .valued-features div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.our-values .valued-features div p {
+  font-family: Perpetua Titling MT;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 30px;
+  letter-spacing: 0.1em;
+  text-align: left;
+}
+
+.our-mission p {
+  font-family: Perpetua Titling MT;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 30px;
+  text-align: justify;
+  letter-spacing: 0.1em;
+  text-align: justified;
+  width: 80%;
+
+}

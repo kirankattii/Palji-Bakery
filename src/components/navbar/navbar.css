@@ -116,3 +116,39 @@
   transform: scale(0.7);
   /* Adjust the scale value as needed */
 }
+
+.special-navbar {
+  color: black;
+}
+
+.special-search {
+  display: flex;
+  align-items: center;
+  border: 2px solid black;
+  border-radius: 50px;
+}
+
+.special-search input {
+  border: 0;
+  outline: 0;
+  padding: 10px 10px;
+  font-size: 18px;
+  background: none;
+  color: black;
+}
+
+.special-search img {
+  width: 50px;
+  /* padding: 2px; */
+  cursor: pointer;
+  padding: 05px;
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 50px;
+  width: 50px;
+  height: 41px;
+}
+
+.special-search input::placeholder {
+  color: black;
+  opacity: 0.5;
+}

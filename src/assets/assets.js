@@ -30,7 +30,12 @@ import location_icon from "./LOCATION.png"
 import phone_icon from "./PHONE (1).png"
 import email_icon from "./EMAIL.png"
 import subscriberBtn_icon from "./subscriber.png"
-import wave_bg from "./Rectangle with shadow 1.png"
+import about_cake from "./about_cake.png"
+import our_value1 from "./our_value1.png"
+import our_value2 from "./our_value2.png"
+import our_value3 from "./our_value3.png"
+import our_value4 from "./our_value4.png"
+import our_value5 from "./our_value5.png"
 
 export const assets = {
 	cup_cakes,
@@ -65,4 +70,10 @@ export const assets = {
 	phone_icon,
 	email_icon,
 	subscriberBtn_icon,
+	about_cake,
+	our_value1,
+	our_value2,
+	our_value3,
+	our_value4,
+	our_value5,
 }
