@@ -4,16 +4,20 @@
   background: #EFE2D7;
   display: flex;
   justify-content: center;
-  padding-top: 15%;
+  align-items: center;
+  /* padding-top: 15%; */
 
 }
 
 .login-signup form {
   width: 30%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .login {
-  /* width: 100%; */
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -58,4 +62,22 @@
   color: #E5087E;
   text-decoration: underline;
   cursor: pointer;
+}
+
+@media screen and (max-width: 1000px) {
+  .login-signup form {
+    width: 50%;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .login-signup form {
+    width: 70%;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .login-signup form {
+    width: 80%;
+  }
 }

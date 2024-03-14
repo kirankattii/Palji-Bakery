@@ -41,3 +41,21 @@
   border-radius: 5px;
   cursor: pointer;
 }
+
+@media screen and (max-width: 1000px) {
+  .signup form {
+    width: 50%;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .signup form {
+    width: 70%;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .signup form {
+    width: 80%;
+  }
+}
