@@ -2,19 +2,41 @@
   width: 100%;
   height: 100vh;
   background: rgb(255, 107, 107);
+  display: flex;
 
   position: relative;
-  overflow: auto;
+  overflow: hidden;
 }
+
+
 
 .palji-banners {
   display: flex;
-  /* min-width: 100%; */
+  min-width: 100%;
+  width: 300%;
+  /* Adjusted width to accommodate all slides */
+  height: 100vh;
   align-items: center;
-  justify-content: space-around;
-  flex-direction: row;
-
+  transition: transform 0.5s ease;
+  /* Moved transition here */
 }
+
+.slide {
+  flex: 0 0 33.33%;
+  /* Adjusted slide width based on total slides */
+  display: flex;
+  height: 100vh;
+
+  align-items: center;
+  justify-content: space-evenly;
+  min-width: 100%;
+}
+
+.palji-banners.active {
+  transform: translateX(0);
+  /* Added to reset position */
+}
+
 
 .left-banner {
   width: 30%;

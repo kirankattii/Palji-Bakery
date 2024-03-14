@@ -1,8 +1,9 @@
-import React from "react"
+// import React, { useState } from "react"
 import { assets } from "../../assets/assets"
 import "./aboutUs.css"
 
 const AboutUs = () => {
+	// const [collaps,setCollaps] = useState(false)
 	return (
 		<div className="about-container">
 			<div className="aboutus">

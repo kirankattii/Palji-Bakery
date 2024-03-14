@@ -32,6 +32,7 @@ const Footer = () => {
 						/>
 					</div>
 				</div>
+				<hr className="left-hr" />
 				<div className="middle-footer">
 					<ul>
 						<li>HOME</li>
@@ -44,6 +45,7 @@ const Footer = () => {
 						<li>TERMS & CONDITIONS</li>
 					</ul>
 				</div>
+				<hr className="right-hr" />
 				<div className="right-footer">
 					<div className="palji-location">
 						<img

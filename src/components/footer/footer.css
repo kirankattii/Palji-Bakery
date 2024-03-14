@@ -2,7 +2,7 @@
   background: #EFE2D7;
   display: flex;
   flex-direction: column;
-  gap: 80px;
+  gap: 40px;
 }
 
 .footer {
@@ -12,11 +12,27 @@
   display: flex;
   justify-content: space-between;
   padding: 0 20px;
+  padding-top: 50px;
 }
 
 .left-footer {
   display: flex;
   align-items: center;
+}
+
+hr {
+  border: none;
+  outline: 0;
+  background: white;
+  border: 1px solid white;
+}
+
+.left-hr {
+  margin-left: 10px;
+}
+
+.right-hr {
+  margin-right: 10px;
 }
 
 .left-footer .pulji-footer-logo {
@@ -42,10 +58,10 @@
   display: flex;
   flex-direction: column;
   font-family: Kumbh Sans;
-  font-size: 18px;
+  font-size: 17px;
   font-weight: 400;
   line-height: 30px;
-  letter-spacing: 0.15em;
+  letter-spacing: 0.1em;
   text-align: center;
   color: #AE7B37;
 }
@@ -63,15 +79,15 @@
 }
 
 .right-footer div img {
-  width: 50px;
+  width: 35px;
 
 }
 
 .right-footer div ul {
   font-family: Kumbh Sans;
-  font-size: 18px;
+  font-size: 17px;
   font-weight: 400;
-  line-height: 20px;
+  line-height: 18px;
   letter-spacing: 0.1em;
   /* text-align: left; */
   color: #AE7B37;
@@ -106,12 +122,71 @@
   display: flex;
   justify-content: space-between;
   padding: 0 20px;
+  padding-bottom: 10px;
   font-family: Perpetua Titling MT;
-  font-size: 16px;
-  font-weight: 700;
+  font-size: 15px;
+  font-weight: 600;
   line-height: 19px;
   letter-spacing: 0.03em;
   text-align: left;
   color: #AE7B37;
 
+}
+
+@media screen and (max-width: 1200px) {
+  .left-footer {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+@media screen and (max-width: 950px) {
+  .footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+  }
+
+  .copyright {
+    display: flex;
+    justify-content: space-between;
+    gap: 60px;
+    font-size: 13px;
+  }
+}
+
+@media screen and (max-width: 550px) {
+  .copyright {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+  }
+}
+
+@media screen and (max-width: 475px) {
+  .copyright p {
+    text-align: center;
+
+  }
+
+  .right-footer div ul {
+    font-size: 16px;
+    line-height: 1.2;
+  }
+
+  .palji-phoneno ul {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+}
+
+@media screen and (max-width: 350px) {
+  .copyright p {
+    text-align: center;
+    font-size: 12px;
+  }
 }

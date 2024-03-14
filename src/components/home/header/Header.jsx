@@ -15,9 +15,7 @@ const Header = () => {
 		setAnimate(true)
 		fakeDataFetch()
 	}, [])
-	return isloading ? (
-		<Loader />
-	) : (
+	return (
 		<div className={`header ${animate ? "initial" : ""}`}>
 			<h1>
 				Heaven<span>lyBake</span>

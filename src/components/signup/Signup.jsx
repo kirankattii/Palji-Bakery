@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react"
 import "./signup.css"
 
 import axios from "axios"
+import { useNavigate } from "react-router-dom"
 
 const Signup = () => {
 	const [firstName, setFirstName] = useState()
@@ -9,18 +10,22 @@ const Signup = () => {
 	const [mobileNumber, setMobileNumber] = useState()
 	const [email, setEmail] = useState()
 	const [password, setPassword] = useState()
+	const navigate = useNavigate()
 
 	const handleSubmit = (event) => {
 		event.preventDefault()
 		axios
 			.post("https://pajiweb.onrender.com/api/register-user", {
-				firstName,
-				lastName,
-				password,
-				email,
-				mobileNumber,
+				firstName: firstName,
+				lastName: lastName,
+				password: password,
+				email: email,
+				mobileNumber: mobileNumber,
 			})
-			.then((res) => console.log(res))
+			.then((res) => {
+				console.log(res)
+				navigate("/login")
+			})
 			.catch((err) => console.log(err))
 	}
 
@@ -50,7 +55,7 @@ const Signup = () => {
 				/>{" "}
 				<input
 					name="mobileNumber"
-					type="tel"
+					type="number"
 					placeholder="Phone Number"
 					onChange={(e) => setMobileNumber(e.target.value)}
 				/>
