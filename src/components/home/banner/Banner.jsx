@@ -95,7 +95,7 @@ const Banner = () => {
 				{banner.map((item, index) => (
 					<div
 						key={index}
-						className="slide"
+						className="slide banner-flex"
 						style={{ backgroundColor: item.backgroundColor }}
 					>
 						<div className="left-banner">

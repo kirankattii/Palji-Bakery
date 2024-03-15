@@ -169,6 +169,10 @@
     /* margin-left: 100px; */
   }
 
+  .products-btn button {
+    margin-bottom: 20px;
+  }
+
   .product-container .sub-heading {
     /* margin-top: -40px; */
     font-size: 18px;

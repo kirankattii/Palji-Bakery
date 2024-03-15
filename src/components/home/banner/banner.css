@@ -144,7 +144,8 @@
   }
 
   .right-banner img {
-    width: 400px;
+    width: 350px;
+    margin-top: -100px;
   }
 
   .title p {
@@ -153,6 +154,30 @@
 
   .content {
     font-size: 22px;
+  }
+
+  .banner-flex {
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: center;
+  }
+
+  .left-banner {
+    gap: 10px;
+  }
+
+  .left-banner {
+    width: 90%;
+  }
+
+  .arrow-btn {
+
+    position: absolute;
+    bottom: 30px;
+    display: flex;
+    gap: 70px;
+    left: 35%;
+    /* right: 50%; */
   }
 }
 
@@ -172,5 +197,58 @@
 
   .content {
     font-size: 22px;
+  }
+
+  .slide {
+    display: flex;
+    /* flex-direction: column; */
+  }
+
+  .arrow-btn {
+
+    position: absolute;
+    bottom: 20px;
+    display: flex;
+    gap: 50px;
+    left: 32%;
+    /* right: 50%; */
+  }
+
+  .arrow-btn img {
+    width: 40px;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .left-banner .banner-info h2 {
+    font-size: 35px;
+    line-height: 1.2;
+  }
+
+  .right-banner img {
+    width: 300px;
+  }
+
+  .title p {
+    font-size: 22px;
+  }
+
+  .content {
+    margin-top: -10px;
+    font-size: 20px;
+  }
+
+  .arrow-btn {
+
+    position: absolute;
+    bottom: 10px;
+    display: flex;
+    gap: 50px;
+    left: 30%;
+    /* right: 50%; */
+  }
+
+  .arrow-btn img {
+    width: 35px;
   }
 }
