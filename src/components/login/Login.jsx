@@ -22,6 +22,8 @@ const Login = () => {
 					} catch (error) {
 						console.error("Error navigating:", error)
 					}
+				} else {
+					alert(res.data === message)
 				}
 			})
 			.catch((err) => console.log(err))

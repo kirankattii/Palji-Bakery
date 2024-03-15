@@ -9,6 +9,7 @@ import AboutUs from "./components/aboutus/AboutUs"
 import Contact from "./components/contact/Contact"
 import Login from "./components/login/Login"
 import Signup from "./components/signup/Signup"
+import UserProfile from "./pages/userProfile/UserProfile"
 
 function App() {
 	const [count, setCount] = useState(0)
@@ -36,6 +37,10 @@ function App() {
 				<Route
 					path="/signup"
 					element={<Signup />}
+				/>
+				<Route
+					path="user/:activepage"
+					element={<UserProfile />}
 				/>
 			</Routes>
 			<Footer />

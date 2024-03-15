@@ -10,6 +10,7 @@ import "./navbar.css"
 
 const Navbar = () => {
 	const [showNavbar, setShowNavbar] = useState(false)
+	const [message, setMessage] = useState("")
 
 	useEffect(() => {
 		const timeoutId = setTimeout(() => {
@@ -27,14 +28,9 @@ const Navbar = () => {
 			location.pathname === "/login" ||
 			location.pathname === "/Signup"
 		)
-		// location.pathname === "/login"
-		// Change '/about' to the route you want to apply special styles to
 	}
 
 	const [moblieMenu, setMobileMenu] = useState(false)
-	// const toggleMenu = () => {
-	// 	moblieMenu ? setMobileMenu(false) : setMobileMenu(true)
-	// }
 
 	const toggleMenu = () => {
 		setMobileMenu(!moblieMenu)
@@ -53,6 +49,7 @@ const Navbar = () => {
 						alt=""
 					/>
 				</Link>
+
 				<ul>
 					<li>
 						<Link to="/">HOME</Link>
