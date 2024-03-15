@@ -8,12 +8,21 @@ import "slick-carousel/slick/slick-theme.css"
 const Customer = () => {
 	const settings = {
 		dots: true,
-		arrows: true,
+		arrows: false,
 		infinite: true,
 		speed: 500,
 		slidesToShow: 3,
 		slidesToScroll: 1,
 		responsive: [
+			{
+				breakpoint: 1600,
+				settings: {
+					slidesToShow: 3,
+					slidesToScroll: 1,
+					infinite: true,
+					dots: true,
+				},
+			},
 			{
 				breakpoint: 1200,
 				settings: {

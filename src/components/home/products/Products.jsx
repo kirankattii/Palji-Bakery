@@ -80,25 +80,6 @@ const Products = () => {
 		],
 	}
 	return (
-		// <div className="products">
-		// 	<h1>Featured Products</h1>
-		// 	<p className="sub-heading">Discover our Signature Selection</p>
-		// 	<div className="product-slides">
-		// 		<Slider {...settings}>
-		// 			<div>
-		// 				<Sliders productInfo={product1} />
-		// 			</div>
-		// 			<div>
-		// 				<Sliders productInfo={product2} />
-		// 			</div>
-		// 			<div>
-		// 				<Sliders productInfo={product3} />
-		// 			</div>
-		// 		</Slider>
-		// 	</div>
-		// 	<button className="products-btn">ALL PRODUCTS</button>
-		// </div>
-		// <div className="products">
 		<div className="product-container">
 			<h1>Featured Products</h1>
 			<p className="sub-heading">Discover our Signature Selection</p>
