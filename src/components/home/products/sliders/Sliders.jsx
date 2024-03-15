@@ -3,7 +3,7 @@ import { assets } from "../../../../assets/assets"
 import "./slides.css"
 import productInfo from "../Products"
 
-const Slider = ({ productInfo }) => {
+const Sliders = ({ productInfo }) => {
 	return (
 		<div className="container">
 			<div className="sliders">
@@ -39,4 +39,4 @@ const Slider = ({ productInfo }) => {
 	)
 }
 
-export default Slider
+export default Sliders

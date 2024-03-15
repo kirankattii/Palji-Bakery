@@ -1,25 +1,73 @@
 import React from "react"
 import { assets } from "../../../assets/assets"
 import "./customer.css"
+import Slider from "react-slick"
+import "slick-carousel/slick/slick.css"
+import "slick-carousel/slick/slick-theme.css"
 
 const Customer = () => {
+	const settings = {
+		dots: true,
+		arrows: true,
+		infinite: true,
+		speed: 500,
+		slidesToShow: 3,
+		slidesToScroll: 1,
+		responsive: [
+			{
+				breakpoint: 1200,
+				settings: {
+					slidesToShow: 2,
+					slidesToScroll: 2,
+					infinite: true,
+					dots: true,
+				},
+			},
+			{
+				breakpoint: 600,
+				settings: {
+					slidesToShow: 1,
+					slidesToScroll: 1,
+					initialSlide: 1,
+				},
+			},
+			{
+				breakpoint: 480,
+				settings: {
+					slidesToShow: 1,
+					slidesToScroll: 1,
+				},
+			},
+		],
+	}
 	return (
 		<div className="customer">
 			<div className="customer-cards">
 				<h1>A word from our customers</h1>
 				<div className="cards">
-					<img
-						src={assets.cust_review1}
-						alt=""
-					/>
-					<img
-						src={assets.cust_review1}
-						alt=""
-					/>
-					<img
-						src={assets.cust_review1}
-						alt=""
-					/>
+					<Slider
+						{...settings}
+						className="cust-slides"
+					>
+						<div className="cust1">
+							<img
+								src={assets.cust_review1}
+								alt=""
+							/>
+						</div>
+						<div className="cust2">
+							<img
+								src={assets.cust_review1}
+								alt=""
+							/>
+						</div>
+						<div className="cust3">
+							<img
+								src={assets.cust_review1}
+								alt=""
+							/>
+						</div>
+					</Slider>
 				</div>
 			</div>
 			<div className="subscriber">
