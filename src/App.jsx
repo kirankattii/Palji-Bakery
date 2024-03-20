@@ -1,4 +1,5 @@
-import { useState } from "react"
+import { useState } from "react";
+import { useLocation } from "react-router-dom";
 
 import "./App.css"
 import Navbar from "./components/navbar/Navbar"
@@ -10,13 +11,15 @@ import Contact from "./components/contact/Contact"
 import Login from "./components/login/Login"
 import Signup from "./components/signup/Signup"
 import UserProfile from "./pages/userProfile/UserProfile"
+import Admin from "./AdminPages/Admin"
 
 function App() {
 	const [count, setCount] = useState(0)
+	const location = useLocation();
 
 	return (
 		<div className="app">
-			<Navbar />
+			{!location.pathname.startsWith("/admin") && <Navbar />}
 			<Routes>
 				<Route
 					path="/"
@@ -42,10 +45,14 @@ function App() {
 					path="user/:activepage"
 					element={<UserProfile />}
 				/>
+				<Route
+					path="/admin/*"
+					element={<Admin />}
+				/>
 			</Routes>
 			<Footer />
 		</div>
 	)
 }
 
-export default App
+export default App;
