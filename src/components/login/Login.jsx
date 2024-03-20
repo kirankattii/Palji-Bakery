@@ -2,32 +2,44 @@ import React, { useState } from "react"
 import "./login.css"
 import { Link, useNavigate } from "react-router-dom"
 import axios from "axios"
+import { makeApi } from "../../api/callApi"
 
 const Login = () => {
 	const [email, setEmail] = useState()
 	const [password, setPassword] = useState()
 	const navigate = useNavigate()
-	const handleSubmit = (event) => {
+	// const handleSubmit = (event) => {
+	// 	event.preventDefault()
+	// 	axios
+	// 		.post("https://pajiweb.onrender.com/api/login-user/", {
+				// password,
+				// email,
+	// 		})
+	// 		.then((res) => {
+				
+	// 			if (res.data.success === true) {
+	// 				try {
+	// 					localStorage.setItem("token", res.data.token)
+	// 					// navigate("/")
+	// 				} catch (error) {
+	// 					console.error("Error navigating:", error)
+	// 				}
+	// 			} else {
+	// 				alert(res.data === message)
+	// 			}
+	// 		})
+	// 		.catch((err) => console.log(err))
+	// }
+	const handleSubmit = async () => {
 		event.preventDefault()
-		axios
-			.post("https://pajiweb.onrender.com/api/login-user/", {
-				password,
-				email,
-			})
-			.then((res) => {
-				console.log(res)
-				if (res.data.success === true) {
-					try {
-						navigate("/")
-					} catch (error) {
-						console.error("Error navigating:", error)
-					}
-				} else {
-					alert(res.data === message)
-				}
-			})
-			.catch((err) => console.log(err))
-	}
+        try {
+            const response = await makeApi("/api/login-user", "POST", {password,email})
+            localStorage.setItem("token", response.data.token)
+			navigate("/")
+        } catch (error) { 
+            console.error('Error sending data:', error.response.data);
+        }
+    }
 
 	return (
 		<div className="login-signup">
