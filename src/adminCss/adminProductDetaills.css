@@ -1,15 +1,13 @@
 .product-details {
-  max-width: 100%;
-  padding: 200px 10px;
+  max-width: 80%;
+  padding: 30px 0px;
 }
-.slider_images {
-  width: 100%;
-}
+
 .main-slider-div {
   /* padding: 20px 14px; */
   position: relative;
-  margin: 0px 0px;
-  max-width: 100%;
+  margin: 0px 10px;
+  /* width: 90%; */
 }
 
 .our-product-text {
@@ -19,8 +17,9 @@
 
 .slider_images {
   display: block;
-  width: 100%;
+  /* width: 100%; */
   object-fit: cover;
+  cursor: pointer;
 }
 
 .prev-button {
