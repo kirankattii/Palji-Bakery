@@ -36,6 +36,7 @@ import our_value2 from "./our_value2.png"
 import our_value3 from "./our_value3.png"
 import our_value4 from "./our_value4.png"
 import our_value5 from "./our_value5.png"
+import search_icon2 from "./Search_icon.png"
 
 export const assets = {
 	cup_cakes,
@@ -76,4 +77,5 @@ export const assets = {
 	our_value3,
 	our_value4,
 	our_value5,
+	search_icon2,
 }

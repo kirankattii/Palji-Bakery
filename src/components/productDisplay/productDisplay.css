@@ -1,0 +1,92 @@
+.productDisplay {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+
+  padding: 150px 80px 80px 80px;
+
+  background: #efe2d7;
+}
+
+.product-display-left {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+}
+
+.productdisplay-img-list {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+
+}
+
+
+.productdisplay-img-list img {
+  height: 123px;
+}
+
+.productdisplay-main-img {
+  width: 450px;
+  height: 500px;
+  margin-top: -100px;
+}
+
+.product-display-right {
+  display: flex;
+  gap: 20px;
+  flex-direction: column;
+}
+
+.product-display-right h1 {
+  font-family: Kumbh Sans;
+  font-size: 64px;
+  font-weight: 600;
+  line-height: 79.38px;
+  text-align: left;
+
+}
+
+.product-display-right h2 {
+  font-family: Kumbh Sans;
+  font-size: 20px;
+  margin-top: -30px;
+  font-weight: 300;
+  line-height: 29.77px;
+  text-align: left;
+  color: #AE7B37;
+}
+
+.product-display-right p {
+  width: 550px;
+  font-family: Kumbh Sans;
+  font-size: 26px;
+  font-weight: 400;
+  line-height: 34.73px;
+  text-align: justified;
+  color: #AE7B37;
+}
+
+.product-display-right button {
+  width: 400px;
+  /* height: 100px; */
+
+  gap: 0px;
+  border-radius: 50px;
+  font-family: Perpetua Titling MT;
+  font-size: 24px;
+  font-weight: 300;
+  line-height: 37.86px;
+  letter-spacing: 0.03em;
+  text-align: left;
+  color: #FFFFFF;
+  background: #E5087E;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 0;
+  padding: 10px 0;
+  cursor: pointer;
+  outline: 0;
+
+}
