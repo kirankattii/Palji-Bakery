@@ -29,7 +29,7 @@ const Allproduct = () => {
 
   const deleteProduct = async (productId) => {
     try {
-      console.log(productId);
+     
       const response = await makeApi(
         `/api/delete-product/${productId}`,
         "DELETE"
