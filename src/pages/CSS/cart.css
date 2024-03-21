@@ -50,3 +50,168 @@
   height: 40px;
   margin-top: 6px;
 }
+
+.cart-bottom {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 200px;
+}
+
+.cart-address {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.cart-address h2 {
+  font-family: Kumbh Sans;
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 39.69px;
+  letter-spacing: 0.32em;
+  color: #E5087E;
+
+}
+
+.cart-address p {
+  font-family: Kumbh Sans;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 34.73px;
+  color: #AE7B37;
+
+}
+
+.cart-billing {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+
+.cart-order-summary {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  border-radius: 20px;
+  background: #E5087E99;
+  padding: 30px 80px;
+
+}
+
+.cart-order-summary h2 {
+  font-family: Kumbh Sans;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 32.25px;
+  letter-spacing: 0.32em;
+  color: #EFE2D7;
+  text-transform: uppercase;
+
+
+}
+
+.cart-delivery-day {
+  color: #EFE2D7;
+
+}
+
+.cart-order-summary button {
+  color: #EFE2D7;
+  border: 0;
+  outline: 0;
+  font-family: Kumbh Sans;
+  font-size: 16px;
+  font-weight: 700;
+  background: transparent;
+  border: 2px solid #EFE2D7;
+  padding: 10px 20px;
+  border-radius: 50px;
+  /* line-height: 15.36px; */
+  letter-spacing: 0.2em;
+  cursor: pointer;
+
+}
+
+.cart-order-summary .cart-billing-charges div {
+  display: flex;
+  /* flex-direction: column; */
+  justify-content: space-between;
+  gap: 150px;
+  width: 100%;
+  font-family: Kumbh Sans;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 27.29px;
+  letter-spacing: 0.2em;
+  color: #EFE2D7;
+}
+
+.cart-order-summary .cart-billing-charges div p {}
+
+
+.cart-order-summary .cart-billing-charges {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+}
+
+.cart-promocode {
+  background: #E5087E99;
+  border-radius: 20px;
+  padding: 30px 40px;
+  display: flex;
+  color: #EFE2D7;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.cart-promocode h2 {
+  font-family: Kumbh Sans;
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 29.77px;
+  letter-spacing: 0.2em;
+  text-align: center;
+  width: 100%;
+
+}
+
+.cart-promocode .cart-promocode-input {
+  padding: 5px 10px;
+  display: flex;
+  align-items: center;
+  border: 2px solid #EFE2D7;
+  border-radius: 50px;
+}
+
+.cart-promocode-input input {
+  border: 0;
+  outline: 0;
+  /* height: 5px; */
+  width: 100%;
+  font-size: 17px;
+  color: #EFE2D7;
+  background: transparent;
+}
+
+.cart-promocode-input input::placeholder {
+  color: #EFE2D7;
+}
+
+.cart-promocode button {
+  background: #EFE2D7;
+  border: 0;
+  outline: 0;
+  /* font-size: 14px; */
+  font-weight: 600;
+  padding: 10px 20px;
+  border-radius: 50px;
+
+  cursor: pointer;
+}

@@ -50,6 +50,56 @@ const Cart = () => {
 					}
 				})}
 			</div>
+			<div className="cart-bottom">
+				<div className="cart-address">
+					<h2>ADDRESS</h2>
+					<p>Anurag Sagar</p>
+					<p>9401, Urban Estate, Phase-2, Ludhiana-141010</p>
+					<p>+91 9999999999</p>
+				</div>
+				<div className="cart-billing">
+					<div className="cart-order-summary">
+						<h2>order summary</h2>
+						<div className="cart-billing-charges">
+							<div className="cart-billing-subtotal">
+								<p>SUBTOTAL</p>
+								<p>₹{getTotalCartAmount()}</p>
+							</div>{" "}
+							<div className="cart-billing-discount">
+								<p>DISCOUNT</p>
+								<p>₹{0}</p>
+							</div>{" "}
+							<div className="cart-billing-tax">
+								<p>TAX</p>
+								<p>₹{0}</p>
+							</div>{" "}
+							<div className="cart-billing-shipping">
+								<p>SHIPPING</p>
+								<p>FREE</p>
+							</div>{" "}
+							<div className="cart-billing-shipping">
+								<b>TOTAL</b>
+								<b>₹{getTotalCartAmount()}</b>
+							</div>
+						</div>
+						<button>proceed to checkout</button>
+						<hr />
+						<p className="cart-delivery-day">
+							estimated delivery by <span>29 february, 24</span>
+						</p>
+					</div>
+					<div className="cart-promocode">
+						<h2>HAVE A COUPON ?</h2>
+						<div className="cart-promocode-input">
+							<input
+								type="text"
+								placeholder="COUPON CODE"
+							/>
+							<button>APPLY</button>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div>
 	)
 }
