@@ -2,6 +2,7 @@ import React, { useContext } from "react"
 import "./CSS/cart.css"
 // import all_product from "../assets/all_products"
 import { ShopContext } from "../context/ShopContext"
+import { assets } from "../assets/assets"
 
 const Cart = () => {
 	const { cartItems, all_product, removeFromCart, getTotalCartAmount } =
@@ -11,10 +12,10 @@ const Cart = () => {
 			<div className="cart-item">
 				<div className="cart-items-title">
 					<p>Items</p>
-					<p>Title</p>
+					<p>Product Name</p>
 					<p>Price</p>
-					<p>Quantity</p>
-					<p>Total</p>
+					<p>Qty</p>
+					<p>Total:</p>
 					<p>Remove</p>
 				</div>
 				<br />
@@ -29,14 +30,18 @@ const Cart = () => {
 										alt=""
 									/>
 									<p>{item.name}</p>
-									<p>{item.new_price}</p>
+									<p>₹{item.new_price}</p>
 									<p>{cartItems[item.id]}</p>
-									<p>{item.new_price * cartItems[item.id]}</p>
+									<p>₹{item.new_price * cartItems[item.id]}</p>
 									<p
 										className="cross"
 										onClick={() => removeFromCart(item.id)}
 									>
-										X
+										<img
+											className="remove-cart"
+											src={assets.cart_remove}
+											alt=""
+										/>
 									</p>
 								</div>
 								{/* <hr /> */}

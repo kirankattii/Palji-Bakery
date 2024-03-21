@@ -38,6 +38,7 @@ import our_value4 from "./our_value4.png"
 import our_value5 from "./our_value5.png"
 import search_icon2 from "./Search_icon.png"
 // import add_icon_white from "./add_icon_white.png"
+import cart_remove from "./Delete.png"
 import add_icon_green from "./add_icon_green.png"
 import add_icon_red from "./remove_icon_red.png"
 
@@ -84,4 +85,5 @@ export const assets = {
 	// add_icon_white,
 	add_icon_green,
 	add_icon_red,
+	cart_remove,
 }

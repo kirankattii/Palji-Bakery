@@ -25,7 +25,8 @@
 .cart-items-item {
   margin: 10px 0;
   color: #AE7B37;
-  font-size: 20px;
+  font-size: 22px;
+  font-weight: 600;
   background: #fff;
   border-radius: 20px;
 }
@@ -43,6 +44,9 @@
   margin-top: -10px;
 }
 
-.cart-items-item .cross {
+.cart-items-item .remove-cart {
   cursor: pointer;
+  width: 30px;
+  height: 40px;
+  margin-top: 6px;
 }
