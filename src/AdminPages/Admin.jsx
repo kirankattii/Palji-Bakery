@@ -6,6 +6,8 @@ import AdminProductDetaills from "../AdminComponents/product/adminProductDetaill
 import UpdateProduct from "../AdminComponents/product/adminUpdateProduct";
 import Adminsidebar from "../AdminComponents/slidebar/adminsidebar";
 import AdminaddProduct from "../AdminComponents/product/adminaddProduct";
+import Getallcatogory from "../AdminComponents/catogory/getallcatogory";
+import Addcatogory from "../AdminComponents/catogory/addcatogory";
 
 function Admin() {
   return (
@@ -15,6 +17,8 @@ function Admin() {
       </div>
       <div className="admin_page_main_div" >
         <Routes>
+          <Route path="/sidebar" element={<Adminsidebar />} />
+          {/* products */}
           <Route path="/allproducts" element={<Allproduct />} />
           <Route path="/add-product" element={<AdminaddProduct />} />
           <Route
@@ -25,7 +29,10 @@ function Admin() {
             path="/product-update/:productId"
             element={<UpdateProduct />}
           />
-          <Route path="/sidebar" element={<Adminsidebar />} />
+
+          {/* category */}
+          <Route path="/all-categories" element={<Getallcatogory />} />
+          <Route path="/add-category" element={<Addcatogory />} />
         </Routes>
       </div>
     </div>

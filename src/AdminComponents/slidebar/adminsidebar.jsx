@@ -66,6 +66,7 @@ function Adminsidebar() {
               >
                  user
               </div>
+              <Link to={"/admin/all-categories"}>
               <div
                 className={`admin_sidebar_menu_items ${
                   selectedItem === "All catogory" && "selected"
@@ -74,6 +75,7 @@ function Adminsidebar() {
               >
                  catogory
               </div>
+              </Link>
             </div>
           </div>
         </div>
