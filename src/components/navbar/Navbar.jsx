@@ -26,7 +26,9 @@ const Navbar = () => {
 		return (
 			location.pathname === "/contact" ||
 			location.pathname === "/login" ||
-			location.pathname === "/Signup"
+			location.pathname === "/Signup" ||
+			location.pathname === "/products"
+			// location.pathname === "/openproduct"
 		)
 	}
 

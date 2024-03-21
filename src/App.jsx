@@ -10,8 +10,11 @@ import AboutUs from "./components/aboutus/AboutUs"
 import Contact from "./components/contact/Contact"
 import Login from "./components/login/Login"
 import Signup from "./components/signup/Signup"
-import UserProfile from "./pages/userProfile/UserProfile"
+import UserProfile from "./pages/UserProfile"
 import Admin from "./AdminPages/Admin"
+import Product from "./pages/Product"
+import ShopCategory from "./pages/ShopCategory"
+import OpenProduct from "./pages/OpenProduct"
 
 function App() {
 	const [count, setCount] = useState(0)
@@ -29,6 +32,47 @@ function App() {
 					path="/aboutus"
 					element={<AboutUs />}
 				/>
+				<Route
+					path="/products"
+					element={<Product />}
+				>
+					<Route
+						index
+						element={
+							<ShopCategory
+								name="gift hAMPERS"
+								category="gift"
+							/>
+						}
+					/>
+					<Route
+						path="/products/savory"
+						element={
+							<ShopCategory
+								name="SAVORY"
+								category="savory"
+							/>
+						}
+					/>
+					<Route
+						path="/products/biscuits"
+						element={
+							<ShopCategory
+								name="Biscuits"
+								category="biscuits"
+							/>
+						}
+					/>
+				</Route>
+				<Route
+					path="/openproduct"
+					element={<OpenProduct />}
+				>
+					<Route
+						path=":productId"
+						element={<OpenProduct />}
+					/>
+				</Route>
 				<Route
 					path="/contact"
 					element={<Contact />}
