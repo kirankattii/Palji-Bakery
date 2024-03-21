@@ -1,5 +1,5 @@
 import React from "react";
-import "../adminCss/admindeleteproduct.css";
+import "../../adminCss/admindeleteproduct.css";
 const ConfirmationModal = ({ isOpen, onClose, onConfirm }) => {
   return (
     <div className={`modal ${isOpen ? "open" : ""}`}>

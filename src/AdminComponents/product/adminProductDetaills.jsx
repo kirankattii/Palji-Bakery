@@ -4,9 +4,9 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
-import { makeApi } from "../api/callApi";
-import "../adminCss/adminProductDetaills.css";
-import Loader from "../components/loader/loader";
+import { makeApi } from "../../api/callApi";
+import "../../adminCss/adminProductDetaills.css";
+import Loader from "../../components/loader/loader";
 
 function ProductDetails() {
   const { productId } = useParams();
@@ -87,13 +87,13 @@ function ProductDetails() {
                   loop={true}
                   onSwiper={setSwiperRef}
                   onSlideChange={handleSlideChange}
-                  slidesPerView={3}
-                  initialSlide={2}
-                  centeredSlides={true}
-                  spaceBetween={0}
-                  pagination={{
-                    type: "fraction",
-                  }}
+                  slidesPerView={2.5}
+                  initialSlide={1}
+                  // centeredSlides={true}
+                  spaceBetween={100}
+                  // pagination={{
+                  //   type: "fraction",
+                  // }}
                   className="mySwiper"
                 >
                   {product?.image?.map((image, index) => (

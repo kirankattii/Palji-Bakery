@@ -1,8 +1,8 @@
-import "../adminCss/adminUpdateProduct.css";
+import "../../adminCss/adminUpdateProduct.css";
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
-import { makeApi } from "../api/callApi";
-import Loader from "../components/loader/loader";
+import { makeApi } from "../../api/callApi";
+import Loader from "../../components/loader/loader";
 
 function UpdateProduct() {
   const navigate = useNavigate();
