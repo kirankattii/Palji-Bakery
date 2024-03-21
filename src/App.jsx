@@ -15,6 +15,7 @@ import Admin from "./AdminPages/Admin"
 import Product from "./pages/Product"
 import ShopCategory from "./pages/ShopCategory"
 import OpenProduct from "./pages/OpenProduct"
+import Cart from "./pages/Cart"
 
 function App() {
 	const [count, setCount] = useState(0)
@@ -76,6 +77,10 @@ function App() {
 				<Route
 					path="/contact"
 					element={<Contact />}
+				/>
+				<Route
+					path="/cart"
+					element={<Cart />}
 				/>
 				<Route
 					path="/login"

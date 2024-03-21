@@ -14,6 +14,14 @@
   gap: 10px;
 }
 
+form p {
+  margin: auto;
+}
+
+form p span {
+  color: #E5087E;
+}
+
 .signup form div {
   display: flex;
   gap: 10px;

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react"
+import React, { useContext, useEffect, useState } from "react"
 import user_icon from "../../assets/Male User.png"
 import { Link, useLocation } from "react-router-dom"
 import { assets } from "../../assets/assets"
@@ -7,11 +7,12 @@ import { HiMiniShoppingBag } from "react-icons/hi2"
 import { GiHamburgerMenu } from "react-icons/gi"
 
 import "./navbar.css"
+import { ShopContext } from "../../context/ShopContext"
 
 const Navbar = () => {
 	const [showNavbar, setShowNavbar] = useState(false)
 	const [message, setMessage] = useState("")
-
+	const { getTotalCartItems } = useContext(ShopContext)
 	useEffect(() => {
 		const timeoutId = setTimeout(() => {
 			setShowNavbar(true)
@@ -27,7 +28,11 @@ const Navbar = () => {
 			location.pathname === "/contact" ||
 			location.pathname === "/login" ||
 			location.pathname === "/Signup" ||
-			location.pathname === "/products"
+			location.pathname === "/products" ||
+			location.pathname === "/products/savory" ||
+			location.pathname === "/products/biscuits" ||
+			location.pathname === "/cart"
+
 			// location.pathname === "/openproduct"
 		)
 	}
@@ -95,14 +100,16 @@ const Navbar = () => {
 						alt=""
 					/>
 				</Link>
-				<div className="cart">
-					<span className="cart-no">1</span>
-					<HiMiniShoppingBag
-						className={
-							shouldApplySpecialStyles() ? "special-cart-icon" : "cart-icon"
-						}
-					/>
-				</div>
+				<Link to="/cart">
+					<div className="cart">
+						<span className="cart-no">{getTotalCartItems()}</span>
+						<HiMiniShoppingBag
+							className={
+								shouldApplySpecialStyles() ? "special-cart-icon" : "cart-icon"
+							}
+						/>
+					</div>
+				</Link>
 
 				<div className="media-navbar">
 					<nav>
