@@ -59,7 +59,7 @@ function Getallcatogory() {
           </div>
           <div className="category-list">
             <div className="category-list-header">All Categories</div>
-            <ul className="category_list_ul" >
+            <ul className="category_list_ul">
               {categories.map((category) => (
                 <li key={category._id}>
                   <div>
@@ -68,7 +68,7 @@ function Getallcatogory() {
                   </div>
                   <div>
                     <div className="all_products_page_button">
-                      <Link to={`/admin/product-update/${category._id}`}>
+                      <Link to={`/admin/category-update/${category._id}`}>
                         <button className="edit_button_all_product">
                           Edit
                         </button>
@@ -80,7 +80,6 @@ function Getallcatogory() {
                         Delete
                       </button>
                     </div>
-                   
                   </div>
                 </li>
               ))}

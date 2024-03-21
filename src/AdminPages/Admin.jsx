@@ -8,6 +8,7 @@ import Adminsidebar from "../AdminComponents/slidebar/adminsidebar";
 import AdminaddProduct from "../AdminComponents/product/adminaddProduct";
 import Getallcatogory from "../AdminComponents/catogory/getallcatogory";
 import Addcatogory from "../AdminComponents/catogory/addcatogory";
+import Editcategories from "../AdminComponents/catogory/editcategories";
 
 function Admin() {
   return (
@@ -33,6 +34,7 @@ function Admin() {
           {/* category */}
           <Route path="/all-categories" element={<Getallcatogory />} />
           <Route path="/add-category" element={<Addcatogory />} />
+          <Route path="/category-update/:Id" element={<Editcategories />} />
         </Routes>
       </div>
     </div>

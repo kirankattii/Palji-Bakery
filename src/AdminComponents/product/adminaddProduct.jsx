@@ -1,14 +1,16 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from "react";
 import "../../adminCss/product/adminaddProduct.css";
-import { makeApi } from '../../api/callApi';
+import { makeApi } from "../../api/callApi";
 
 function AdminaddProduct() {
+  const [categories, setCategories] = useState([]);
+  const [Loading, setLoading] = useState(false);
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState("");
   const [discountPercentage, setDiscountPercentage] = useState("");
   const [quantity, setQuantity] = useState("");
-  const [images, setImages] = useState([{}]); 
+  const [images, setImages] = useState([{}]);
   const [thumbnail, setThumbnail] = useState("");
   const [category, setCategory] = useState("");
   const [brand, setBrand] = useState("");
@@ -23,7 +25,7 @@ function AdminaddProduct() {
         price,
         discountPercentage,
         quantity,
-        image: images, 
+        image: images,
         thumbnail,
         category,
         brand,
@@ -34,7 +36,7 @@ function AdminaddProduct() {
       setPrice("");
       setDiscountPercentage("");
       setQuantity("");
-      setImages([""]); 
+      setImages([""]);
       setThumbnail("");
       setCategory("");
       setBrand("");
@@ -54,14 +56,31 @@ function AdminaddProduct() {
     setImages([...images, ""]);
   };
 
+  useEffect(() => {
+    async function fetchCategories() {
+      try {
+        setLoading(true);
+        const response = await makeApi("/api/get-all-categories", "GET");
+        if (response.status === 200) {
+          setCategories(response.data.categories);
+        }
+      } catch (error) {
+        console.log("Error fetching categories:", error);
+      } finally {
+        setLoading(false);
+      }
+    }
+    fetchCategories();
+  }, []);
+
   return (
     <div>
       <div className="add-product-container">
-        <div className='add_product_text'>Add Product</div>
+        <div className="add_product_text">Add Product</div>
         <form onSubmit={handleSubmit}>
           <input
             type="text"
-            className='add_product_input_filed'
+            className="add_product_input_filed"
             placeholder="Name"
             value={name}
             onChange={(e) => setName(e.target.value)}
@@ -69,14 +88,14 @@ function AdminaddProduct() {
           />
           <input
             type="text"
-            className='add_product_input_filed'
+            className="add_product_input_filed"
             placeholder="Description"
             value={description}
             onChange={(e) => setDescription(e.target.value)}
           />
           <input
             type="number"
-            className='add_product_input_filed'
+            className="add_product_input_filed"
             placeholder="Price"
             value={price}
             onChange={(e) => setPrice(e.target.value)}
@@ -84,14 +103,14 @@ function AdminaddProduct() {
           />
           <input
             type="text"
-            className='add_product_input_filed'
+            className="add_product_input_filed"
             placeholder="Discount Percentage"
             value={discountPercentage}
             onChange={(e) => setDiscountPercentage(e.target.value)}
           />
           <input
             type="number"
-            className='add_product_input_filed'
+            className="add_product_input_filed"
             placeholder="Quantity"
             value={quantity}
             onChange={(e) => setQuantity(e.target.value)}
@@ -108,41 +127,58 @@ function AdminaddProduct() {
               required
             />
           ))}
-          <div className='add_product_page_add_more_div' >
-
-          <button type="button" className='admin_add_product_button add_product_page_button' onClick={handleAddMoreImages}>Add More</button>
+          <div className="add_product_page_add_more_div">
+            <button
+              type="button"
+              className="admin_add_product_button add_product_page_button"
+              onClick={handleAddMoreImages}
+            >
+              Add More
+            </button>
           </div>
           <input
             type="text"
-            className='add_product_input_filed'
+            className="add_product_input_filed"
             placeholder="Thumbnail URL"
             value={thumbnail}
             onChange={(e) => setThumbnail(e.target.value)}
             required
           />
-          <input
-            type="text"
-            className='add_product_input_filed'
-            placeholder="Category"
+
+          <select
+            className="add_product_input_filed"
             value={category}
             onChange={(e) => setCategory(e.target.value)}
-          />
+          >
+            <option value="">Select Category</option>
+            {categories.map((category) => (
+              <option key={category._id} value={category._id}>
+                {category.name}
+              </option>
+            ))}
+          </select>
+
           <input
             type="text"
-            className='add_product_input_filed'
+            className="add_product_input_filed"
             placeholder="Brand"
             value={brand}
             onChange={(e) => setBrand(e.target.value)}
           />
           <input
             type="text"
-            className='add_product_input_filed'
+            className="add_product_input_filed"
             placeholder="Size"
             value={size}
             onChange={(e) => setSize(e.target.value)}
           />
-          <div className='add_product_page_button_div' >
-          <button type="submit" className='admin_add_product_button add_product_page_button'>Add Product</button>
+          <div className="add_product_page_button_div">
+            <button
+              type="submit"
+              className="admin_add_product_button add_product_page_button"
+            >
+              Add Product
+            </button>
           </div>
         </form>
       </div>

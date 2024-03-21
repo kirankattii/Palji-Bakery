@@ -3,7 +3,7 @@ import { assets } from "../../assets/assets";
 import "../../adminCss/sidebar/adminsidebar.css";
 import { Link } from "react-router-dom";
 function Adminsidebar() {
-  const [selectedItem, setSelectedItem] = useState("");
+  const [selectedItem, setSelectedItem] = useState("Dashboard");
   // Function to handle click on menu items
   const handleMenuItemClick = (itemName) => {
     setSelectedItem(itemName);
