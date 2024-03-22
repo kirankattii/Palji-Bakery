@@ -4,7 +4,6 @@ import { makeApi } from "../../api/callApi";
 import Loader from "../../components/loader/loader";
 
 function Editcategories() {
-  console.log("vai ---");
   const navigate = useNavigate();
   const { Id } = useParams();
   const [loading, setLoading] = useState(false);

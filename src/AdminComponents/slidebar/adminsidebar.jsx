@@ -50,6 +50,7 @@ function Adminsidebar() {
                  Products
               </div>
               </Link>
+              <Link to={"/admin/all-orders"}>
               <div
                 className={`admin_sidebar_menu_items ${
                   selectedItem === "All Orders" && "selected"
@@ -58,6 +59,7 @@ function Adminsidebar() {
               >
                  Orders
               </div>
+              </Link>
               <div
                 className={`admin_sidebar_menu_items ${
                   selectedItem === "All user" && "selected"

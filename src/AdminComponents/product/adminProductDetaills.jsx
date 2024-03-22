@@ -45,7 +45,6 @@ function ProductDetails() {
           `/api/get-single-product/${productId}`,
           "GET"
         );
-        console.log(response.data.product);
         setProduct(response.data.product);
       } catch (error) {
         console.error("Error fetching product details:", error);
