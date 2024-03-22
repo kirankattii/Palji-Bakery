@@ -1,6 +1,14 @@
 .all-orders-container {
   padding: 40px;
 }
+.admin_add_product_button.selectedStatus {
+  background-color: black;
+}
+.admin_add_product_button.selectedStatus:hover {
+color: rgb(0, 0, 0);
+background-color: #fff;
+}
+
 .order_list_container {
   display: flex;
   align-items: center;

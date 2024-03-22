@@ -3,7 +3,7 @@ import { assets } from "../../assets/assets";
 import "../../adminCss/sidebar/adminsidebar.css";
 import { Link } from "react-router-dom";
 function Adminsidebar() {
-  const [selectedItem, setSelectedItem] = useState("Dashboard");
+  const [selectedItem, setSelectedItem] = useState("");
   // Function to handle click on menu items
   const handleMenuItemClick = (itemName) => {
     setSelectedItem(itemName);
@@ -30,7 +30,7 @@ function Adminsidebar() {
             {/* sidebar menu list div */}
 
             <div className="admin_sidebar_menu_list">
-              <Link to={"/admin/dashboard"}>
+              <Link to={"/admin/admin-dashboard"}>
                 <div
                   className={`admin_sidebar_menu_items ${
                     selectedItem === "Dashboard" && "selected"
@@ -41,24 +41,24 @@ function Adminsidebar() {
                 </div>
               </Link>
               <Link to={"/admin/allproducts"}>
-              <div
-                className={`admin_sidebar_menu_items ${
-                  selectedItem === "All Products" && "selected"
-                }`}
-                onClick={() => handleMenuItemClick("All Products")}
-              >
-                 Products
-              </div>
+                <div
+                  className={`admin_sidebar_menu_items ${
+                    selectedItem === "All Products" && "selected"
+                  }`}
+                  onClick={() => handleMenuItemClick("All Products")}
+                >
+                  Products
+                </div>
               </Link>
               <Link to={"/admin/all-orders"}>
-              <div
-                className={`admin_sidebar_menu_items ${
-                  selectedItem === "All Orders" && "selected"
-                }`}
-                onClick={() => handleMenuItemClick("All Orders")}
-              >
-                 Orders
-              </div>
+                <div
+                  className={`admin_sidebar_menu_items ${
+                    selectedItem === "All Orders" && "selected"
+                  }`}
+                  onClick={() => handleMenuItemClick("All Orders")}
+                >
+                  Orders
+                </div>
               </Link>
               <div
                 className={`admin_sidebar_menu_items ${
@@ -66,17 +66,17 @@ function Adminsidebar() {
                 }`}
                 onClick={() => handleMenuItemClick("All user")}
               >
-                 user
+                user
               </div>
               <Link to={"/admin/all-categories"}>
-              <div
-                className={`admin_sidebar_menu_items ${
-                  selectedItem === "All catogory" && "selected"
-                }`}
-                onClick={() => handleMenuItemClick("All catogory")}
-              >
-                 catogory
-              </div>
+                <div
+                  className={`admin_sidebar_menu_items ${
+                    selectedItem === "All catogory" && "selected"
+                  }`}
+                  onClick={() => handleMenuItemClick("All catogory")}
+                >
+                  catogory
+                </div>
               </Link>
             </div>
           </div>

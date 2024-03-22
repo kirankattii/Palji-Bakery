@@ -3,12 +3,14 @@ import "../../adminCss/order/allorder.css";
 import { makeApi } from "../../api/callApi";
 import { Link } from "react-router-dom";
 import UpdateOrderPopup from "./updateorder";
+import Loader from "../../components/loader/loader";
 
 function AllOrder() {
   const [loading, setLoading] = useState(false);
   const [orders, setOrders] = useState([]);
   const [status, setStatus] = useState("");
   const [selectedOrderId, setSelectedOrderId] = useState(null);
+  const [selectedStatus, setSelectedStatus] = useState(""); // Initialize with empty string
 
   const fetchOrders = async () => {
     try {
@@ -29,6 +31,7 @@ function AllOrder() {
 
   const handleStatusChange = (newStatus) => {
     setStatus(newStatus);
+    setSelectedStatus(newStatus); // Update selectedStatus
   };
   const handleOpenPopup = (orderId) => {
     setSelectedOrderId(orderId);
@@ -37,30 +40,42 @@ function AllOrder() {
   const handleClose = () => {
     setSelectedOrderId(null);
   };
+  const handleMenuItemClick = (itemName) => {
+    setSelectedItem(itemName);
+  };
 
   return (
     <div className="all-orders-container">
       <div className="all_orders_status_buttons">
         <button
-          className="admin_add_product_button"
+          className={`admin_add_product_button ${
+            selectedStatus === "Pending" ? "selectedStatus" : ""
+          }`}
           onClick={() => handleStatusChange("Pending")}
         >
           Pending Orders
         </button>
+
         <button
-          className="admin_add_product_button"
+          className={`admin_add_product_button ${
+            selectedStatus === "Cancelled" ? "selectedStatus" : ""
+          }`}
           onClick={() => handleStatusChange("Cancelled")}
         >
           Cancelled Orders
         </button>
         <button
-          className="admin_add_product_button"
+          className={`admin_add_product_button ${
+            selectedStatus === "Shipped" ? "selectedStatus" : ""
+          }`}
           onClick={() => handleStatusChange("Shipped")}
         >
           Shipped Orders
         </button>
         <button
-          className="admin_add_product_button"
+          className={`admin_add_product_button ${
+            selectedStatus === "Delivered" ? "selectedStatus" : ""
+          }`}
           onClick={() => handleStatusChange("Delivered")}
         >
           Delivered Orders
@@ -68,7 +83,7 @@ function AllOrder() {
       </div>
       <div className="order-list">
         {loading ? (
-          <p>Loading...</p>
+          <Loader />
         ) : (
           <div className="main_order_list_container">
             {orders?.map((data, index) => (
@@ -164,8 +179,9 @@ function AllOrder() {
                   >
                     View Order
                   </Link>
-                  <div className="all_order_order_update_button"
-                  onClick={() => handleOpenPopup(data._id)}
+                  <div
+                    className="all_order_order_update_button"
+                    onClick={() => handleOpenPopup(data._id)}
                   >
                     {" "}
                     Update Order{" "}
