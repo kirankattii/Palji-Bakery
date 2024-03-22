@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "../../adminCss/product/adminaddProduct.css";
 import { makeApi } from "../../api/callApi";
+import axios from "axios";
 
 function AdminaddProduct() {
   const [categories, setCategories] = useState([]);
@@ -73,6 +74,71 @@ function AdminaddProduct() {
     fetchCategories();
   }, []);
 
+  const handleImageUpload = async (event, index) => {
+    try {
+      const file = event.target.files[0];
+
+      // if (file.type.startsWith("image/")) {
+      if (file) {
+        console.log(file);
+
+        const compressedFile = await file;
+
+        const data = new FormData();
+        data.append("file", compressedFile);
+        data.append("upload_preset", "ou1fk438");
+
+        await axios
+          .post(
+            `https://api.cloudinary.com/v1_1/dyl3gzm7d/image/upload`,
+
+            data
+          )
+          .then((response) => {
+            if (response.status === 200) {
+              const imageURL = response.data.url;
+              // setFormData({ ...formData, screenshot: imageURL });
+              handleImageChange(index, imageURL);
+            }
+          });
+      }
+    } catch (error) {
+      console.log("image upload error", error);
+    }
+  };
+  const handleThumbnailUpload = async (event, index) => {
+    try {
+      const file = event.target.files[0];
+
+      // if (file.type.startsWith("image/")) {
+      if (file) {
+        console.log(file);
+
+        const compressedFile = await file;
+
+        const data = new FormData();
+        data.append("file", compressedFile);
+        data.append("upload_preset", "ou1fk438");
+
+        await axios
+          .post(
+            `https://api.cloudinary.com/v1_1/dyl3gzm7d/image/upload`,
+
+            data
+          )
+          .then((response) => {
+            if (response.status === 200) {
+              const imageURL = response.data.url;
+              // setFormData({ ...formData, screenshot: imageURL });
+              setThumbnail(imageURL);
+            }
+          });
+      }
+    } catch (error) {
+      console.log("image upload error", error);
+    }
+  };
+
   return (
     <div>
       <div className="add-product-container">
@@ -116,7 +182,7 @@ function AdminaddProduct() {
             onChange={(e) => setQuantity(e.target.value)}
             required
           />
-          {images.map((image, index) => (
+          {/* {images.map((image, index) => (
             <input
               key={index}
               type="text"
@@ -124,6 +190,20 @@ function AdminaddProduct() {
               placeholder={`Image URL ${index + 1}`}
               value={image}
               onChange={(e) => handleImageChange(index, e.target.value)}
+              required
+            />
+          ))} */}
+          {images.map((image, index) => (
+            <input
+              key={index}
+              type="file"
+              className="add_product_input_filed add_product_input_filed_image"
+              // placeholder={`Image URL ${index + 1}`}
+              // value={image}
+              // onChange={(e) => handleImageChange(index, e.target.value)}
+              onChange={(event) => {
+                handleImageUpload(event, index);
+              }}
               required
             />
           ))}
@@ -136,17 +216,25 @@ function AdminaddProduct() {
               Add More
             </button>
           </div>
-          <input
+          {/* <input
             type="text"
             className="add_product_input_filed"
             placeholder="Thumbnail URL"
             value={thumbnail}
             onChange={(e) => setThumbnail(e.target.value)}
             required
+          /> */}
+          <input
+            type="file"
+            className="add_product_input_filed add_product_input_filed_image"
+            placeholder="Thumbnail URL"
+            // value={thumbnail}
+            onChange={(e) => handleThumbnailUpload(e)}
+            required
           />
 
           <select
-            className="add_product_input_filed"
+            className="add_product_input_filed add_product_dropdown"
             value={category}
             onChange={(e) => setCategory(e.target.value)}
           >
