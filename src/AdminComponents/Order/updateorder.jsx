@@ -232,8 +232,8 @@ const UpdateOrderPopup = ({ orderId, onClose }) => {
             </div>
           </div>
           <div className="button-group">
-            <button onClick={handleUpdateOrder}>Update Order</button>
             <button onClick={handleClose}>Close</button>
+            <button onClick={handleUpdateOrder}>Update Order</button>
           </div>
         </div>
       )}

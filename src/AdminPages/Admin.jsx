@@ -11,6 +11,7 @@ import Addcatogory from "../AdminComponents/catogory/addcatogory";
 import Editcategories from "../AdminComponents/catogory/editcategories";
 import Allorder from "../AdminComponents/Order/allorder";
 import Orderdetails from "../AdminComponents/Order/orderdetails";
+import Admindasboard from "../AdminComponents/dasboard/admindasboard";
 
 function Admin() {
   return (
@@ -41,6 +42,9 @@ function Admin() {
           {/* orders */}
           <Route path="/all-orders" element={<Allorder />} />
           <Route path="/order/:id" element={<Orderdetails/>} />
+
+          {/* admin */}
+          <Route path="/admin-dashboard" element={<Admindasboard />} />
         </Routes>
       </div>
     </div>
