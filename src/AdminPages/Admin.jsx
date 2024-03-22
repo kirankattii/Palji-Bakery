@@ -9,6 +9,8 @@ import AdminaddProduct from "../AdminComponents/product/adminaddProduct";
 import Getallcatogory from "../AdminComponents/catogory/getallcatogory";
 import Addcatogory from "../AdminComponents/catogory/addcatogory";
 import Editcategories from "../AdminComponents/catogory/editcategories";
+import Allorder from "../AdminComponents/Order/allorder";
+import Orderdetails from "../AdminComponents/Order/orderdetails";
 
 function Admin() {
   return (
@@ -35,6 +37,10 @@ function Admin() {
           <Route path="/all-categories" element={<Getallcatogory />} />
           <Route path="/add-category" element={<Addcatogory />} />
           <Route path="/category-update/:Id" element={<Editcategories />} />
+
+          {/* orders */}
+          <Route path="/all-orders" element={<Allorder />} />
+          <Route path="/order/:id" element={<Orderdetails/>} />
         </Routes>
       </div>
     </div>
