@@ -5,13 +5,15 @@ import { assets } from "../../assets/assets"
 import { IoSearch } from "react-icons/io5"
 import { HiMiniShoppingBag } from "react-icons/hi2"
 import { GiHamburgerMenu } from "react-icons/gi"
+import { MdArrowDropDown } from "react-icons/md"
 
 import "./navbar.css"
 import { ShopContext } from "../../context/ShopContext"
+import ProfileDropdown from "../profileDropdown/ProfileDropdown"
 
 const Navbar = () => {
 	const [showNavbar, setShowNavbar] = useState(false)
-	const [message, setMessage] = useState("")
+
 	const { getTotalCartItems } = useContext(ShopContext)
 	useEffect(() => {
 		const timeoutId = setTimeout(() => {
@@ -46,23 +48,36 @@ const Navbar = () => {
 	const closeMenu = () => {
 		setMobileMenu(false)
 	}
+	const [openProfile, setOpenProfile] = useState(false)
 
 	return showNavbar ? (
 		<div className="navbar">
 			<div className="left-navbar">
-				<Link to="/login">
-					<img
-						src={user_icon}
-						alt=""
-					/>
-				</Link>
+				<img
+					onClick={() => setOpenProfile((prev) => !prev)}
+					src={user_icon}
+					alt=""
+				/>
 
 				<ul>
 					<li>
 						<Link to="/">HOME</Link>
 					</li>
-					<li>
-						<Link to="/products">Products</Link>
+					<li className="product-navbar">
+						<Link to="/products">
+							Products <MdArrowDropDown />
+						</Link>
+						<ul className="drop-down-menu">
+							<li className="dropdown-li">
+								<Link to="/products">Gift Hamper</Link>
+							</li>
+							<li className="dropdown-li">
+								<Link to="/products/savory">Savory</Link>
+							</li>
+							<li className="dropdown-li">
+								<Link to="/products/biscuits">Biscuits</Link>
+							</li>
+						</ul>
 					</li>
 					<li>
 						<Link to="/aboutus">ABOUT US</Link>
@@ -114,6 +129,12 @@ const Navbar = () => {
 				<div className="media-navbar">
 					<nav>
 						<ul className={moblieMenu ? "" : "hide-mobile-menu"}>
+							<p
+								className={
+									shouldApplySpecialStyles() ? "special-menu-icon" : "menu-icon"
+								}
+								onClick={toggleMenu}
+							></p>
 							<li>
 								<Link
 									to="/"
@@ -151,12 +172,17 @@ const Navbar = () => {
 							className={
 								shouldApplySpecialStyles() ? "special-menu-icon" : "menu-icon"
 							}
-							// className=""
 							onClick={toggleMenu}
 						/>
 					</nav>
 				</div>
 			</div>
+			{openProfile && (
+				<ProfileDropdown
+					openProfile={setOpenProfile}
+					setOpenProfile={setOpenProfile}
+				/>
+			)}
 		</div>
 	) : null
 }

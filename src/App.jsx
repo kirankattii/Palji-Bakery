@@ -16,6 +16,11 @@ import Product from "./pages/Product"
 import ShopCategory from "./pages/ShopCategory"
 import OpenProduct from "./pages/OpenProduct"
 import Cart from "./pages/Cart"
+import MyAccount from "./components/myAccount/MyAccount"
+import MyOrders from "./components/myOrders/MyOrders"
+import MyAddress from "./components/myAddress/MyAddress"
+import MyWatchlist from "./components/myWatchlist/MyWatchlist"
+import ShippingAddress from "./components/shippingAddress/ShippingAddress"
 
 function App() {
 	const [count, setCount] = useState(0)
@@ -91,8 +96,29 @@ function App() {
 					element={<Signup />}
 				/>
 				<Route
-					path="user/:activepage"
+					path="/userprofile"
 					element={<UserProfile />}
+				>
+					<Route
+						index
+						element={<MyAccount profile="Profile Information" />}
+					/>
+					<Route
+						path="/userprofile/myorders"
+						element={<MyOrders />}
+					/>
+					<Route
+						path="/userprofile/myaddress"
+						element={<MyAddress />}
+					/>{" "}
+					<Route
+						path="/userprofile/mywatchlist"
+						element={<MyWatchlist />}
+					/>
+				</Route>
+				<Route
+					path="/addaddress"
+					element={<ShippingAddress />}
 				/>
 				<Route
 					path="/admin/*"

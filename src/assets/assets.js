@@ -41,6 +41,13 @@ import search_icon2 from "./Search_icon.png"
 import cart_remove from "./Delete.png"
 import add_icon_green from "./add_icon_green.png"
 import add_icon_red from "./remove_icon_red.png"
+import userprofile_icon from "./userprofile_icon.png"
+import user_account from "./user_account.png"
+import user_orders from "./user_orders.png"
+import user_address from "./user_Address.png"
+import user_watchlist from "./userprofile_watchlist.png"
+import password_reset from "./Password Reset.png"
+import profile_reset from "./profile_reset.png"
 
 export const assets = {
 	cup_cakes,
@@ -86,4 +93,11 @@ export const assets = {
 	add_icon_green,
 	add_icon_red,
 	cart_remove,
+	userprofile_icon,
+	user_account,
+	user_orders,
+	user_address,
+	user_watchlist,
+	password_reset,
+	profile_reset,
 }

@@ -1,1 +1,100 @@
-.user-profile-container {}
+.userProfile {
+  width: 100%;
+  min-height: 100vh;
+  padding: 0 100px;
+  padding-top: 20vh;
+  background: #efe2d7;
+
+  /* border-top: 2px solid black; */
+}
+
+.user-sidebar-info {
+  display: flex;
+  gap: 20px;
+  width: 100%;
+  /* align-items: first baseline; */
+}
+
+.userProfile-sidebar {
+  margin-top: 30px;
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.userProfile-sidebar h1 {
+  font-family: Kumbh Sans;
+  font-size: 28px;
+  font-weight: 500;
+  line-height: 44.65px;
+  text-align: left;
+
+}
+
+.user-flexcol {
+  background: #F2D6CC;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  /* justify-content: center; */
+  border-radius: 20px;
+  gap: 35px;
+  cursor: pointer;
+}
+
+.user-flexcol p {
+  font-family: Kumbh Sans;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 29.77px;
+  letter-spacing: 0.1em;
+  text-align: left;
+
+}
+
+.user-flexcol img {
+  padding: 10px;
+  width: 75px;
+  padding-left: 25px;
+}
+
+.userprofile-name {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  background: #F2D6CC;
+  border-radius: 20px;
+}
+
+.userprofile-name span {
+  font-family: Kumbh Sans;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 18.6px;
+  letter-spacing: 0.12em;
+  text-align: left;
+}
+
+.userprofile-name p {
+  font-family: Kumbh Sans;
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 29.77px;
+  letter-spacing: 0.12em;
+  text-align: left;
+
+}
+
+.userprofile-name img {
+  width: 100px;
+  padding: 5px;
+}
+
+.userProfile-info {
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+}

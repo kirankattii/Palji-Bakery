@@ -91,6 +91,11 @@ hr {
   letter-spacing: 0.1em;
   /* text-align: left; */
   color: #AE7B37;
+  /* list-style: ; */
+}
+
+.palji-phoneno ul, .palji-mail ul {
+  list-style: none;
 }
 
 .palji-location ul {
@@ -189,4 +194,8 @@ hr {
     text-align: center;
     font-size: 12px;
   }
+}
+
+.right-footer div ul {
+  /* list-style: circle; */
 }
