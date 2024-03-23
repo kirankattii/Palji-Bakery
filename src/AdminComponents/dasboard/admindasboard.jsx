@@ -35,6 +35,7 @@ function Admindasboard() {
           <h2>Total Products</h2>
           <p>{dasboardData?.totalProducts}</p>
         </div>
+        
         <div className="dashboard-card">
           <h2>Total Orders</h2>
           <p>{dasboardData?.totalOrders}</p>
