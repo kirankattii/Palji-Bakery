@@ -106,15 +106,12 @@ const Navbar = () => {
 					/>
 					<IoSearch className="search_icon" />
 				</div>
-				<Link
-					to="/login"
+				<img
 					className="media-profile-icon"
-				>
-					<img
-						src={user_icon}
-						alt=""
-					/>
-				</Link>
+					onClick={() => setOpenProfile((prev) => !prev)}
+					src={user_icon}
+					alt=""
+				/>
 				<Link to="/cart">
 					<div className="cart">
 						<span className="cart-no">{getTotalCartItems()}</span>

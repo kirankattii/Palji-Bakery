@@ -64,6 +64,22 @@ const Product = () => {
 						</div>
 					</div>
 				</div>
+				<div className="media-product-sidebar">
+					<div className="media-product-categories">
+						<h1>Product Categories:</h1>
+						<ul>
+							<li>
+								<Link to="/products">Gift Hamper</Link>
+							</li>
+							<li>
+								<Link to="/products/savory">Savory</Link>
+							</li>
+							<li>
+								<Link to="/products/biscuits">Biscuits</Link>
+							</li>
+						</ul>
+					</div>
+				</div>
 				<hr />
 				<div className="all-products">
 					<Outlet />

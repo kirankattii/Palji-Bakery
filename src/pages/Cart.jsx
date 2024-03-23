@@ -10,13 +10,13 @@ const Cart = () => {
 	return (
 		<div className="cart-container">
 			<div className="cart-item">
-				<div className="cart-items-title">
+				<div className="cart-items-title cart-items-title2">
 					<p>Items</p>
-					<p>Product Name</p>
+					<p>Name</p>
 					<p>Price</p>
 					<p>Qty</p>
 					<p>Total:</p>
-					<p>Remove</p>
+					<p>X</p>
 				</div>
 				<br />
 				<hr />
