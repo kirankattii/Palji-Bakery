@@ -49,10 +49,14 @@
 
 .center-logo {
   width: 150px;
+  /* place-self: center; */
+  /* display: flex; */
+
 }
 
 .right-navbar {
-  width: 45%;
+  width: 44.4%;
+
   display: flex;
   align-items: center;
   justify-content: space-between;

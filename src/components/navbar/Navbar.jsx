@@ -129,12 +129,12 @@ const Navbar = () => {
 				<div className="media-navbar">
 					<nav>
 						<ul className={moblieMenu ? "" : "hide-mobile-menu"}>
-							<p
+							{/* <p
 								className={
 									shouldApplySpecialStyles() ? "special-menu-icon" : "menu-icon"
 								}
 								onClick={toggleMenu}
-							></p>
+							></p> */}
 							<li>
 								<Link
 									to="/"
