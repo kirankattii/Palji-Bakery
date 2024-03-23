@@ -10,18 +10,20 @@
   /* input */
   .add_product_input_filed {
     width: 100%;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
     padding: 20px;
     border-radius: 10px;
-
   }
+ 
   .add_product_input_filed_image{
     border: 1px solid black;
     font-size: 16px;
     cursor: pointer;
     border-radius: 10px;
   }
-
+.add_product_dropdown{
+  cursor: pointer;
+}
   
   /* button */
   .add_product_page_button_div{
