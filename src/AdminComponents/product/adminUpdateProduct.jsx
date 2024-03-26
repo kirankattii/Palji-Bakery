@@ -486,6 +486,7 @@ import axios from "axios";
 
 function UpdateProduct() {
   const navigate = useNavigate();
+  const [categories, setCategories] = useState([]);
   const { productId } = useParams();
   const [loading, setLoading] = useState(false);
   const [Updateloader, setUpdateLoader] = useState(false);
@@ -531,6 +532,7 @@ function UpdateProduct() {
   }, [productId]);
 
   const handleChange = (e) => {
+    console.log(e.target.name, e.target.value)
     setFormData({
       ...formData,
       [e.target.name]: e.target.value,
@@ -555,6 +557,23 @@ function UpdateProduct() {
       navigate("/admin/allproducts");
     }
   };
+
+  useEffect(() => {
+    async function fetchCategories() {
+      try {
+        setLoading(true);
+        const response = await makeApi("/api/get-all-categories", "GET");
+        if (response.status === 200) {
+          setCategories(response.data.categories);
+        }
+      } catch (error) {
+        console.log("Error fetching categories:", error);
+      } finally {
+        setLoading(false);
+      }
+    }
+    fetchCategories();
+  }, []);
 
   const removeImage = (indexToRemove) => {
     setFormData((prevFormData) => ({
@@ -587,8 +606,6 @@ function UpdateProduct() {
 
       // if (file.type.startsWith("image/")) {
       if (file) {
-       
-
         const compressedFile = await file;
 
         const data = new FormData();
@@ -734,12 +751,25 @@ function UpdateProduct() {
               </div>
               <div>
                 <label>Category:</label>
-                <input
+                {/* <input
                   type="text"
                   name="category"
                   value={formData?.category}
                   onChange={handleChange}
-                />
+                /> */}
+                <select
+                  className="add_product_input_filed add_product_dropdown"
+                  value={formData?.category}
+                  name="category"
+                  onChange={handleChange}
+                >
+                  <option value="">Select Category</option>
+                  {categories.map((category) => (
+                    <option key={category._id} value={category._id}>
+                      {category.name}
+                    </option>
+                  ))}
+                </select>
               </div>
               <div>
                 <label>Brand:</label>
