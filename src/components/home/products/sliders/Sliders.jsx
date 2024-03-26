@@ -28,7 +28,7 @@ const Sliders = ({ productInfo }) => {
 				</div>
 				<div className="bottom-slider">
 					<p>Add to Cart</p>
-					<div className="count">
+					<div className="count1">
 						<span>-</span>
 						<p>0</p>
 						<span>+</span>

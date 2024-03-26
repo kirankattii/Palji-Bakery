@@ -82,12 +82,12 @@
 
 }
 
-.cart {
+.cart5 {
   border: 2px solid white;
   border-radius: 50px;
 }
 
-.cart button {
+.cart5 button {
   font-family: Kumbh Sans;
   cursor: pointer;
   font-weight: 500;
@@ -251,4 +251,15 @@
   .arrow-btn img {
     width: 35px;
   }
+}
+
+
+
+
+.banner-flex.active .right-banner {
+  transform: translateX(100%);
+}
+
+.banner-flex.active.next .right-banner {
+  transform: translateX(-100%);
 }

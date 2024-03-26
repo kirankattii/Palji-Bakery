@@ -51,7 +51,7 @@
   margin-top: 6px;
 }
 
-.cart-bottom {
+.cart-bottomm {
   display: flex;
   justify-content: space-between;
   margin-top: 200px;
@@ -253,7 +253,7 @@
     margin-top: 6px;
   }
 
-  .cart-bottom {
+  .cart-bottomm {
     display: flex;
     flex-direction: column;
     /* align-items: center; */

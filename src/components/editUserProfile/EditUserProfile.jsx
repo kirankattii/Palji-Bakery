@@ -2,6 +2,7 @@ import React from "react"
 import "./editUserProfile.css"
 
 const EditUserProfile = () => {
+	// const [editData, setEditData] = useState({})
 	return (
 		<div className="editUserProfile">
 			<form
@@ -17,36 +18,48 @@ const EditUserProfile = () => {
 						<input
 							type="text"
 							placeholder="First Name"
+							name="firstname"
 						/>
 						<input
 							type="text"
 							placeholder="Last Name"
+							name="lastname"
 						/>
 					</div>
 					<div className="edit-gender">
 						<label htmlFor="">Gender</label>
 						<div>
-							<input
-								className="edit-male"
-								type="text"
-								placeholder="Male"
-							/>
-							<input
-								className="edit-female"
-								type="text"
-								placeholder="Female"
-							/>
+							<div>
+								<input
+									type="radio"
+									name="gender"
+									value="male"
+								/>
+								<label htmlFor="male">Male</label>
+							</div>
+							<div>
+								<input
+									type="radio"
+									name="gender"
+									value="female"
+								/>
+								<label htmlFor="female">Female</label>
+							</div>
 						</div>
 					</div>
 					<div className="edit-dob">
 						<label htmlFor="">D.O.B</label>
-						<input type="date" />
+						<input
+							type="date"
+							name="date"
+						/>
 					</div>
 					<div className="edit-city">
 						<label htmlFor="">City</label>
 						<input
 							type="text"
 							placeholder="City"
+							name="city"
 						/>
 					</div>
 					<div className="edit-state">
