@@ -75,17 +75,19 @@ a {
   background: #f9f9f9;
 }
 
-body {
-  /* font-size: 1.6rem; */
-  background: var(--bg);
-}
+/* body {
 
+  background: var(--bg);
+} */
+
+/* 
 .container2 {
   max-width: 124rem;
   padding: 4rem 1rem;
   margin: 0 auto;
-}
+} */
 
+/* 
 .heading {
   padding: 1rem 0;
   font-size: 3.5rem;
@@ -204,7 +206,7 @@ body {
 
 .swiper-pagination .swiper-pagination-bullet-active {
   background: var(--primary);
-}
+} */
 
 
 

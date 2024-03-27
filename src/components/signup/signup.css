@@ -7,27 +7,27 @@
   justify-content: center;
 }
 
-.signup form {
+.signup .signup-form {
   display: flex;
   flex-direction: column;
   width: 30%;
   gap: 10px;
 }
 
-form p {
+.signup-form p {
   margin: auto;
 }
 
-form p span {
+.signup-form p span {
   color: #E5087E;
 }
 
-.signup form div {
+.signup .signup-form div {
   display: flex;
   gap: 10px;
 }
 
-.signup form input {
+.signup .signup-form input {
   border: 2px solid #E5087E;
   width: 100%;
   outline: 0;
@@ -38,7 +38,7 @@ form p span {
   border-radius: 5px;
 }
 
-.signup form button {
+.signup .signup-form button {
   width: 100%;
   padding: 10px;
   font-size: 17px;
@@ -51,19 +51,19 @@ form p span {
 }
 
 @media screen and (max-width: 1000px) {
-  .signup form {
+  .signup .signup-form {
     width: 50%;
   }
 }
 
 @media screen and (max-width: 600px) {
-  .signup form {
+  .signup .signup-form {
     width: 70%;
   }
 }
 
 @media screen and (max-width: 400px) {
-  .signup form {
+  .signup .signup-form {
     width: 80%;
   }
 }

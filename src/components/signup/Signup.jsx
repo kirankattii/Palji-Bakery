@@ -1,94 +1,144 @@
 import React, { useEffect, useState } from "react"
-import { makeApi } from "../../api/callApi"
+
 import "./signup.css"
 
-import axios from "axios"
-import { Link, useNavigate } from "react-router-dom"
-
 const Signup = () => {
-	const [firstName, setFirstName] = useState()
-	const [lastName, setLastName] = useState()
-	const [mobileNumber, setMobileNumber] = useState()
-	const [email, setEmail] = useState()
-	const [password, setPassword] = useState()
-	const navigate = useNavigate()
+	const [state, setState] = useState("Login")
+	const [formData, setFormData] = useState({
+		firstName: "",
+		lastName: "",
+		password: "",
+		email: "",
+		mobileNumber: "",
+	})
+	const changeHandler = (e) => {
+		setFormData({ ...formData, [e.target.name]: e.target.value })
+	}
 
-	// const handleSubmit = (event) => {
-	// 	event.preventDefault()
-	// 	axios
-	// 		.post("https://pajiweb.onrender.com/api/register-user", {
-	// firstName: firstName,
-	// lastName: lastName,
-	// password: password,
-	// email: email,
-	// mobileNumber: mobileNumber,
-	// 		})
-	// 		.then((res) => {
-	// 			console.log(res)
-	// 			navigate("/login")
-	// 		})
-	// 		.catch((err) => console.log(err))
-	// }
-	const handleSubmit = async () => {
-		event.preventDefault()
-		try {
-			const response = await makeApi("/api/register-user", "POST", {
-				firstName: firstName,
-				lastName: lastName,
-				password: password,
-				email: email,
-				mobileNumber: mobileNumber,
-			})
-			navigate("/login")
-		} catch (error) {
-			console.error("Error sending data:", error.response)
+	const login = async () => {
+		console.log("Login function exituted", formData)
+		let responceData
+		await fetch("https://pajiweb.onrender.com/api/login-user", {
+			method: "POST",
+			headers: {
+				Accept: "application/form-data",
+				"Content-type": "application/json",
+			},
+			body: JSON.stringify(formData),
+		})
+			.then((responce) => responce.json())
+			.then((data) => (responceData = data))
+
+		if (responceData.success) {
+			localStorage.setItem("auth-token", responceData.token)
+			window.location.replace("/")
+		} else {
+			alert(responceData.error)
+		}
+	}
+	const singup = async () => {
+		console.log("sign up function exituted", formData)
+		let responceData
+		await fetch("https://pajiweb.onrender.com/api/register-user", {
+			method: "POST",
+			headers: {
+				Accept: "application/form-data",
+				"Content-type": "application/json",
+			},
+			body: JSON.stringify(formData),
+		})
+			.then((responce) => responce.json())
+			.then((data) => (responceData = data))
+
+		if (responceData.success) {
+			localStorage.setItem("auth-token", responceData.token)
+			window.location.replace("/")
+		} else {
+			alert("Email is already exist")
 		}
 	}
 
 	return (
 		<div className="signup">
-			<form onSubmit={handleSubmit}>
+			<div className="signup-form">
 				<div className="enter-name">
-					<input
-						name="firstName"
-						type="text"
-						placeholder="First Name"
-						onChange={(e) => setFirstName(e.target.value)}
-					/>
-
-					<input
-						name="lastName"
-						type="text"
-						placeholder="Last Name"
-						onChange={(e) => setLastName(e.target.value)}
-					/>
+					{state === "Sign Up" ? (
+						<input
+							name="firstName"
+							type="text"
+							placeholder="First Name"
+							onChange={changeHandler}
+							value={formData.firstName}
+						/>
+					) : (
+						""
+					)}
+					{state === "Sign Up" ? (
+						<input
+							name="lastName"
+							type="text"
+							placeholder="Last Name"
+							value={formData.lastName}
+							onChange={changeHandler}
+						/>
+					) : (
+						""
+					)}
 				</div>
 				<input
 					name="email"
 					type="email"
 					placeholder="Email Address"
-					onChange={(e) => setEmail(e.target.value)}
-				/>{" "}
-				<input
-					name="mobileNumber"
-					type="number"
-					placeholder="Phone Number"
-					onChange={(e) => setMobileNumber(e.target.value)}
+					value={formData.email}
+					onChange={changeHandler}
 				/>
+				{state === "Sign Up" ? (
+					<input
+						name="mobileNumber"
+						type="number"
+						placeholder="Phone Number"
+						value={formData.mobileNumber}
+						onChange={changeHandler}
+					/>
+				) : (
+					""
+				)}
 				<input
 					name="password"
 					type="password"
 					placeholder="Password"
-					onChange={(e) => setPassword(e.target.value)}
-				/>{" "}
-				<button type="submit">Sign Up</button>
-				<p>
-					Already have an account ?{" "}
-					<span>
-						<Link to="/login"> Log in</Link>
-					</span>
-				</p>
-			</form>
+					value={formData.password}
+					onChange={changeHandler}
+				/>
+				<button
+					onClick={() => {
+						state === "Login" ? login() : singup()
+					}}
+				>
+					Continue
+				</button>
+				{state === "Sign Up" ? (
+					<p>
+						Already have an account ?{" "}
+						<span
+							onClick={() => setState("Login")}
+							style={{ cursor: "pointer" }}
+						>
+							Log in
+						</span>
+					</p>
+				) : (
+					<p className="loginsignup-login">
+						Create an account
+						<span
+							onClick={() => setState("Sign Up")}
+							style={{ cursor: "pointer" }}
+						>
+							Click Here
+						</span>
+					</p>
+				)}
+			</div>
 		</div>
 	)
 }

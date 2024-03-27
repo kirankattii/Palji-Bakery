@@ -45,48 +45,6 @@ const Banner = () => {
 	}
 
 	return (
-		// <div className="banner">
-		// 	{banner.map((item, index) => (
-		// 		<div
-		// 			key={index}
-		// 			className={`palji-banners ${index === currentSlide ? "active" : ""}`}
-		// 		>
-		// 			<div className="left-banner">
-		// 				<div className="banner-info">
-		// 					<div className="title">
-		// 						<h2>Jaggery </h2>
-		// 						<p>Premium Cookies</p>
-		// 					</div>
-		// 					<div>
-		// 						<p className="content">{item.subTitle}</p>
-		// 					</div>
-		// 				</div>
-		// 				<div className="cart">
-		// 					<button>Add to Cart</button>
-		// 				</div>
-		// 			</div>
-		// 			<div className="right-banner">
-		// 				<img
-		// 					src={item.banner_Image}
-		// 					alt=""
-		// 				/>
-		// 			</div>
-		// 		</div>
-		// 	))}
-
-		// 	<div className="arrow-btn">
-		// 		<img
-		// 			src={assets.left_arrow}
-		// 			alt=""
-		// 			onClick={handlePrevSlide}
-		// 		/>
-		// 		<img
-		// 			src={assets.right_arrow}
-		// 			alt=""
-		// 			onClick={handleNextSlide}
-		// 		/>
-		// 	</div>
-		// </div>
 		<div className="banner">
 			<div
 				className="palji-banners"
@@ -106,7 +64,7 @@ const Banner = () => {
 								</div>
 								<p className="content">{item.content}</p>
 							</div>
-							<div className="cart">
+							<div className="cart5">
 								<button>Add to Cart</button>
 							</div>
 						</div>

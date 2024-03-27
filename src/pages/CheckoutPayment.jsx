@@ -1,65 +1,38 @@
 import React, { useContext } from "react"
-import "./CSS/cart.css"
-// import all_product from "../assets/all_products"
+import Breadcrum from "../components/breadcrum/Breadcrum"
+import "./CSS/checkoutPayment.css"
 import { ShopContext } from "../context/ShopContext"
-import { assets } from "../assets/assets"
-import { useNavigate } from "react-router"
 
-const Cart = () => {
+const CheckoutPayment = () => {
 	const { cartItems, all_product, removeFromCart, getTotalCartAmount } =
 		useContext(ShopContext)
-	const navigate = useNavigate()
 	return (
-		<div className="cart-container">
-			<div className="cart-item">
-				<div className="cart-items-title cart-items-title2">
-					<p>Items</p>
-					<p>Name</p>
-					<p>Price</p>
-					<p>Qty</p>
-					<p>Total:</p>
-					<p>X</p>
-				</div>
-				<br />
-				<hr />
-				{all_product.map((item, i) => {
-					if (cartItems[item.id] > 0) {
-						return (
-							<div>
-								<div className="cart-items-title cart-items-item">
-									<img
-										src={item.image}
-										alt=""
-									/>
-									<p>{item.name}</p>
-									<p>₹{item.new_price}</p>
-									<p>{cartItems[item.id]}</p>
-									<p>₹{item.new_price * cartItems[item.id]}</p>
-									<p
-										className="cross"
-										onClick={() => removeFromCart(item.id)}
-									>
-										<img
-											className="remove-cart"
-											src={assets.cart_remove}
-											alt=""
-										/>
-									</p>
+		<div className="checkoutpayment">
+			<Breadcrum />
+			<h1 className="checkout-h1">checkout & payment</h1>
+			<div className="checkoutpayment-div">
+				<div className="left-checkoutpayment">
+					<div className="check-outt">
+						<h2>Shipping Address:</h2>
+						<button>add new address</button>
+					</div>
+					<div className="checkout-shipping-address">
+						<input type="checkbox" />
+						<div className="checkout-checkbox">
+							<div className="shipping-address-editdelete">
+								<h3>shipping address</h3>
+								<div>
+									<button>EDIT</button>
+									<button>DELETE</button>
 								</div>
-								{/* <hr /> */}
 							</div>
-						)
-					}
-				})}
-			</div>
-			<div className="cart-bottomm">
-				<div className="cart-address">
-					<h2>ADDRESS</h2>
-					<p>Anurag Sagar</p>
-					<p>9401, Urban Estate, Phase-2, Ludhiana-141010</p>
-					<p>+91 9999999999</p>
+							<div className="checkout-shipaddress">
+								john doe xyx, block- x, sector, xx, city, state pincode
+							</div>
+						</div>
+					</div>
 				</div>
-				<div className="cart-billing">
+				<div className="right-checkoutpayment cart-billing">
 					<div className="cart-order-summary">
 						<h2>order summary</h2>
 						<div className="cart-billing-charges">
@@ -108,4 +81,4 @@ const Cart = () => {
 	)
 }
 
-export default Cart
+export default CheckoutPayment

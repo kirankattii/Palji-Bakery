@@ -21,6 +21,8 @@ import MyOrders from "./components/myOrders/MyOrders"
 import MyAddress from "./components/myAddress/MyAddress"
 import MyWatchlist from "./components/myWatchlist/MyWatchlist"
 import ShippingAddress from "./components/shippingAddress/ShippingAddress"
+import EditUserProfile from "./components/editUserProfile/EditUserProfile"
+import CheckoutPayment from "./pages/CheckoutPayment"
 
 function App() {
 	const [count, setCount] = useState(0)
@@ -117,8 +119,16 @@ function App() {
 					/>
 				</Route>
 				<Route
+					path="/edit-userprofile"
+					element={<EditUserProfile />}
+				/>
+				<Route
 					path="/addaddress"
 					element={<ShippingAddress />}
+				/>
+				<Route
+					path="/cart/checkoutpayment"
+					element={<CheckoutPayment />}
 				/>
 				<Route
 					path="/admin/*"

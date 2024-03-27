@@ -40,7 +40,7 @@ const MyAccount = () => {
 				<div className="right-myaccount-info">
 					<div
 						className="change-profileinfo"
-						onClick={() => navigate("/addaddress")}
+						onClick={() => navigate("/edit-userprofile")}
 					>
 						<img
 							src={assets.profile_reset}
@@ -50,7 +50,7 @@ const MyAccount = () => {
 					</div>{" "}
 					<div
 						className="change-profilepwd"
-						onClick={() => navigate("/addaddress")}
+						onClick={() => navigate("/edit-userprofile")}
 					>
 						<img
 							src={assets.password_reset}

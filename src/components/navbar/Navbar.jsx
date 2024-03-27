@@ -9,6 +9,7 @@ import { MdArrowDropDown } from "react-icons/md"
 
 import "./navbar.css"
 import { ShopContext } from "../../context/ShopContext"
+import ProductDropdown from "../productDropdown/ProductDropdown"
 import ProfileDropdown from "../profileDropdown/ProfileDropdown"
 
 const Navbar = () => {
@@ -67,17 +68,7 @@ const Navbar = () => {
 						<Link to="/products">
 							Products <MdArrowDropDown />
 						</Link>
-						<ul className="drop-down-menu">
-							<li className="dropdown-li">
-								<Link to="/products">Gift Hamper</Link>
-							</li>
-							<li className="dropdown-li">
-								<Link to="/products/savory">Savory</Link>
-							</li>
-							<li className="dropdown-li">
-								<Link to="/products/biscuits">Biscuits</Link>
-							</li>
-						</ul>
+						<ProductDropdown />
 					</li>
 					<li>
 						<Link to="/aboutus">ABOUT US</Link>
@@ -107,7 +98,7 @@ const Navbar = () => {
 					<IoSearch className="search_icon" />
 				</div>
 				<Link
-					to="/login"
+					to="/Signup"
 					className="media-profile-icon"
 				>
 					<img
@@ -116,7 +107,7 @@ const Navbar = () => {
 					/>
 				</Link>
 				<Link to="/cart">
-					<div className="cart">
+					<div className="nav-cart">
 						<span className="cart-no">{getTotalCartItems()}</span>
 						<HiMiniShoppingBag
 							className={
@@ -129,12 +120,12 @@ const Navbar = () => {
 				<div className="media-navbar">
 					<nav>
 						<ul className={moblieMenu ? "" : "hide-mobile-menu"}>
-							<p
+							{/* <p
 								className={
 									shouldApplySpecialStyles() ? "special-menu-icon" : "menu-icon"
 								}
 								onClick={toggleMenu}
-							></p>
+							></p> */}
 							<li>
 								<Link
 									to="/"
