@@ -12,6 +12,7 @@ import Editcategories from "../AdminComponents/catogory/editcategories";
 import Allorder from "../AdminComponents/Order/allorder";
 import Orderdetails from "../AdminComponents/Order/orderdetails";
 import Admindasboard from "../AdminComponents/dasboard/admindasboard";
+import OfferPage from "../AdminComponents/email/OfferTemplate";
 
 function Admin() {
   return (
@@ -45,6 +46,10 @@ function Admin() {
 
           {/* admin */}
           <Route path="/admin-dashboard" element={<Admindasboard />} />
+
+
+          {/* email send */}
+          <Route path="/send-email" element={<OfferPage />} />
         </Routes>
       </div>
     </div>
