@@ -60,14 +60,16 @@ function Adminsidebar() {
                   Orders
                 </div>
               </Link>
+              <Link to={"/admin/All-coupan"}>
               <div
                 className={`admin_sidebar_menu_items ${
                   selectedItem === "All user" && "selected"
                 }`}
                 onClick={() => handleMenuItemClick("All user")}
               >
-                user
+                Coupan
               </div>
+              </Link>
               <Link to={"/admin/all-categories"}>
                 <div
                   className={`admin_sidebar_menu_items ${
@@ -77,7 +79,7 @@ function Adminsidebar() {
                 >
                   catogory
                 </div>
-              </Link>
+              </Link> 
             </div>
           </div>
         </div>

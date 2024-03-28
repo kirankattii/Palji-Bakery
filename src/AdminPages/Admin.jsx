@@ -13,6 +13,7 @@ import Allorder from "../AdminComponents/Order/allorder";
 import Orderdetails from "../AdminComponents/Order/orderdetails";
 import Admindasboard from "../AdminComponents/dasboard/admindasboard";
 import OfferPage from "../AdminComponents/email/OfferTemplate";
+import GetallCoupan from "../AdminComponents/Coupan/coupanallcatogory";
 
 function Admin() {
   return (
@@ -43,6 +44,9 @@ function Admin() {
           {/* orders */}
           <Route path="/all-orders" element={<Allorder />} />
           <Route path="/order/:id" element={<Orderdetails/>} />
+
+          {/* coupan */}
+          <Route path="/All-coupan" element={<GetallCoupan />} />
 
           {/* admin */}
           <Route path="/admin-dashboard" element={<Admindasboard />} />
