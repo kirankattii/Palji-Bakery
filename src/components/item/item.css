@@ -109,12 +109,18 @@
   justify-content: center;
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 45px;
   padding: 3px;
   border-radius: 50px;
   background: #fff;
   transition: 0.5s ease-in-out;
 
+}
+
+.cart-item-no {
+  /* margin-top: 0px; */
+  margin-top: 12px;
+  position: absolute;
 }
 
 .food-item-counter img {

@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { useLocation } from "react-router-dom"
 
 import "./App.css"
@@ -25,8 +25,16 @@ import EditUserProfile from "./components/editUserProfile/EditUserProfile"
 import CheckoutPayment from "./pages/CheckoutPayment"
 
 function App() {
-	const [count, setCount] = useState(0)
-	const location = useLocation()
+	// const [categories, setCategories] = useState([])
+	// const location = useLocation()
+	// useEffect(() => {
+	// 	fetch("https://pajiweb.onrender.com/api/get-all-categories/")
+	// 		.then((responce) => responce.json())
+	// 		.then((data) => setCategories(data))
+	// 		.catch((error) => console.error("Error fetching categories:", error))
+	// }, [])
+	// const categoriesName = categories.categories
+	// console.log(categoriesName)
 
 	return (
 		<div className="app">
@@ -43,35 +51,7 @@ function App() {
 				<Route
 					path="/products"
 					element={<Product />}
-				>
-					<Route
-						index
-						element={
-							<ShopCategory
-								name="gift hAMPERS"
-								category="gift"
-							/>
-						}
-					/>
-					<Route
-						path="/products/savory"
-						element={
-							<ShopCategory
-								name="SAVORY"
-								category="savory"
-							/>
-						}
-					/>
-					<Route
-						path="/products/biscuits"
-						element={
-							<ShopCategory
-								name="Biscuits"
-								category="biscuits"
-							/>
-						}
-					/>
-				</Route>
+				/>
 				<Route
 					path="/openproduct"
 					element={<OpenProduct />}

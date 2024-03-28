@@ -6,7 +6,10 @@ import { useParams } from "react-router"
 const OpenProduct = () => {
 	const { all_product } = useContext(ShopContext)
 	const { productId } = useParams()
-	const product = all_product.find((e) => e.id === Number(productId))
+	const pro = all_product
+	console.log(pro)
+	const product = all_product.find((e) => e._id === Number(productId))
+	console.log(product)
 	return (
 		<div className="openProduct">
 			<ProductDisplay product={product} />

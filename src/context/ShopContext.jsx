@@ -1,10 +1,42 @@
-import { createContext, useState } from "react"
-import all_product from "../assets/all_products"
+import { createContext, useEffect, useState } from "react"
+import { makeApi } from "../api/callApi"
+// import all_product from "../assets/all_products"
 
 export const ShopContext = createContext(null)
-
+// https://pajiweb.onrender.com/api/get-all-products
 const ShopContextProvider = (props) => {
 	const [cartItems, setCartItems] = useState({})
+	const [all_products, setall_product] = useState([])
+	const [products, setProducts] = useState([])
+	useEffect(() => {
+		const fetchData = async () => {
+			try {
+				// setLoading(true)
+				const response = await makeApi(`/api/get-all-products`, "GET")
+				setall_product(response.data.products)
+			} catch (error) {
+				console.error("Error fetching products:", error)
+			}
+		}
+		fetchData()
+
+		// fetch("https://pajiweb.onrender.com/api/get-all-products")
+		// 	.then((responce) => responce.json())
+		// 	.then((data) => setall_product(data))
+		// if (localStorage.getItem("auth-token")) {
+		// 	fetch("http://localhost:4000/getcart", {
+		// 		method: "POST",
+		// 		headers: {
+		// 			Accept: "application/form-data",
+		// 			"auth-token": `${localStorage.getItem("auth-token")}`,
+		// 			"Content-type": "application/json",
+		// 		},
+		// 		body: "",
+		// 	}).then((data) => setCartItems(data))
+		// }
+	}, [])
+	const all_product = all_products
+	console.log(all_product)
 
 	const addToCart = (itemId) => {
 		if (!cartItems[itemId]) {

@@ -11,7 +11,7 @@ const Item = (props) => {
 	return (
 		<div className="item">
 			<div className="item-card">
-				<Link to={`/openproduct/${props.id}`}>
+				<Link to={`/openproduct/${props._id}`}>
 					<img
 						// onClick={window.scrollTo(0, 0)}
 						src={props.image}
@@ -36,13 +36,12 @@ const Item = (props) => {
 						</div>
 					) : (
 						<div className="food-item-counter">
-							{" "}
 							<img
 								onClick={() => removeFromCart(props.id)}
 								src={assets.add_icon_red}
 								alt=""
 							/>
-							<p>{cartItems[props.id]}</p>
+							<p className="cart-item-no">{cartItems[props.id]}</p>
 							<img
 								onClick={() => addToCart(props.id)}
 								src={assets.add_icon_green}
