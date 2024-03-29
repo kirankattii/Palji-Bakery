@@ -10,16 +10,26 @@
 
 
 
+
 .palji-banners {
   display: flex;
   min-width: 100%;
   width: 300%;
-  /* Adjusted width to accommodate all slides */
+
   height: 100vh;
   align-items: center;
-  transition: transform 0.5s ease;
-  /* Moved transition here */
+
 }
+
+/* Add a new class for applying dynamic background */
+/* .dynamic-bg {
+  background: var(--banner-background);
+} */
+
+/* Update the transition property for the dynamic background */
+/* .dynamic-bg {
+  transition: background 0.5s ease;
+} */
 
 .slide {
   flex: 0 0 33.33%;
@@ -94,7 +104,7 @@
   line-height: 35px;
   letter-spacing: 0em;
   text-align: left;
-  background: #E31E24;
+  /* background: #E31E24; */
   border: 2px solid white;
   display: flex;
   color: #fff;
@@ -257,60 +267,68 @@
   }
 }
 
-
-
-
-.banner-flex.active .right-banner {
-  transform: translateX(100%);
+.right-banner img {
+  /* width: 550px; */
+  /* Adjust as needed */
+  transform: translateY(-00%);
+  /* Initially translate the image above its original position */
+  transition: transform 0.7s ease;
+  /* Adding transition property */
 }
 
-.banner-flex.active.next .right-banner {
-  transform: translateX(-100%);
+.banner-flex.active .right-banner img {
+  transform: translateY(0);
+  /* Translate the image to its original position */
+  animation: rotateAnimation 0.7s ease;
+  /* Applying the keyframe animation */
 }
 
-
-.banner-flex.prev .right-banner {
-  transform: translateX(-100%);
-}
-
-.banner-flex.next .right-banner {
-  transform: translateX(100%);
-}
-
-@keyframes slideCircularly {
-  0% {
-    transform: translateX(0);
+@keyframes rotateAnimation {
+  from {
+    transform: rotate(90deg) translateY(-200%);
+    /* Starting position: rotated and translated */
   }
 
-  100% {
-    transform: translateX(100%);
+  to {
+    transform: rotate(0deg) translateY(00%);
+    /* Ending position: back to original rotation and position */
   }
 }
 
-.banner-flex.prev .right-banner {
-  animation: slideCircularlyPrev 0.5s ease forwards;
+
+
+
+.left-banner .banner-info h2,
+.left-banner .banner-info p {
+  /* opacity: 0; */
+  transform: translateY(-0%);
+  transition: opacity 0.5s ease, transform 0.5s ease;
 }
 
-.banner-flex.next .right-banner {
-  animation: slideCircularlyNext 0.5s ease forwards;
+.left-banner .banner-info .content {
+  opacity: 0;
+  transform: translateY(-50%);
+  transition: opacity 0.5s ease, transform 0.5s ease;
 }
 
-@keyframes slideCircularlyPrev {
-  0% {
-    transform: translateX(0);
-  }
-
-  100% {
-    transform: translateX(-100%);
-  }
+.left-banner .banner-info h2.show,
+.left-banner .banner-info p.show,
+.left-banner .banner-info .content.show {
+  opacity: 1;
+  transform: translateY(0);
 }
 
-@keyframes slideCircularlyNext {
-  0% {
-    transform: translateX(0);
-  }
-
-  100% {
-    transform: translateX(100%);
-  }
+/* .left-banner .banner-info h2,
+.left-banner .banner-info p,
+.left-banner .banner-info .content {
+  opacity: 0;
+  transform: translateY(-60%);
+  transition: opacity 0.5s ease, transform 0.5s ease;
 }
+
+.left-banner .banner-info h2.show,
+.left-banner .banner-info p.show,
+.left-banner .banner-info .content.show {
+  opacity: 1;
+  transform: translateY(0);
+} */

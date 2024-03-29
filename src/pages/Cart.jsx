@@ -8,6 +8,8 @@ import { useNavigate } from "react-router"
 const Cart = () => {
 	const { cartItems, all_product, removeFromCart, getTotalCartAmount } =
 		useContext(ShopContext)
+	console.log("this is cart", all_product)
+
 	const navigate = useNavigate()
 	return (
 		<div className="cart-container">
@@ -23,21 +25,21 @@ const Cart = () => {
 				<br />
 				<hr />
 				{all_product.map((item, i) => {
-					if (cartItems[item.id] > 0) {
+					if (cartItems[item._id] > 0) {
 						return (
 							<div>
 								<div className="cart-items-title cart-items-item">
 									<img
-										src={item.image}
+										src={item.thumbnail}
 										alt=""
 									/>
 									<p>{item.name}</p>
-									<p>₹{item.new_price}</p>
-									<p>{cartItems[item.id]}</p>
-									<p>₹{item.new_price * cartItems[item.id]}</p>
+									<p>₹{item.price}</p>
+									<p>{cartItems[item._id]}</p>
+									<p>₹{item.price * cartItems[item._id]}</p>
 									<p
 										className="cross"
-										onClick={() => removeFromCart(item.id)}
+										onClick={() => removeFromCart(item._id)}
 									>
 										<img
 											className="remove-cart"
