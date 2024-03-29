@@ -68,6 +68,11 @@ function Admin() {
 						element={<Orderdetails />}
 					/>
 
+					{/*           
+          <Route path="/All-coupan" element={<GetallCoupan />} />
+          <Route path="/add-coupan" element={<AddCoupan />} />
+          <Route path="/update-coupan/:Id" element={<EditCoupan />} /> */}
+
 					{/* admin */}
 					<Route
 						path="/admin-dashboard"
