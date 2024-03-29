@@ -4,6 +4,7 @@ import { assets } from "../../../assets/assets"
 
 const Banner = () => {
 	const [currentSlide, setCurrentSlide] = useState(0)
+	const [animationDirection, setAnimationDirection] = useState(null)
 	const banner = [
 		{
 			title: "Jaggery & Til",
@@ -36,18 +37,20 @@ const Banner = () => {
 		setCurrentSlide((prevSlide) =>
 			prevSlide === 0 ? banner.length - 1 : prevSlide - 1
 		)
+		setAnimationDirection("prev")
 	}
 
 	const handleNextSlide = () => {
 		setCurrentSlide((prevSlide) =>
 			prevSlide === banner.length - 1 ? 0 : prevSlide + 1
 		)
+		setAnimationDirection("next")
 	}
 
 	return (
 		<div className="banner">
 			<div
-				className="palji-banners"
+				className={`palji-banners ${animationDirection}`}
 				style={{ transform: `translateX(-${currentSlide * 100}%)` }}
 			>
 				{banner.map((item, index) => (
@@ -57,7 +60,11 @@ const Banner = () => {
 						style={{ backgroundColor: item.backgroundColor }}
 					>
 						<div className="left-banner">
-							<div className="banner-info">
+							<div
+								className={`banner-info ${
+									index === currentSlide ? "active" : ""
+								}`}
+							>
 								<div className="title">
 									<h2>{item.title}</h2>
 									<p>{item.subTitle}</p>

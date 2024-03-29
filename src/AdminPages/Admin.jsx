@@ -1,6 +1,7 @@
 import React from "react";
 import { Route, Routes } from "react-router";
 
+<<<<<<< Updated upstream
 import Allproduct from "../AdminComponents/product/Allproduct";
 import AdminProductDetaills from "../AdminComponents/product/adminProductDetaills";
 import UpdateProduct from "../AdminComponents/product/adminUpdateProduct";
@@ -16,6 +17,20 @@ import OfferPage from "../AdminComponents/email/OfferTemplate";
 import GetallCoupan from "../AdminComponents/Coupan/coupanallcatogory";
 import AddCoupan from "../AdminComponents/Coupan/coupanCreate";
 import EditCoupan from "../AdminComponents/Coupan/coupanUpdate";
+=======
+import Allproduct from "../AdminComponents/product/Allproduct"
+import AdminProductDetaills from "../AdminComponents/product/adminProductDetaills"
+import UpdateProduct from "../AdminComponents/product/adminUpdateProduct"
+import Adminsidebar from "../AdminComponents/slidebar/adminsidebar"
+import AdminaddProduct from "../AdminComponents/product/adminaddProduct"
+import Getallcatogory from "../AdminComponents/catogory/getallcatogory"
+import Addcatogory from "../AdminComponents/catogory/addcatogory"
+import Editcategories from "../AdminComponents/catogory/editcategories"
+import Allorder from "../AdminComponents/Order/allorder"
+import Orderdetails from "../AdminComponents/Order/orderdetails"
+import Admindasboard from "../AdminComponents/dasboard/admindasboard"
+import OfferPage from "../AdminComponents/email/OfferTemplate"
+>>>>>>> Stashed changes
 
 function Admin() {
   return (
@@ -52,6 +67,7 @@ function Admin() {
           <Route path="/add-coupan" element={<AddCoupan />} />
           <Route path="/update-coupan" element={<EditCoupan />} />
 
+<<<<<<< Updated upstream
           {/* admin */}
           <Route path="/admin-dashboard" element={<Admindasboard />} />
 
@@ -62,6 +78,23 @@ function Admin() {
       </div>
     </div>
   );
+=======
+					{/* admin */}
+					<Route
+						path="/admin-dashboard"
+						element={<Admindasboard />}
+					/>
+
+					{/* email send */}
+					<Route
+						path="/send-email"
+						element={<OfferPage />}
+					/>
+				</Routes>
+			</div>
+		</div>
+	)
+>>>>>>> Stashed changes
 }
 
 export default Admin;

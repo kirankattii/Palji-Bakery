@@ -11,7 +11,7 @@ const Item = (props) => {
 	return (
 		<div className="item">
 			<div className="item-card">
-				<Link to={`/openproduct/${props._id}`}>
+				<Link to={`/openproduct/${props.id}`}>
 					<img
 						// onClick={window.scrollTo(0, 0)}
 						src={props.image}

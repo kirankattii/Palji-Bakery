@@ -110,6 +110,8 @@
 
 .left-banner .banner-info .right-banner img {
   width: 550px;
+  position: absolute;
+  left: 0;
 }
 
 .arrow-btn {
@@ -126,6 +128,8 @@
   width: 50px;
   cursor: pointer;
 }
+
+
 
 @media screen and (max-width: 1100px) {
   .left-banner .banner-info h2 {
@@ -262,4 +266,51 @@
 
 .banner-flex.active.next .right-banner {
   transform: translateX(-100%);
+}
+
+
+.banner-flex.prev .right-banner {
+  transform: translateX(-100%);
+}
+
+.banner-flex.next .right-banner {
+  transform: translateX(100%);
+}
+
+@keyframes slideCircularly {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.banner-flex.prev .right-banner {
+  animation: slideCircularlyPrev 0.5s ease forwards;
+}
+
+.banner-flex.next .right-banner {
+  animation: slideCircularlyNext 0.5s ease forwards;
+}
+
+@keyframes slideCircularlyPrev {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+@keyframes slideCircularlyNext {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(100%);
+  }
 }

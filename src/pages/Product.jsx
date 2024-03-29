@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react"
 import "./CSS/product.css"
 import { assets } from "../assets/assets"
-import { Link, Outlet } from "react-router-dom"
+
 import { makeApi } from "../api/callApi"
 import ShopCategory from "./ShopCategory"
 
@@ -50,12 +50,12 @@ const Product = (props) => {
 				}
 			} catch (error) {
 				console.log("Error fetching categories:", error)
-			} finally {
-				// setLoading(false)
 			}
 		}
 		fetchCategories()
 	}, [])
+
+	console.log(products)
 
 	return (
 		<div className="product">
@@ -121,7 +121,10 @@ const Product = (props) => {
 				<hr />
 				<div className="all-products">
 					{/* <Item /> */}
-					<ShopCategory products={products} />
+					<ShopCategory
+						products={products}
+						categories={categories}
+					/>
 				</div>
 			</div>
 		</div>
