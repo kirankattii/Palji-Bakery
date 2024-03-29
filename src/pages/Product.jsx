@@ -1,16 +1,61 @@
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import "./CSS/product.css"
 import { assets } from "../assets/assets"
 import { Link, Outlet } from "react-router-dom"
+import { makeApi } from "../api/callApi"
+import ShopCategory from "./ShopCategory"
 
-const Product = () => {
+const Product = (props) => {
 	const [minPrice, setMinPrice] = useState(200)
 	const [maxPrice, setMaxPrice] = useState(1000)
 	const handlePriceChange = (event) => {
 		const { value } = event.target
 		setMaxPrice(value)
 	}
-	// const filterProduct
+	const [categories, setCategories] = useState([])
+	const [products, setProducts] = useState([])
+	const [searchQuery, setSearchQuery] = useState("")
+	const [category, setCategory] = useState("")
+
+	// useEffect(() => {
+	// 	fetch("https://pajiweb.onrender.com/api/get-all-categories/")
+	// 		.then((responce) => responce.json())
+	// 		.then((data) => setCategories(data))
+	// 		.catch((error) => console.error("Error fetching categories:", error))
+	// }, [])
+
+	useEffect(() => {
+		const fetchData = async () => {
+			try {
+				// setLoading(true)
+				const response = await makeApi(
+					`/api/get-all-products?name=${searchQuery}&category=${category} `,
+					"GET"
+				)
+				setProducts(response.data.products)
+			} catch (error) {
+				console.error("Error fetching products:", error)
+			}
+		}
+		fetchData()
+	}, [searchQuery, category])
+
+	useEffect(() => {
+		async function fetchCategories() {
+			try {
+				// setLoading(true)
+				const response = await makeApi("/api/get-all-categories", "GET")
+				if (response.status === 200) {
+					setCategories(response.data.categories)
+				}
+			} catch (error) {
+				console.log("Error fetching categories:", error)
+			} finally {
+				// setLoading(false)
+			}
+		}
+		fetchCategories()
+	}, [])
 
 	return (
 		<div className="product">
@@ -37,17 +82,22 @@ const Product = () => {
 					</div>
 					<div className="product-categories">
 						<h1>Product Categories:</h1>
-						<ul>
-							<li>
-								<Link to="/products">Gift Hamper</Link>
-							</li>
-							<li>
-								<Link to="/products/savory">Savory</Link>
-							</li>
-							<li>
-								<Link to="/products/biscuits">Biscuits</Link>
-							</li>
-						</ul>
+						<select
+							className="add_product_input_filed add_product_dropdown"
+							value={category}
+							onChange={(e) => setCategory(e.target.value)}
+						>
+							<option value="">Select Category</option>
+							<option value="">All</option>
+							{categories.map((category) => (
+								<option
+									key={category._id}
+									value={category._id}
+								>
+									{category.name}
+								</option>
+							))}
+						</select>
 					</div>
 					<div className="recentely-viewed"></div>
 					<div className="products-search">
@@ -56,6 +106,9 @@ const Product = () => {
 							<input
 								type="text"
 								placeholder="Search"
+								id="inputBox"
+								onChange={(e) => setSearchQuery(e.target.value)}
+								value={searchQuery}
 							/>
 							<img
 								src={assets.search_icon2}
@@ -64,25 +117,11 @@ const Product = () => {
 						</div>
 					</div>
 				</div>
-				<div className="media-product-sidebar">
-					<div className="media-product-categories">
-						<h1>Product Categories:</h1>
-						<ul>
-							<li>
-								<Link to="/products">Gift Hamper</Link>
-							</li>
-							<li>
-								<Link to="/products/savory">Savory</Link>
-							</li>
-							<li>
-								<Link to="/products/biscuits">Biscuits</Link>
-							</li>
-						</ul>
-					</div>
-				</div>
+
 				<hr />
 				<div className="all-products">
-					<Outlet />
+					{/* <Item /> */}
+					<ShopCategory products={products} />
 				</div>
 			</div>
 		</div>

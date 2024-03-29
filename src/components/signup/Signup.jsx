@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react"
-
+import { makeApi } from "../../api/callApi"
 import "./signup.css"
 
 const Signup = () => {
@@ -17,46 +17,50 @@ const Signup = () => {
 
 	const login = async () => {
 		console.log("Login function exituted", formData)
-		let responceData
-		await fetch("https://pajiweb.onrender.com/api/login-user", {
-			method: "POST",
-			headers: {
-				Accept: "application/form-data",
-				"Content-type": "application/json",
-			},
-			body: JSON.stringify(formData),
-		})
-			.then((responce) => responce.json())
-			.then((data) => (responceData = data))
-
-		if (responceData.success) {
-			localStorage.setItem("auth-token", responceData.token)
-			window.location.replace("/")
-		} else {
-			alert(responceData.error)
+		try {
+			let loginsingup = await makeApi(
+				"/api/login-user",
+				"post",
+				JSON.stringify(formData)
+			)
+		} catch (error) {
+			console.log(error)
 		}
 	}
-	const singup = async () => {
-		console.log("sign up function exituted", formData)
-		let responceData
-		await fetch("https://pajiweb.onrender.com/api/register-user", {
-			method: "POST",
-			headers: {
-				Accept: "application/form-data",
-				"Content-type": "application/json",
-			},
-			body: JSON.stringify(formData),
-		})
-			.then((responce) => responce.json())
-			.then((data) => (responceData = data))
+	// const singup = async () => {
+	// 	console.log("Login function exituted", formData)
+	// 	try {
+	// 		let loginsingup = await makeApi(
+	// 			"/api/register-user",
+	// 			"post",
+	// 			JSON.stringify(formData)
+	// 		)
+	// 	} catch (error) {
+	// 		console.log(error)
+	// 	}
+	// }
 
-		if (responceData.success) {
-			localStorage.setItem("auth-token", responceData.token)
-			window.location.replace("/")
-		} else {
-			alert("Email is already exist")
-		}
-	}
+	// const singup = async () => {
+	// 	console.log("sign up function exituted", formData)
+	// 	let responceData
+	// 	await fetch("https://pajiweb.onrender.com/api/register-user", {
+	// 		method: "POST",
+	// 		headers: {
+	// 			Accept: "application/form-data",
+	// 			"Content-type": "application/json",
+	// 		},
+	// 		body: JSON.stringify(formData),
+	// 	})
+	// 		.then((responce) => responce.json())
+	// 		.then((data) => (responceData = data))
+
+	// 	if (responceData.success) {
+	// 		localStorage.setItem("auth-token", responceData.token)
+	// 		window.location.replace("/")
+	// 	} else {
+	// 		alert("Email is already exist")
+	// 	}
+	// }
 
 	return (
 		<div className="signup">

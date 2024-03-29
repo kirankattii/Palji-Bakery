@@ -6,26 +6,25 @@ import Item from "../components/item/Item"
 
 const ShopCategory = (props) => {
 	const { all_product } = useContext(ShopContext)
+	// console.log(all_product)
+
 	return (
 		<div className="ShopCategory-container">
 			<h1>{props.name}</h1>
 			<div className="shopcategory-products">
-				{all_product.map((item, i) => {
-					if (props.category === item.category) {
+				{Array.isArray(props.products) &&
+					props.products.map((item, i) => {
 						return (
 							<Item
-								key={item.id}
-								id={item.id}
+								key={item._id}
+								id={item._id}
 								name={item.name}
-								image={item.image}
-								new_price={item.new_price}
-								old_price={item.old_price}
+								image={item.thumbnail}
+								new_price={item.price}
+								old_price={item.PriceAfterDiscount}
 							/>
 						)
-					} else {
-						return null
-					}
-				})}
+					})}
 				{/* <Item /> */}
 			</div>
 		</div>

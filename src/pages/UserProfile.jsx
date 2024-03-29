@@ -1,10 +1,23 @@
-import React from "react"
+import React, { useEffect, useState } from "react"
 import "./CSS/userProfile.css"
 import { assets } from "../assets/assets"
 import { Outlet, useNavigate } from "react-router-dom"
+import { makeApi } from "../api/callApi"
 
 const UserProfile = () => {
 	const navigate = useNavigate()
+	const [userDatails, setUserDetails] = useState()
+	const fetchUserDetail = async () => {
+		try {
+			const responce = await makeApi("/api/my-profile", "GET")
+			console.log(responce.data.user)
+		} catch (error) {
+			console.log(error)
+		}
+	}
+	useEffect(() => {
+		fetchUserDetail()
+	}, [])
 	return (
 		<div className="userProfile">
 			<hr />

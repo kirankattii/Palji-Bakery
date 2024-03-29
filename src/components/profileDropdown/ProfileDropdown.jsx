@@ -9,6 +9,10 @@ const ProfileDropdown = ({ openProfile, setOpenProfile }) => {
 	const closeProfile = () => {
 		setOpenProfile(false)
 	}
+	const handleLogout = () => {
+		localStorage.removeItem("token")
+		window.location.replace("/")
+	}
 	return (
 		<div className="profile-dropdown">
 			<ul>
@@ -19,17 +23,10 @@ const ProfileDropdown = ({ openProfile, setOpenProfile }) => {
 					<Link to="/admin">Admin Dashboard</Link>
 				</li>
 				<li onClick={closeProfile}>
-					{localStorage.getItem("auth-token") ? (
-						<button
-							onClick={() => {
-								localStorage.removeItem("auth-token")
-								window.location.replace("/")
-							}}
-						>
-							Logout
-						</button>
+					{localStorage.getItem("token") ? (
+						<button onClick={handleLogout}>Logout</button>
 					) : (
-						<Link to="/Signup">Login</Link>
+						<Link to="/signup">Login</Link>
 					)}
 				</li>
 			</ul>
