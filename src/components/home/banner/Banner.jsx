@@ -40,21 +40,21 @@ const Banner = () => {
 			backgroundCart: "#65321C",
 		},
 		{
-			title: "Punjabi Atta",
+			title: "Jeera Stick",
 			subTitle: "Premium Cookies",
 			content:
-				"Indulge in our Punjabi Atta Premium Cookies: a perfect fusion of traditional whole wheat richness and crisp texture for a wholesome treat.",
-			banner_Image: assets.banner3,
+				"Relish our Jeera Sticks: a savory delight of cumin seeds baked into crispy, flavorful sticks. Ideal for snacking anytime.",
+			banner_Image: assets.banner4,
 			backgroundColor:
 				"linear-gradient(180deg, rgba(255,158,60,1) 0%, rgba(226,208,189,1) 100%)",
 			backgroundCart: "#BB8248",
 		},
 		{
-			title: "Punjabi Atta",
+			title: "Pista Finger",
 			subTitle: "Premium Cookies",
 			content:
-				"Indulge in our Punjabi Atta Premium Cookies: a perfect fusion of traditional whole wheat richness and crisp texture for a wholesome treat.",
-			banner_Image: assets.banner3,
+				"Enjoy our Pista Fingers: rich, buttery cookies infused with the delicate flavor of pistachios. Ideal for a luxurious snack or dessert.",
+			banner_Image: assets.banner5,
 			backgroundColor:
 				"linear-gradient(180deg, rgba(130,201,90,1) 0%, rgba(172,205,153,1) 50%, rgba(193,204,187,1) 100%)",
 			backgroundCart: "#519B29",
