@@ -36,7 +36,7 @@ function GetallCoupan() {
     try {
       console.log(productId);
       const response = await makeApi(
-        `/api/delete-category/${productId}`,
+        `/api/delete-coupan/${productId}`,
         "DELETE"
       );
       console.log(response);
@@ -53,12 +53,13 @@ function GetallCoupan() {
       ) : (
         <div>
           <div className="admin_add_product_button_div">
-            <Link to="/admin/add-category">
+            <Link to="/admin/add-coupan">
               <div className="admin_add_product_button">Add Coupan</div>
             </Link>
           </div>
           <div className="category-list">
             <div className="category-list-header">All Coupan</div>
+            <div className="category-list-header"> Total Coupan : {categories?.length}</div>
             <ul className="category_list_ul">
               {categories.map((category) => (
                 <li key={category._id}>
@@ -66,12 +67,14 @@ function GetallCoupan() {
                     <h3>Coupan for :{category?.coupanfor}</h3>
                     <h3>Name :{category?.name}</h3>
                     <p> Code : {category?.Coupancode}</p>
-                    <p> Discount Percentage : {category?.discountPercentage}</p>
+                    <p> Discount Percentage : {category?.discountPercentage}%</p>
                     <p> Isexpired : {category?.Isexpired?.toString()}</p>
+                    <p> Start Date : {category?.startDate}</p>
+                    <p> End Date : {category?.endDate}</p>
                   </div>
                   <div>
                     <div className="all_products_page_button">
-                      <Link to={`/admin/category-update/${category._id}`}>
+                      <Link to={`/admin/update-coupan/${category._id}`}>
                         <button className="edit_button_all_product">
                           Edit
                         </button>
