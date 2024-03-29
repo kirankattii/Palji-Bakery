@@ -60,11 +60,7 @@ const Banner = () => {
 						style={{ backgroundColor: item.backgroundColor }}
 					>
 						<div className="left-banner">
-							<div
-								className={`banner-info ${
-									index === currentSlide ? "active" : ""
-								}`}
-							>
+							<div className="banner-info">
 								<div className="title">
 									<h2>{item.title}</h2>
 									<p>{item.subTitle}</p>
