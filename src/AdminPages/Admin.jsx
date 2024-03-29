@@ -68,19 +68,11 @@ function Admin() {
 						element={<Orderdetails />}
 					/>
 
-					{/* coupan */}
-					<Route
-						path="/All-coupan"
-						element={<GetallCoupan />}
-					/>
-					<Route
-						path="/add-coupan"
-						element={<AddCoupan />}
-					/>
-					<Route
-						path="/update-coupan"
-						element={<EditCoupan />}
-					/>
+          {/* coupan */}
+          <Route path="/All-coupan" element={<GetallCoupan />} />
+          <Route path="/add-coupan" element={<AddCoupan />} />
+          <Route path="/update-coupan/:Id" element={<EditCoupan />} />
+
 
 					{/* admin */}
 					<Route
