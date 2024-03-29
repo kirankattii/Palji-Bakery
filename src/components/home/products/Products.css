@@ -151,7 +151,8 @@
   }
 
   .product-container h1 {
-    font-size: 37px;
+    font-size: 35px;
+
   }
 
   .product-container .sub-heading {
@@ -164,7 +165,8 @@
   .product-slide, .all-slides {
     display: flex;
     justify-content: center;
-    width: 90%;
+    width: 92%;
+    /* padding: 10px; */
     /* gap: 10px; */
     /* margin-left: 100px; */
   }
@@ -174,13 +176,15 @@
   }
 
   .product-container .sub-heading {
-    /* margin-top: -40px; */
-    font-size: 18px;
+    margin-top: -40px;
+    font-size: 16px;
+    width: 95%;
   }
 
   .product-container h1 {
-    font-size: 32px;
+    font-size: 28px;
     line-height: 1.4;
+    width: 90%;
   }
 
   .products-btn {
@@ -191,5 +195,13 @@
   .products-btn button {
     font-size: 20px;
     padding: 05px;
+  }
+}
+
+@media screen and (max-width: 392px) {
+
+  .product-container .sub-heading {
+    margin-top: 0px;
+    font-size: 16px;
   }
 }

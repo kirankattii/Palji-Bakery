@@ -20,7 +20,7 @@ const Allproduct = () => {
 			try {
 				setLoading(true)
 				const response = await makeApi(
-					`/api/get-all-products?name=${searchQuery}&category=${category} `,
+					`/api/get-all-products?name=${searchQuery}&category=${category}`,
 					"GET"
 				)
 				setProducts(response.data.products)
