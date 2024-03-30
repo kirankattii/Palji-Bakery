@@ -16,6 +16,7 @@ import OfferPage from "../AdminComponents/email/OfferTemplate";
 import GetallCoupan from "../AdminComponents/Coupan/coupanallcatogory";
 import AddCoupan from "../AdminComponents/Coupan/coupanCreate";
 import EditCoupan from "../AdminComponents/Coupan/coupanUpdate";
+import CouponDetails from "../AdminComponents/Coupan/couapndetails";
 
 function Admin() {
   return (
@@ -51,6 +52,7 @@ function Admin() {
           <Route path="/All-coupan" element={<GetallCoupan />} />
           <Route path="/add-coupan" element={<AddCoupan />} />
           <Route path="/update-coupan/:Id" element={<EditCoupan />} />
+          <Route path="/coupan-details/:Id" element={<CouponDetails />} />
 
           {/* admin */}
           <Route path="/admin-dashboard" element={<Admindasboard />} />
