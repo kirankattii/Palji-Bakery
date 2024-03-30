@@ -79,6 +79,12 @@ function GetallCoupan() {
                           Edit
                         </button>
                       </Link>
+                      <Link to={`/admin/coupan-details/${category._id}`}>
+                        <button className=" btn btn-primary">
+                          View details
+                        </button>
+                      </Link>
+
                       <button
                         onClick={() => setDeleteProductId(category._id)}
                         className="delete_button_all_product"

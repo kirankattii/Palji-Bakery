@@ -292,13 +292,13 @@ function AdminaddProduct() {
             value={brand}
             onChange={(e) => setBrand(e.target.value)}
           />
-          <input
+          {/* <input
             type="text"
             className="add_product_input_filed"
             placeholder="Size"
             value={size}
             onChange={(e) => setSize(e.target.value)}
-          />
+          /> */}
           <div className="add_product_page_button_div">
             <button
               type="submit"

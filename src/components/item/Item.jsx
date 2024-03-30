@@ -10,6 +10,7 @@ import { assets } from "../../assets/assets"
 
 const Item = (props) => {
 	const { cartItems, addToCart, removeFromCart } = useContext(ShopContext)
+
 	return (
 		<div className="item">
 			<div className="item-card">

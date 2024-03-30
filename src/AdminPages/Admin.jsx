@@ -1,6 +1,24 @@
 import React from "react"
 import { Route, Routes } from "react-router"
 
+<<<<<<< HEAD
+import Allproduct from "../AdminComponents/product/Allproduct";
+import AdminProductDetaills from "../AdminComponents/product/adminProductDetaills";
+import UpdateProduct from "../AdminComponents/product/adminUpdateProduct";
+import Adminsidebar from "../AdminComponents/slidebar/adminsidebar";
+import AdminaddProduct from "../AdminComponents/product/adminaddProduct";
+import Getallcatogory from "../AdminComponents/catogory/getallcatogory";
+import Addcatogory from "../AdminComponents/catogory/addcatogory";
+import Editcategories from "../AdminComponents/catogory/editcategories";
+import Allorder from "../AdminComponents/Order/allorder";
+import Orderdetails from "../AdminComponents/Order/orderdetails";
+import Admindasboard from "../AdminComponents/dasboard/admindasboard";
+import OfferPage from "../AdminComponents/email/OfferTemplate";
+import GetallCoupan from "../AdminComponents/Coupan/coupanallcatogory";
+import AddCoupan from "../AdminComponents/Coupan/coupanCreate";
+import EditCoupan from "../AdminComponents/Coupan/coupanUpdate";
+import CouponDetails from "../AdminComponents/Coupan/couapndetails";
+=======
 import Allproduct from "../AdminComponents/product/Allproduct"
 import AdminProductDetaills from "../AdminComponents/product/adminProductDetaills"
 import UpdateProduct from "../AdminComponents/product/adminUpdateProduct"
@@ -13,6 +31,7 @@ import Allorder from "../AdminComponents/Order/allorder"
 import Orderdetails from "../AdminComponents/Order/orderdetails"
 import Admindasboard from "../AdminComponents/dasboard/admindasboard"
 import OfferPage from "../AdminComponents/email/OfferTemplate"
+>>>>>>> 43287829c62026395d498162da738ad5e590be83
 
 function Admin() {
 	return (
@@ -71,7 +90,12 @@ function Admin() {
 					{/*           
           <Route path="/All-coupan" element={<GetallCoupan />} />
           <Route path="/add-coupan" element={<AddCoupan />} />
+<<<<<<< HEAD
+          <Route path="/update-coupan/:Id" element={<EditCoupan />} />
+          <Route path="/coupan-details/:Id" element={<CouponDetails />} />
+=======
           <Route path="/update-coupan/:Id" element={<EditCoupan />} /> */}
+>>>>>>> 43287829c62026395d498162da738ad5e590be83
 
 					{/* admin */}
 					<Route
