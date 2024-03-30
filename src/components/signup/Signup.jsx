@@ -15,18 +15,28 @@ const Signup = () => {
 		setFormData({ ...formData, [e.target.name]: e.target.value })
 	}
 
-	const login = async () => {
-		console.log("Login function exituted", formData)
-		try {
-			let loginsingup = await makeApi(
-				"/api/login-user",
-				"post",
-				JSON.stringify(formData)
-			)
-		} catch (error) {
-			console.log(error)
-		}
-	}
+	// const login = async () => {
+	// 	console.log("Login function exituted", formData)
+	// 	try {
+	// 		let loginsingup = await makeApi(
+	// 			"/api/login-user",
+	// 			"post",
+	// 			JSON.stringify(formData)
+	// 		)
+	// 		console.log("Login response:", loginsingup)
+	// 		if (loginsingup.success) {
+	// 			localStorage.setItem("auth-token", loginsingup.token)
+	// 			console.log("Token stored in localStorage:", loginsingup.token)
+	// 			// Redirect here if needed
+	// 		} else {
+	// 			console.log("Login failed:", loginsingup.error)
+	// 			// Handle login failure
+	// 		}
+	// 	} catch (error) {
+	// 		console.log("Error during login:", error)
+	// 	}
+	// }
+
 	// const singup = async () => {
 	// 	console.log("Login function exituted", formData)
 	// 	try {
@@ -35,32 +45,91 @@ const Signup = () => {
 	// 			"post",
 	// 			JSON.stringify(formData)
 	// 		)
+	// 		console.log("Signup response:", loginsingup)
+	// 		if (loginsingup.success) {
+	// 			localStorage.setItem("auth-token", loginsingup.token)
+	// 			console.log("Token stored in localStorage:", loginsingup.token)
+	// 			// Redirect here if needed
+	// 		} else {
+	// 			console.log("Signup failed:", loginsingup.error)
+	// 			// Handle signup failure
+	// 		}
 	// 	} catch (error) {
-	// 		console.log(error)
+	// 		console.log("Error during signup:", error)
+	// 	}
+	// }
+
+	// const login = async () => {
+	// 	console.log("Login function exituted", formData)
+	// 	let responceData = await makeApi(
+	// 		"/api/register-user",
+	// 		"post",
+	// 		JSON.stringify(formData)
+	// 	)
+	// 		.then((responce) => responce.json())
+	// 		.then((data) => (responceData = data))
+
+	// 	if (responceData.success) {
+	// 		localStorage.setItem("token", responceData.token)
+	// 		window.location.replace("/")
+	// 	} else {
+	// 		alert(responceData.error)
 	// 	}
 	// }
 
 	// const singup = async () => {
 	// 	console.log("sign up function exituted", formData)
-	// 	let responceData
-	// 	await fetch("https://pajiweb.onrender.com/api/register-user", {
-	// 		method: "POST",
-	// 		headers: {
-	// 			Accept: "application/form-data",
-	// 			"Content-type": "application/json",
-	// 		},
-	// 		body: JSON.stringify(formData),
-	// 	})
+	// 	let responceData = await makeApi(
+	// 		"/api/register-user",
+	// 		"post",
+	// 		JSON.stringify(formData)
+	// 	)
 	// 		.then((responce) => responce.json())
 	// 		.then((data) => (responceData = data))
 
 	// 	if (responceData.success) {
-	// 		localStorage.setItem("auth-token", responceData.token)
+	// 		localStorage.setItem("token", responceData.token)
 	// 		window.location.replace("/")
 	// 	} else {
 	// 		alert("Email is already exist")
 	// 	}
 	// }
+
+	const login = async () => {
+		console.log("Login function executed", formData)
+		try {
+			const response = await makeApi("/api/login-user", "post", formData)
+			const responseData = response.data
+			if (responseData.success) {
+				localStorage.setItem("token", responseData.token)
+				window.location.replace("/")
+			} else {
+				console.log("Login failed:", responseData.error)
+				// Handle login failure
+			}
+		} catch (error) {
+			console.log("Error during login:", error)
+			// Handle error
+		}
+	}
+
+	const signup = async () => {
+		console.log("Signup function executed", formData)
+		try {
+			const response = await makeApi("/api/register-user", "post", formData)
+			const responseData = response.data
+			if (responseData.success) {
+				localStorage.setItem("token", responseData.token)
+				window.location.replace("/")
+			} else {
+				console.log("Signup failed:", responseData.error)
+				// Handle signup failure
+			}
+		} catch (error) {
+			console.log("Error during signup:", error)
+			// Handle error
+		}
+	}
 
 	return (
 		<div className="signup">

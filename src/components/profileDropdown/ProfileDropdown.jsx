@@ -24,9 +24,16 @@ const ProfileDropdown = ({ openProfile, setOpenProfile }) => {
 				</li>
 				<li onClick={closeProfile}>
 					{localStorage.getItem("token") ? (
-						<button onClick={handleLogout}>Logout</button>
+						<button
+							onClick={() => {
+								localStorage.removeItem("token")
+								window.location.replace("/")
+							}}
+						>
+							Logout
+						</button>
 					) : (
-						<Link to="/signup">Login</Link>
+						<Link to="/Signup">Login</Link>
 					)}
 				</li>
 			</ul>

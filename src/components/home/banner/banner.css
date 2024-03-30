@@ -10,16 +10,26 @@
 
 
 
+
 .palji-banners {
   display: flex;
   min-width: 100%;
   width: 300%;
-  /* Adjusted width to accommodate all slides */
+
   height: 100vh;
   align-items: center;
-  transition: transform 0.5s ease;
-  /* Moved transition here */
+
 }
+
+/* Add a new class for applying dynamic background */
+/* .dynamic-bg {
+  background: var(--banner-background);
+} */
+
+/* Update the transition property for the dynamic background */
+/* .dynamic-bg {
+  transition: background 0.5s ease;
+} */
 
 .slide {
   flex: 0 0 33.33%;
@@ -94,7 +104,7 @@
   line-height: 35px;
   letter-spacing: 0em;
   text-align: left;
-  background: #E31E24;
+  /* background: #E31E24; */
   border: 2px solid white;
   display: flex;
   color: #fff;
@@ -110,6 +120,8 @@
 
 .left-banner .banner-info .right-banner img {
   width: 550px;
+  position: absolute;
+  left: 0;
 }
 
 .arrow-btn {
@@ -126,6 +138,8 @@
   width: 50px;
   cursor: pointer;
 }
+
+
 
 @media screen and (max-width: 1100px) {
   .left-banner .banner-info h2 {
@@ -253,13 +267,68 @@
   }
 }
 
-
-
-
-.banner-flex.active .right-banner {
-  transform: translateX(100%);
+.right-banner img {
+  /* width: 550px; */
+  /* Adjust as needed */
+  transform: translateY(-00%);
+  /* Initially translate the image above its original position */
+  transition: transform 0.7s ease;
+  /* Adding transition property */
 }
 
-.banner-flex.active.next .right-banner {
-  transform: translateX(-100%);
+.banner-flex.active .right-banner img {
+  transform: translateY(0);
+  /* Translate the image to its original position */
+  animation: rotateAnimation 0.7s ease;
+  /* Applying the keyframe animation */
 }
+
+@keyframes rotateAnimation {
+  from {
+    transform: rotate(90deg) translateY(-200%);
+    /* Starting position: rotated and translated */
+  }
+
+  to {
+    transform: rotate(0deg) translateY(00%);
+    /* Ending position: back to original rotation and position */
+  }
+}
+
+
+
+
+.left-banner .banner-info h2,
+.left-banner .banner-info p {
+  /* opacity: 0; */
+  transform: translateY(-0%);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.left-banner .banner-info .content {
+  opacity: 0;
+  transform: translateY(-50%);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.left-banner .banner-info h2.show,
+.left-banner .banner-info p.show,
+.left-banner .banner-info .content.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* .left-banner .banner-info h2,
+.left-banner .banner-info p,
+.left-banner .banner-info .content {
+  opacity: 0;
+  transform: translateY(-60%);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.left-banner .banner-info h2.show,
+.left-banner .banner-info p.show,
+.left-banner .banner-info .content.show {
+  opacity: 1;
+  transform: translateY(0);
+} */

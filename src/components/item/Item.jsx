@@ -1,6 +1,8 @@
 import React, { useContext } from "react"
 // import { ShopContext } from "../context"
 import "./item.css"
+import { IoIosHeart } from "react-icons/io"
+
 import img1 from "../../assets/m1.png"
 import { Link } from "react-router-dom"
 import { ShopContext } from "../../context/ShopContext"
@@ -12,7 +14,8 @@ const Item = (props) => {
 	return (
 		<div className="item">
 			<div className="item-card">
-				<Link to={`/openproduct/${props._id}`}>
+				<IoIosHeart className="watchlist-icon" />
+				<Link to={`/openproduct/${props.id}`}>
 					<img
 						// onClick={window.scrollTo(0, 0)}
 						src={props.image}
