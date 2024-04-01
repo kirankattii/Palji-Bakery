@@ -3,6 +3,8 @@ import "../../adminCss/product/adminaddProduct.css";
 import { makeApi } from "../../api/callApi";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function AdminaddProduct() {
   const [categories, setCategories] = useState([]);
@@ -10,7 +12,7 @@ function AdminaddProduct() {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState("");
-  const [discountPercentage, setDiscountPercentage] = useState("");
+  const [discountPercentage, setDiscountPercentage] = useState("0");
   const [quantity, setQuantity] = useState("");
   const [images, setImages] = useState([{}]);
   const [thumbnail, setThumbnail] = useState("");
@@ -20,6 +22,35 @@ function AdminaddProduct() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    // if (!name || !price || !quantity || !category || !brand || !thumbnail || !images ) {
+    //   toast.error('Please fill all required fields');
+    //   return;
+    // }
+    const requiredFields = [];
+    if (!name) {
+      requiredFields.push("Name");
+    }
+    if (!price) {
+      requiredFields.push("Price");
+    }
+    if (!quantity) {
+      requiredFields.push("Quantity");
+    }
+    if (!category) {
+      requiredFields.push("Category");
+    }
+    if (!thumbnail) {
+      requiredFields.push("Thumbnail");
+    }
+    if (images.length == 1) {
+      requiredFields.push(" Product Images");
+    }
+
+    if (requiredFields.length > 0) {
+      const fieldNames = requiredFields.join(", ");
+      toast.error(`Please fill all required fields: ${fieldNames}`);
+      return;
+    }
     try {
       const response = await makeApi("/api/create-product", "POST", {
         name,
@@ -161,6 +192,9 @@ function AdminaddProduct() {
           </Link>
         </div>
         <div className="add_product_text">Add Product</div>
+        <div>
+          <ToastContainer />
+        </div>
         <form onSubmit={handleSubmit}>
           <input
             type="text"
@@ -168,7 +202,7 @@ function AdminaddProduct() {
             placeholder="Name"
             value={name}
             onChange={(e) => setName(e.target.value)}
-            required
+            // required
           />
           <input
             type="text"
@@ -183,12 +217,13 @@ function AdminaddProduct() {
             placeholder="Price"
             value={price}
             onChange={(e) => setPrice(e.target.value)}
-            required
+            // required
           />
           <input
             type="text"
             className="add_product_input_filed"
             placeholder="Discount Percentage"
+            defaultValue={0}
             value={discountPercentage}
             onChange={(e) => setDiscountPercentage(e.target.value)}
           />
@@ -198,7 +233,7 @@ function AdminaddProduct() {
             placeholder="Quantity"
             value={quantity}
             onChange={(e) => setQuantity(e.target.value)}
-            required
+            // required
           />
           {/* {images.map((image, index) => (
             <input
@@ -208,7 +243,7 @@ function AdminaddProduct() {
               placeholder={`Image URL ${index + 1}`}
               value={image}
               onChange={(e) => handleImageChange(index, e.target.value)}
-              required
+              // required
             />
           ))} */}
           <h3>Add Images of Product</h3>
@@ -223,9 +258,14 @@ function AdminaddProduct() {
               onChange={(event) => {
                 handleImageUpload(event, index);
               }}
-              required
+              // required
             />
           ))}
+          <div>
+            {images.map((image, index) => (
+              <img src={image} alt="" width={150} height={150} />
+            ))}
+          </div>
           <div className="add_product_page_add_more_div">
             <button
               type="button"
@@ -241,26 +281,38 @@ function AdminaddProduct() {
             placeholder="Thumbnail URL"
             value={thumbnail}
             onChange={(e) => setThumbnail(e.target.value)}
-            required
+            // required
           /> */}
           <h3>Add thumbnail of Product</h3>
-          <form className="file-upload-form file_upload_form_upload_image">
-            <label for="file" className="file-upload-label">
-              <div className="file-upload-design">
-                <svg viewBox="0 0 640 512" height="1em">
-                  <path d="M144 480C64.5 480 0 415.5 0 336c0-62.8 40.2-116.2 96.2-135.9c-.1-2.7-.2-5.4-.2-8.1c0-88.4 71.6-160 160-160c59.3 0 111 32.2 138.7 80.2C409.9 102 428.3 96 448 96c53 0 96 43 96 96c0 12.2-2.3 23.8-6.4 34.6C596 238.4 640 290.1 640 352c0 70.7-57.3 128-128 128H144zm79-217c-9.4 9.4-9.4 24.6 0 33.9s24.6 9.4 33.9 0l39-39V392c0 13.3 10.7 24 24 24s24-10.7 24-24V257.9l39 39c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-80-80c-9.4-9.4-24.6-9.4-33.9 0l-80 80z"></path>
-                </svg>
-                <p>Drag and Drop</p>
-                <p>or</p>
-                <span className="browse-button">Browse file</span>
-              </div>
-              <input
-                id="file"
-                type="file"
-                onChange={(e) => handleThumbnailUpload(e)}
-                required
-              />
-            </label>
+          <form className="file-upload-form file_upload_form_upload_image d-flex justify-content-between">
+            <div>
+              <label for="file" className="file-upload-label">
+                <div className="file-upload-design">
+                  <svg viewBox="0 0 640 512" height="1em">
+                    <path d="M144 480C64.5 480 0 415.5 0 336c0-62.8 40.2-116.2 96.2-135.9c-.1-2.7-.2-5.4-.2-8.1c0-88.4 71.6-160 160-160c59.3 0 111 32.2 138.7 80.2C409.9 102 428.3 96 448 96c53 0 96 43 96 96c0 12.2-2.3 23.8-6.4 34.6C596 238.4 640 290.1 640 352c0 70.7-57.3 128-128 128H144zm79-217c-9.4 9.4-9.4 24.6 0 33.9s24.6 9.4 33.9 0l39-39V392c0 13.3 10.7 24 24 24s24-10.7 24-24V257.9l39 39c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-80-80c-9.4-9.4-24.6-9.4-33.9 0l-80 80z"></path>
+                  </svg>
+                  <p>Drag and Drop</p>
+                  <p>or</p>
+                  <span className="browse-button">Browse file</span>
+                </div>
+                <input
+                  id="file"
+                  type="file"
+                  onChange={(e) => handleThumbnailUpload(e)}
+                  // required
+                />
+              </label>
+            </div>
+            <div>
+              {!thumbnail && (
+                <img
+                  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQWRhb8uI0vKINdZJCfOmdIWu0uMBsKNCzlAk2myawr1rr3xFE-5g_B575p5H9V5S5nH3E&usqp=CAU"
+                  alt=""
+                  width={150}
+                  height={150}
+                />
+              )}
+            </div>
           </form>
 
           {/* <input
@@ -269,7 +321,7 @@ function AdminaddProduct() {
             placeholder="Thumbnail URL"
             // value={thumbnail}
             onChange={(e) => handleThumbnailUpload(e)}
-            required
+            // required
           /> */}
 
           <select

@@ -6,7 +6,7 @@ import { makeApi } from "../api/callApi"
 import ShopCategory from "./ShopCategory"
 
 const Product = (props) => {
-	const [minPrice, setMinPrice] = useState(200)
+	const [minPrice, setMinPrice] = useState(0)
 	const [maxPrice, setMaxPrice] = useState(1000)
 	const handlePriceChange = (event) => {
 		const { value } = event.target
@@ -29,7 +29,7 @@ const Product = (props) => {
 			try {
 				// setLoading(true)
 				const response = await makeApi(
-					`/api/get-all-products?name=${searchQuery}&category=${category} `,
+					`/api/get-all-products?name=${searchQuery}&category=${category}&IsOutOfStock=false&maxPrice=${maxPrice} `,
 					"GET"
 				)
 				setProducts(response.data.products)
@@ -38,7 +38,7 @@ const Product = (props) => {
 			}
 		}
 		fetchData()
-	}, [searchQuery, category])
+	}, [searchQuery, category,maxPrice])
 
 	useEffect(() => {
 		async function fetchCategories() {
@@ -55,7 +55,6 @@ const Product = (props) => {
 		fetchCategories()
 	}, [])
 
-	console.log(products)
 
 	return (
 		<div className="product">
@@ -71,7 +70,7 @@ const Product = (props) => {
 							className="price-filter"
 							value={maxPrice}
 							onChange={handlePriceChange}
-							min="200"
+							min="0"
 							max="1000"
 						/>
 						<div className="product-range-price">

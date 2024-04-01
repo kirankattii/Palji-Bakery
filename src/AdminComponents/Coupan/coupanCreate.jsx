@@ -225,6 +225,8 @@ const AddCoupan = () => {
                       onChange={() => handleproductChange(product._id)}
                     />
                     <label htmlFor={product._id}>{product.name}</label>
+                    {/* add thumbnil */}
+                    <div className="" > <img src={product.thumbnail} alt={product.name} width="80px" height="80px" /> </div>
                   </div>
                 ))}
               </div>
