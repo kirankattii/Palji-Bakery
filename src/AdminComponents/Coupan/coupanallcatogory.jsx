@@ -6,6 +6,7 @@ import Loader from "../../components/loader/loader";
 import { Link } from "react-router-dom";
 import ConfirmationModal from "../product/admindeleteproduct";
 function GetallCoupan() {
+  console.log("coupan");
   const [categories, setCategories] = useState([]);
   const [loading, setLoading] = useState(false);
   const [deleteProductId, setDeleteProductId] = useState(null);

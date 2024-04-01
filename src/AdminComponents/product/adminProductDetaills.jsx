@@ -166,9 +166,23 @@ function ProductDetails() {
             <div className="admin_prioduct_details">
               {" "}
               <span className="admin_prioduct_details_heading">
+              Discount Percentage :{" "}
+              </span>{" "}
+              <div>{product?.discountPercentage} %</div>
+            </div>
+            <div className="admin_prioduct_details">
+              {" "}
+              <span className="admin_prioduct_details_heading">
+              PriceAfter Discount :{" "}
+              </span>{" "}
+              <div>{product?.PriceAfterDiscount} </div>
+            </div>
+            <div className="admin_prioduct_details">
+              {" "}
+              <span className="admin_prioduct_details_heading">
                 Category :{" "}
               </span>{" "}
-              <div>{product?.category}</div>
+              <div>{product?.category?.name}</div>
             </div>
             <div className="admin_prioduct_details">
               {" "}
@@ -183,6 +197,14 @@ function ProductDetails() {
                 Quantity :{" "}
               </span>{" "}
               <div>{product?.quantity}</div>
+            </div>
+           
+            <div className="admin_prioduct_details">
+              {" "}
+              <span className="admin_prioduct_details_heading">
+              IsOutOfStock :{" "}
+              </span>{" "}
+              <div>{product?.IsOutOfStock}</div>
             </div>
           </div>
         </div>

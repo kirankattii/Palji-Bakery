@@ -21,8 +21,8 @@ const ShopCategory = (props) => {
 								id={item._id}
 								name={item.name}
 								image={item.thumbnail}
-								new_price={item.price}
-								old_price={item.PriceAfterDiscount}
+								old_price={item.price}
+								new_price={item.PriceAfterDiscount}
 							/>
 						)
 					})}
