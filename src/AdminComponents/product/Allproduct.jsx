@@ -40,9 +40,7 @@ const Allproduct = () => {
     fetchData();
   }, [searchQuery, category, stockQuery, currentPage, ResultPerPage]);
   useEffect(() => {
-    console.log("toalProduct---------", toalProduct);
     const a = Math.ceil(toalProduct / ResultPerPage);
-    console.log("a", a);
     setTotalPages(a);
   }, [products, ResultPerPage]);
 
