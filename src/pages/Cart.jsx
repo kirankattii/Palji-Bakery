@@ -19,7 +19,7 @@ const Cart = () => {
 					<p>Name</p>
 					<p>Price</p>
 					<p>Qty</p>
-					<p>Total:</p>
+					<p>Total:</p> 
 					<p>X</p>
 				</div>
 				<br />
@@ -35,7 +35,7 @@ const Cart = () => {
 									/>
 									<p>{item.name}</p>
 									<p>₹{item.price}</p>
-									<p>{cartItems[item._id]}</p>
+									<p>{cartItems[item._id]}</p> 
 									<p>₹{item.price * cartItems[item._id]}</p>
 									<p
 										className="cross"
