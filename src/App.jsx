@@ -23,6 +23,7 @@ import MyWatchlist from "./components/myWatchlist/MyWatchlist"
 import ShippingAddress from "./components/shippingAddress/ShippingAddress"
 import EditUserProfile from "./components/editUserProfile/EditUserProfile"
 import CheckoutPayment from "./pages/CheckoutPayment"
+import BillingAddress from "./components/billingAddress/BillingAddress"
 
 function App() {
 	// const [categories, setCategories] = useState([])
@@ -103,8 +104,12 @@ function App() {
 					element={<EditUserProfile />}
 				/>
 				<Route
-					path="/addaddress"
+					path="/shipping-address"
 					element={<ShippingAddress />}
+				/>
+				<Route
+					path="/billing-address"
+					element={<BillingAddress />}
 				/>
 				<Route
 					path="/cart/checkoutpayment"

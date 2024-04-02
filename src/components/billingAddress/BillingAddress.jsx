@@ -1,19 +1,19 @@
 import React from "react"
-import "./shippingAddress.css"
+import "./billingAddress.css"
 
-const ShippingAddress = () => {
+const BillingAddress = () => {
 	return (
 		<div className="my-shipping-belling-address">
 			<form
 				action=""
 				className="address-form"
 			>
-				<div className="my-shipping-address">
+				{/* <div className="my-shipping-address">
 					<div className="shipping-header">
 						<h2>Shipping Address:</h2>
 						<button>Edit</button>
 					</div>
-					{/* <form action=""> */}
+
 					<div className="add-form-name">
 						<input
 							type="text"
@@ -56,11 +56,9 @@ const ShippingAddress = () => {
 							placeholder="City"
 						/>
 					</div>
-					<button className="edit-address-btn">Save</button>
 
-					{/* </form> */}
-				</div>
-				{/* <div className="my-billing-address">
+				</div> */}
+				<div className="my-billing-address">
 					<h2>Billing Address</h2>
 					<div className="same-add-checkbox">
 						<input type="checkbox" />
@@ -106,10 +104,10 @@ const ShippingAddress = () => {
 						placeholder="GST Number"
 					/>
 					<button className="edit-address-btn">Save</button>
-				</div> */}
+				</div>
 			</form>
 		</div>
 	)
 }
 
-export default ShippingAddress
+export default BillingAddress
