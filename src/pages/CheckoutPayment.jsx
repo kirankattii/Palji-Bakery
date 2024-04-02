@@ -2,12 +2,10 @@ import React, { useContext } from "react"
 import Breadcrum from "../components/breadcrum/Breadcrum"
 import "./CSS/checkoutPayment.css"
 import { ShopContext } from "../context/ShopContext"
-import { useNavigate } from "react-router"
 
 const CheckoutPayment = () => {
 	const { cartItems, all_product, removeFromCart, getTotalCartAmount } =
 		useContext(ShopContext)
-	const navigator = useNavigate()
 	return (
 		<div className="checkoutpayment">
 			<Breadcrum />
@@ -24,9 +22,7 @@ const CheckoutPayment = () => {
 							<div className="shipping-address-editdelete">
 								<h3>shipping address</h3>
 								<div>
-									<button onClick={() => navigator("/add-address")}>
-										EDIT
-									</button>
+									<button>EDIT</button>
 									<button>DELETE</button>
 								</div>
 							</div>

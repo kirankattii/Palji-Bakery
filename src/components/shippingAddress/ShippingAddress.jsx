@@ -3,12 +3,12 @@ import "./shippingAddress.css"
 
 const ShippingAddress = () => {
 	return (
-		<div className="my-shipping-belling-address">
+		<div className="shipping-belling-address">
 			<form
 				action=""
 				className="address-form"
 			>
-				<div className="my-shipping-address">
+				<div className="shipping-address">
 					<div className="shipping-header">
 						<h2>Shipping Address:</h2>
 						<button>Edit</button>
@@ -58,7 +58,7 @@ const ShippingAddress = () => {
 					</div>
 					{/* </form> */}
 				</div>
-				<div className="my-billing-address">
+				<div className="billing-address">
 					<h2>Billing Address</h2>
 					<div className="same-add-checkbox">
 						<input type="checkbox" />

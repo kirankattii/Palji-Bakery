@@ -14,7 +14,7 @@ export const makeApi = async (
 
 		const headers = {
 			"Content-Type": "application/json",
-			Authorization: token ? `Bearer ${token}` : "", 
+			Authorization: token ? `Bearer ${token}` : "",
 		}
 
 		const config: AxiosRequestConfig = {

@@ -18,7 +18,7 @@ a {
   /* list-style-type: none; */
 }
 
-.main_admin_pages {
+.main_admin_pages { 
   display: flex;
 }
 
@@ -32,6 +32,9 @@ a {
 
 :root {
   --gay-bg-color: rgb(130, 130, 123);
+}
+Link{
+  text-decoration: none;
 }
 
 /* html {
