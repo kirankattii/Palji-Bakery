@@ -20,9 +20,6 @@ const ProfileDropdown = ({ openProfile, setOpenProfile }) => {
 					<Link to="/userprofile">Profile</Link>
 				</li>
 				<li onClick={closeProfile}>
-					<Link to="/admin">Admin Dashboard</Link>
-				</li>
-				<li onClick={closeProfile}>
 					{localStorage.getItem("token") ? (
 						<button
 							onClick={() => {

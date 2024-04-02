@@ -10,9 +10,10 @@ const UserProfile = () => {
 	const fetchUserDetail = async () => {
 		try {
 			const responce = await makeApi("/api/my-profile", "GET")
-			console.log(responce.data.user)
+			console.log("-----------------",responce.data.user)
+			setUserDetails(responce.data.user)
 		} catch (error) {
-			console.log(error)
+			console.log(error) 
 		}
 	}
 	useEffect(() => {
@@ -31,7 +32,7 @@ const UserProfile = () => {
 						/>
 						<div className="user-name">
 							<span>HELLO</span>
-							<p>JOHN DEO</p>
+							<p>{`${userDatails?.firstName} ${userDatails?.lastName}`}</p>
 						</div>
 					</div>
 					<div
