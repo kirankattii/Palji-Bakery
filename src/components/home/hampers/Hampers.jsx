@@ -7,6 +7,7 @@ import Slider from "react-slick"
 
 import "slick-carousel/slick/slick.css"
 import "slick-carousel/slick/slick-theme.css"
+import { useNavigate } from "react-router"
 
 function Arrow(props) {
 	const { className, style, onClick } = props
@@ -55,6 +56,7 @@ const Hampers = () => {
 			},
 		],
 	}
+	const navigate = useNavigate()
 	return (
 		// <div className="hamper-container">
 		// 	<div className="hamper-title">
@@ -89,7 +91,7 @@ const Hampers = () => {
 				</Slider>
 			</div>
 			<div className="products-btn">
-				<button>ALL PRODUCTS</button>
+				<button onClick={() => navigate("/products")}>ALL PRODUCTS</button>
 			</div>
 		</div>
 	)

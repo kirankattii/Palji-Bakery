@@ -13,6 +13,7 @@ const ProfileDropdown = ({ openProfile, setOpenProfile }) => {
 		localStorage.removeItem("token")
 		window.location.replace("/")
 	}
+
 	return (
 		<div className="profile-dropdown">
 			<ul>

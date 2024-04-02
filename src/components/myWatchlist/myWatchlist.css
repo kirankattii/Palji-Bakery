@@ -1,0 +1,10 @@
+.wishlist-items {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  place-items: center;
+  margin-top: 30px;
+  gap: 30px;
+  row-gap: 80px;
+  justify-content: center;
+  padding: 50px 30px;
+}

@@ -1,13 +1,17 @@
-import React, { useEffect, useState } from "react"
+import React, { useContext, useEffect, useState } from "react"
 import { makeApi } from "../../api/callApi"
 import "./myWatchlist.css"
 import { IoIosHeart } from "react-icons/io"
 import { Link } from "react-router-dom"
+import { ShopContext } from "../../context/ShopContext"
+import { assets } from "../../assets/assets"
+import { all } from "axios"
 
-const MyWatchlist = () => {
+const MyWatchlist = (props) => {
 	const [wishlistItems, setWishlistItems] = useState([])
 	const [isInWishlist, setIsInWishlist] = useState(false)
-
+	const { all_product, cartItems, addToCart, removeFromCart } =
+		useContext(ShopContext)
 	useEffect(() => {
 		const fetchWishlist = async () => {
 			try {
@@ -27,6 +31,7 @@ const MyWatchlist = () => {
 
 		fetchWishlist()
 	}, [])
+
 	const toggleWishlist = async (productId) => {
 		try {
 			console.log("----------------", productId)
@@ -50,11 +55,11 @@ const MyWatchlist = () => {
 
 	return (
 		<div className="myWatchlist">
-			<div className="userprofile-heading">
+			<div className="userprofile-heading wishlist-items">
 				{wishlistItems.map((item, index) => {
 					return (
 						<div
-							className="item"
+							className="item "
 							key={index}
 						>
 							<div className="item-card ">
@@ -71,10 +76,42 @@ const MyWatchlist = () => {
 								<div className="item-price-name">
 									<p className="item-name">{item.products.name}</p>
 									<div className="old-new-price">
-										<p className="old-item-price">₹{item.products.old_price}</p>
-										<p className="new-item-price">₹{item.products.new_price}</p>
+										<p className="old-item-price">
+											₹{item.products.PriceAfterDiscount}
+										</p>
+										<p className="new-item-price">₹{item.products.price}</p>
 									</div>
 								</div>
+
+								{/* You need to handle cartItems and addToCart/removeFromCart */}
+
+								<div className="item-cart">
+									{!cartItems[item.products._id] ? (
+										<div
+											className="item-addto-cart "
+											onClick={() => addToCart(item.products._id)}
+										>
+											ADD TO CART
+										</div>
+									) : (
+										<div className="food-item-counter">
+											<img
+												onClick={() => removeFromCart(item.products._id)}
+												src={assets.add_icon_red}
+												alt=""
+											/>
+											<p className="cart-item-no">
+												{cartItems[item.products._id]}
+											</p>
+											<img
+												onClick={() => addToCart(item.products._id)}
+												src={assets.add_icon_green}
+												alt=""
+											/>
+										</div>
+									)}
+								</div>
+
 								{/* You need to handle cartItems and addToCart/removeFromCart */}
 							</div>
 						</div>
