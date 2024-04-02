@@ -20,7 +20,7 @@ import CouponDetails from "../AdminComponents/Coupan/couapndetails";
 
 function Admin() {
 	return (
-		<div className="main_admin_pages">
+		<div className="main_admin_pages"> 
 			<div className="admin_page_sidebar_div">
 				<Adminsidebar />
 			</div>
