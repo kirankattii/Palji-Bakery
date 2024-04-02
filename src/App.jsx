@@ -3,7 +3,7 @@ import { useLocation } from "react-router-dom"
 
 import "./App.css"
 import Navbar from "./components/navbar/Navbar"
-import Home from "./components/home/Home"
+import Home from "./components/home/Home" 
 import { Route, Routes } from "react-router"
 import Footer from "./components/footer/Footer"
 import AboutUs from "./components/aboutus/AboutUs"
@@ -110,10 +110,10 @@ function App() {
 					path="/cart/checkoutpayment"
 					element={<CheckoutPayment />}
 				/>
-				<Route
+				{/* <Route
 					path="/admin/*"
 					element={<Admin />}
-				/>
+				/> */}
 			</Routes>
 			<Footer />
 		</div>
