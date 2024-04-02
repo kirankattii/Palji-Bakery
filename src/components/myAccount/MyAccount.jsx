@@ -1,10 +1,25 @@
-import React from "react"
+import React, { useEffect, useState } from "react"
 import "./myAccount.css"
 import { assets } from "../../assets/assets"
 import { useNavigate } from "react-router"
+import { makeApi } from "../../api/callApi"
 
 const MyAccount = () => {
 	const navigate = useNavigate()
+	const [userDatails, setUserDetails] = useState()
+	const fetchUserDetail = async () => {
+		try {
+			const responce = await makeApi("/api/my-profile", "GET")
+			console.log(responce.data.user)
+			setUserDetails(responce.data.user)
+		} catch (error) {
+			console.log(error)
+		}
+	}
+	useEffect(() => {
+		fetchUserDetail()
+	}, [])
+	console.log("user details", userDatails)
 	return (
 		<div className="myaccount">
 			<div className="userprofile-heading">
@@ -18,7 +33,7 @@ const MyAccount = () => {
 					/>
 					<div className="userprofilename">
 						<span>NAME</span>
-						<p>JOHN DEO</p>
+						<p>{userDatails.firstName + userDatails.lastName}</p>
 					</div>
 					<div className="userprofile-birthdate">
 						<span>DATE OF BIRTH</span>

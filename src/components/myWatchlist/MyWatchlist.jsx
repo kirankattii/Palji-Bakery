@@ -1,7 +1,3 @@
-import React, { useContext } from "react"
-import "./myWatchlist.css"
-import Item from "../item/Item"
-import { ShopContext } from "../../context/ShopContext"
 import React, { useEffect, useState } from "react"
 import { makeApi } from "../../api/callApi"
 import "./myWatchlist.css"
@@ -52,9 +48,6 @@ const MyWatchlist = () => {
 		}
 	}
 
-	const { all_product } = useContext(ShopContext)
-	console.log("wishlist", all_product)
-
 	return (
 		<div className="myWatchlist">
 			<div className="userprofile-heading">
@@ -87,12 +80,6 @@ const MyWatchlist = () => {
 						</div>
 					)
 				})}
-				{all_product?.map((item, i) => (
-					<Item
-						products={item}
-						key={i}
-					/>
-				))}
 			</div>
 		</div>
 	)
