@@ -103,7 +103,7 @@ function App() {
 					element={<EditUserProfile />}
 				/>
 				<Route
-					path="/addaddress"
+					path="/add-address"
 					element={<ShippingAddress />}
 				/>
 				<Route

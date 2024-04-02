@@ -19,7 +19,7 @@ const MyAccount = () => {
 	useEffect(() => {
 		fetchUserDetail()
 	}, [])
-	console.log("user details", userDatails)
+	// console.log("user details", userDatails)
 	return (
 		<div className="myaccount">
 			<div className="userprofile-heading">
@@ -33,7 +33,7 @@ const MyAccount = () => {
 					/>
 					<div className="userprofilename">
 						<span>NAME</span>
-						<p>{userDatails.firstName + userDatails.lastName}</p>
+						<p></p>
 					</div>
 					<div className="userprofile-birthdate">
 						<span>DATE OF BIRTH</span>
