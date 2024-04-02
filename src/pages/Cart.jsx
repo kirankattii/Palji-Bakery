@@ -57,9 +57,40 @@ const Cart = () => {
 			<div className="cart-bottomm">
 				<div className="cart-address">
 					<h2>ADDRESS</h2>
-					<p>Anurag Sagar</p>
-					<p>9401, Urban Estate, Phase-2, Ludhiana-141010</p>
-					<p>+91 9999999999</p>
+					<div className="cart-shipping-address">
+						<div className="cart-shipping-address-button">
+							<input type="checkbox" />
+							<div>
+								<button onClick={() => navigate("/shipping-address")}>
+									Edit
+								</button>
+								<button>Delete</button>
+							</div>
+						</div>
+						<p>
+							7297,Street No. 6, 22ft road, durga puri, haibowal kalan, near
+							ekam fashion point, ludhiana, punjab, 141001 9501987577
+							<br />
+							<span>96969696</span>
+						</p>
+					</div>
+					<div className="cart-shipping-address">
+						<div className="cart-shipping-address-button">
+							<input type="checkbox" />
+							<div>
+								<button onClick={() => navigate("/billing-address")}>
+									Edit
+								</button>
+								<button>Delete</button>
+							</div>
+						</div>
+						<p>
+							7297,Street No. 6, 22ft road, durga puri, haibowal kalan, near
+							ekam fashion point, ludhiana, punjab, 141001 9501987577
+							<br />
+							<span>96969696</span>
+						</p>
+					</div>
 				</div>
 				<div className="cart-billing">
 					<div className="cart-order-summary">
