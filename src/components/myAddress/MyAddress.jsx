@@ -34,7 +34,7 @@ const MyAddress = () => {
 	useEffect(() => {
 		fetchBillingAddresses();
 		fetchShippingAddresses();
-	}, []); 
+	}, []);
 	return (
 		<div className="myaddress">
 			{" "}
@@ -48,41 +48,41 @@ const MyAddress = () => {
 				<div className="shipping-billing-flex d-flex justify-content-between">
 					<div className="d-flex flex-column gap-5">
 						{billingAddresses.map((address) => (
-						<div key={address._id} className="billing-address">
-							<div className="billing-address-flex">
-								<h3>BILLING ADDRESS</h3>
-								<div>
-									<button onClick={() => navigator("/billing-address")}>
-										Add
-									</button>
-									<button>DELETE</button>
+							<div key={address._id} className="billing-address">
+								<div className="billing-address-flex">
+									<h3>BILLING ADDRESS</h3>
+									<div>
+										<button onClick={() => navigator("/billing-address")}>
+											Add
+										</button>
+										<button>DELETE</button>
+									</div>
 								</div>
+								<p>
+									{`${address.name}, ${address.address}, ${address.city}, ${address.state} ${address.pincode}`}
+								</p>
 							</div>
-							<p>
-								{`${address.name}, ${address.address}, ${address.city}, ${address.state} ${address.pincode}`}
-							</p>
-						</div>
-					))}
+						))}
 					</div>
 					<div className="billing-address">
-					<div className="d-flex flex-column gap-5">
-				{ShipppingAddresses.map((address) => (
-						<div key={address._id} className="billing-address">
-							<div className="billing-address-flex">
-								<h3>BILLING ADDRESS</h3>
-								<div>
-									<button onClick={() => navigator("/billing-address")}>
-										Add
-									</button>
-									<button>DELETE</button>
+						<div className="d-flex flex-column gap-5">
+							{ShipppingAddresses.map((address) => (
+								<div key={address._id} className="billing-address">
+									<div className="billing-address-flex">
+										<h3>Shippping ADDRESS</h3>
+										<div>
+											<button onClick={() => navigator("/shipping-address")}>
+												Add
+											</button>
+											<button>DELETE</button>
+										</div>
+									</div>
+									<p>
+										{`${address.firstname}, ${address.lastname} , ${address.address}, ${address.city}, ${address.state} ${address.pincode} ${address.pincode} `}
+									</p>
 								</div>
-							</div>
-							<p>
-								{`${address.firstname}, ${address.lastname} , ${address.address}, ${address.city}, ${address.state} ${address.pincode} ${address.pincode} `}
-							</p>
-						</div>
-					))}
-					</div></div>
+							))}
+						</div></div>
 				</div>
 			</div>
 		</div>
