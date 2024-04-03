@@ -17,7 +17,7 @@ const ProfileDropdown = ({ openProfile, setOpenProfile }) => {
 	return (
 		<div className="profile-dropdown">
 			<ul>
-				<li onClick={closeProfile}>
+				<li onClick={closeProfile} className="btn btn-primary" >
 					<Link to="/userprofile">Profile</Link>
 				</li>
 				<li onClick={closeProfile}>
@@ -27,11 +27,12 @@ const ProfileDropdown = ({ openProfile, setOpenProfile }) => {
 								localStorage.removeItem("token")
 								window.location.replace("/")
 							}}
+							className="btn btn-danger"
 						>
 							Logout
 						</button>
 					) : (
-						<Link to="/Signup">Login</Link>
+						<Link to="/Signup" className="btn btn-success" >Login</Link>
 					)}
 				</li>
 			</ul>

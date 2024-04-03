@@ -1,8 +1,71 @@
-import React from "react"
+import React, { useState } from "react"
 import "./contact.css"
+import { makeApi } from "../../api/callApi"
+import { ToastContainer, toast } from "react-toastify";
+
 
 const Contact = () => {
+
+	const [Data , setData]=  useState({
+		"firstname": "",
+		"lastname": "",
+		"email": "",
+		"message": "",
+		"phonennumber": ""
+	})
+
+	const handelChange = (event) => {
+		const { name, value } = event.target
+		 setData(prevState => ({
+		 ...prevState,
+		 [name]: value
+		 }))
+	}
+
+	const handleSubmit = async (event) => {
+		event.preventDefault()
+		if(!Data.firstname){
+			toast.error('Please fill firstname');
+			return;
+		}
+		if(!Data.lastname){
+			toast.error('Please fill lastname');
+			return;
+		}
+		if(!Data.email){
+			toast.error('Please fill email');
+			return;
+		}
+		if(!Data.message){
+			toast.error('Please fill message');
+			return;
+		}
+		try {
+			const response = await makeApi("/api/create-message", "POST", Data)
+			console.log(response)
+			toast.success(response.data.message,{
+				onClose: () => {
+					setData({
+						"firstname": "",
+						"lastname": "",
+						"email": "",
+						"message": "",
+						"phonennumber": ""
+					})
+				}
+			})
+			toast.info("Thank you for sharing your thoughts with us")
+			
+		}catch (error) {
+			toast.error(error);
+			console.error('Error sending data:', error.response.data.message);
+		}
+	}
+
+
 	return (
+		<>
+			<ToastContainer />
 		<div className="contact-container">
 			<div className="contact">
 				<h1>CONTACT US</h1>
@@ -15,27 +78,41 @@ const Contact = () => {
 							<input
 								type="text"
 								placeholder="First Name"
+								onChange={handelChange}
+								name="firstname"
+								value={Data.firstname}
 							/>
 							<input
 								type="text"
 								placeholder="Last Name"
+								onChange={handelChange}
+								name="lastname"
+								value={Data.lastname}
 							/>
 						</div>
 						<input
-							type="tel"
+							type="Number"
 							placeholder="Phone Number"
+							onChange={handelChange}
+							name="phonennumber"
+							value={Data.phonennumber}
 						/>
 						<input
 							type="email"
 							placeholder="Email Address"
+							onChange={handelChange}
+							name="email"
+							value={Data.email}
 						/>
 						<textarea
-							name=""
 							cols="30"
 							rows="4"
 							placeholder="Message"
+							onChange={handelChange}
+							name="message"
+							value={Data.message}
 						></textarea>
-						<button>Submit</button>
+						<button onClick={(e)=>handleSubmit(e)} >Submit</button>
 					</form>
 				</div>
 			</div>
@@ -56,6 +133,7 @@ const Contact = () => {
 				</div>
 			</div>
 		</div>
+		</>
 	)
 }
 

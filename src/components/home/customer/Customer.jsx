@@ -1,11 +1,37 @@
-import React from "react"
+import React, { useState } from "react"
 import { assets } from "../../../assets/assets"
 import "./customer.css"
 import Slider from "react-slick"
 import "slick-carousel/slick/slick.css"
 import "slick-carousel/slick/slick-theme.css"
+import { makeApi } from "../../../api/callApi"
+import { ToastContainer, toast } from "react-toastify";
+
 
 const Customer = () => {
+	const [email, setEmail] = useState("")
+
+	const handleSubmit = async (event) => {
+		event.preventDefault()
+		if (!email) {
+			toast.error("Please fill email")
+			return
+		}
+		try {
+			const response = await makeApi("/api/create-subscribe", "POST", { email })
+			 if(response.data.success === true){
+				toast.success(response.data.message, {
+					onClose: () => {
+						setEmail("")
+					}
+				})
+			}
+		} catch (error) {
+			toast.error(error.response.data.message)
+			console.error("Error sending data:", error.response.data.message)
+		}
+	}
+
 	const settings = {
 		dots: true,
 		arrows: false,
@@ -50,6 +76,9 @@ const Customer = () => {
 		],
 	}
 	return (
+		<>
+		{/* keep center this toster */}
+		<ToastContainer position="top-center" autoClose={5000} hideProgressBar={false} newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover />
 		<div className="customer">
 			<div className="customer-cards">
 				<h1>A word from our customers</h1>
@@ -83,17 +112,21 @@ const Customer = () => {
 				<h1>Subscribe for regular updates</h1>
 				<div className="subscribe-here">
 					<input
-						type="text"
+						type="email"
 						placeholder="Enter Your Mail"
+						value={email}
+						onChange={(e) => setEmail(e.target.value)}
 						required
 					/>
 					<img
 						src={assets.subscriberBtn_icon}
 						alt=""
+						onClick={(e) => handleSubmit(e)}
 					/>
 				</div>
 			</div>
 		</div>
+		</>
 	)
 }
 
