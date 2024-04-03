@@ -25,6 +25,7 @@ import CheckoutPayment from "./pages/CheckoutPayment"
 import BillingAddress from "./components/billingAddress/BillingAddress"
 
 function App() {
+	
 	// const [categories, setCategories] = useState([])
 	// const location = useLocation()
 	// useEffect(() => {
