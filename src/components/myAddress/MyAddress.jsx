@@ -3,10 +3,57 @@ import React, { useState, useEffect } from "react";
 import "./myAddress.css";
 import { useNavigate } from "react-router";
 import { makeApi } from "../../api/callApi";
+import ConfirmationModal from "../../AdminComponents/product/admindeleteproduct";
 
 const MyAddress = () => {
 	const [billingAddresses, setBillingAddresses] = useState([]);
 	const [ShipppingAddresses, setShipppingAddresses] = useState([]);
+	const [deleteProductId, setDeleteProductId] = useState(null);
+
+
+	const handleDeleteConfirm = async () => {
+		if (deleteProductId) {
+			if (billingAddresses.some(address => address._id === deleteProductId)) {
+				await deleteBillingAddress(deleteProductId);
+			} else if (ShipppingAddresses.some(address => address._id === deleteProductId)) {
+				await deleteShippingAddress(deleteProductId);
+			}
+			setDeleteProductId(null);
+		}
+	};
+	
+	const deleteBillingAddress = async (productId) => {
+		try {
+			console.log(productId);
+			const response = await makeApi(
+				`/api/delete-billing-address/${productId}`,
+				"DELETE"
+			);
+			console.log(response);
+			// Update the billingAddresses state after successful deletion if necessary
+			 setBillingAddresses(billingAddresses.filter(address => address._id !== productId));
+		} catch (error) {
+			console.error("Error deleting billing address:", error);
+		}
+	};
+	
+	const deleteShippingAddress = async (productId) => {
+		try {
+			console.log(productId);
+			const response = await makeApi(
+				`/api/delete-shiped-address/${productId}`,
+				"DELETE"
+			);
+			console.log(response);
+			// Update the ShipppingAddresses state after successful deletion if necessary
+			 setShipppingAddresses(ShipppingAddresses.filter(address => address._id !== productId));
+		} catch (error) {
+			console.error("Error deleting shipping address:", error);
+		}
+	};
+	
+	
+
 	const navigator = useNavigate();
 
 	// Function to fetch billing addresses
@@ -41,7 +88,7 @@ const MyAddress = () => {
 			<div className="userprofile-heading">
 				<h1>MY ADDRESS</h1>
 			</div>
-			<div className="shipping-billing-address">
+			<div className="shipping-billing-address"> 
 				<p>
 					the following addresses will be used on the checkout page by default.
 				</p>
@@ -55,7 +102,10 @@ const MyAddress = () => {
 										<button onClick={() => navigator("/billing-address")}>
 											Add
 										</button>
-										<button>DELETE</button>
+										<button
+                        onClick={() => setDeleteProductId(address._id)}
+										
+										>DELETE</button>
 									</div>
 								</div>
 								<p>
@@ -74,7 +124,10 @@ const MyAddress = () => {
 											<button onClick={() => navigator("/shipping-address")}>
 												Add
 											</button>
-											<button>DELETE</button>
+											<button
+                        onClick={() => setDeleteProductId(address._id)}
+											
+											>DELETE</button>
 										</div>
 									</div>
 									<p>
@@ -85,6 +138,11 @@ const MyAddress = () => {
 						</div></div>
 				</div>
 			</div>
+			<ConfirmationModal
+              isOpen={deleteProductId !== null}
+              onClose={() => setDeleteProductId(null)}
+              onConfirm={handleDeleteConfirm}
+            />
 		</div>
 	)
 }

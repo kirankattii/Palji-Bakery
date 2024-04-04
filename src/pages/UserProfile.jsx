@@ -10,7 +10,6 @@ const UserProfile = () => {
 	const fetchUserDetail = async () => {
 		try {
 			const responce = await makeApi("/api/my-profile", "GET")
-			console.log("-----------------",responce.data.user)
 			setUserDetails(responce.data.user)
 		} catch (error) {
 			console.log(error) 
@@ -27,7 +26,7 @@ const UserProfile = () => {
 					<h1>PROFILE</h1>
 					<div className="userprofile-name ">
 						<img
-							src={assets.userprofile_icon}
+							src={userDatails?.userImage}
 							alt=""
 						/>
 						<div className="user-name">
