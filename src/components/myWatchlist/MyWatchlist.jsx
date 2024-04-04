@@ -5,11 +5,9 @@ import { IoIosHeart } from "react-icons/io"
 import { Link } from "react-router-dom"
 import { ShopContext } from "../../context/ShopContext"
 import { assets } from "../../assets/assets"
-import { all } from "axios"
 
 const MyWatchlist = (props) => {
 	const [wishlistItems, setWishlistItems] = useState([])
-	const [isInWishlist, setIsInWishlist] = useState(false)
 	const { all_product, cartItems, addToCart, removeFromCart } =
 		useContext(ShopContext)
 	useEffect(() => {
@@ -17,44 +15,36 @@ const MyWatchlist = (props) => {
 			try {
 				const response = await makeApi(`/api/get-my-wishlist`, "GET")
 				setWishlistItems(response.data.wishlist)
-				// const wishlistItemsTwo = response.data;
 
-				// const existsInWishlist = wishlistItemsTwo.some(
-				//   (item) => item.productId === props.id
-				// );
-
-				// setIsInWishlist(existsInWishlist);
 			} catch (error) {
 				console.log(error)
 			}
 		}
-
 		fetchWishlist()
 	}, [])
 
+
 	const toggleWishlist = async (productId) => {
 		try {
-			console.log("----------------", productId)
-			// Logic to toggle wishlist item
-			await makeApi(`/api/create-wishlist/${productId}`, "POST")
-			console.log(wishlistItems)
+			const method = "POST";
+			const endpoint = `/api/create-wishlist/${productId}`;
+			const data = await makeApi(endpoint, method);
+			console.log(data.data);
+			setWishlistItems(wishlistItems.filter(item => item.products._id !== productId));
 
-			//    wishlistItems
-			await setWishlistItems(
-				wishlistItems.filter((item) => item.productId !== productId)
-			)
-
-			// Call API to toggle wishlist status for the given productId
 		} catch (error) {
-			console.log("error------", error)
-			await setWishlistItems(
-				wishlistItems.filter((item) => item.productId !== productId)
-			)
+			console.log(error);
 		}
 	}
 
+
 	return (
 		<div className="myWatchlist">
+			{wishlistItems.length === 0 ? (
+				<div className="text-center">
+					<h2>Your wishlist is empty</h2>
+				</div>
+			) : (
 			<div className="userprofile-heading wishlist-items">
 				{wishlistItems.map((item, index) => {
 					return (
@@ -118,6 +108,8 @@ const MyWatchlist = (props) => {
 					)
 				})}
 			</div>
+				
+			)}
 		</div>
 	)
 }

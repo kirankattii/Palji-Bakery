@@ -57,7 +57,9 @@ const MyAddress = () => {
 										<button onClick={() => navigator("/billing-address")}>
 											Edit
 										</button>
-										<button>DELETE</button>
+										<button onClick={() => setDeleteProductId(address._id)}>
+											DELETE
+										</button>
 									</div>
 								</div>
 								<p>
@@ -66,29 +68,36 @@ const MyAddress = () => {
 							</div>
 						))}
 					</div>
-					<div className="shipping-address">
-						{ShipppingAddresses.map((address) => (
-							<div
-								key={address._id}
-								className=""
-							>
-								<div className="shipping-address-flex">
-									<h3>Shippping ADDRESS</h3>
-									<div>
-										<button onClick={() => navigator("/shipping-address")}>
-											Add
-										</button>
-										<button>DELETE</button>
+					<div className="billing-address">
+						<div className="d-flex flex-column gap-5">
+							{ShipppingAddresses.map((address) => (
+								<div
+									key={address._id}
+									className="billing-address"
+								>
+									<div className="billing-address-flex">
+										<h3>Shippping ADDRESS</h3>
+										<div>
+											<button onClick={() => navigator("/shipping-address")}>
+												Add
+											</button>
+											<button>DELETE</button>
+										</div>
 									</div>
+									<p>
+										{`${address.firstname}, ${address.lastname} , ${address.address}, ${address.city}, ${address.state} ${address.pincode} ${address.pincode} `}
+									</p>
 								</div>
-								<p>
-									{`${address.firstname}, ${address.lastname} , ${address.address}, ${address.city}, ${address.state} ${address.pincode} ${address.pincode} `}
-								</p>
-							</div>
-						))}
+							))}
+						</div>
 					</div>
 				</div>
 			</div>
+			<ConfirmationModal
+				isOpen={deleteProductId !== null}
+				onClose={() => setDeleteProductId(null)}
+				onConfirm={handleDeleteConfirm}
+			/>
 		</div>
 	)
 }
