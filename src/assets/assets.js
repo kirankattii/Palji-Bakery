@@ -48,8 +48,10 @@ import user_address from "./user_Address.png"
 import user_watchlist from "./userprofile_watchlist.png"
 import password_reset from "./Password Reset.png"
 import profile_reset from "./profile_reset.png"
+import userprofile_menu from "./menu_icon.png"
 
 export const assets = {
+	userprofile_menu,
 	cup_cakes,
 	search_icon,
 	logo,
