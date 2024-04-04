@@ -16,30 +16,27 @@
 }
 
 .shipping-billing-flex {
-  margin-top: 35px;
-}
-
-.shipping-billing-flex {
   display: flex;
-  align-items: center;
   justify-content: space-between;
-  width: 100%;
-}
-
-.shipping-address, .billing-address {}
-
-
-.shipping-address-flex, .billing-address-flex {
-  display: flex;
-
-  justify-content: space-between;
-}
-
-.shipping-address-flex div, .billing-address-flex div {
-  display: flex;
-  align-items: center;
-  /* margin-left: px; */
   gap: 20px;
+}
+
+.billing-address, .shipping-address {
+  width: 50%;
+}
+
+.billing-address-flex, .shipping-address-flex {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  margin-top: 50px;
+}
+
+.billing-address-flex div, .shipping-address-flex div {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: -10px;
 }
 
 .billing-address h3, .shipping-address h3 {
@@ -60,8 +57,8 @@
   line-height: 18.6px;
   letter-spacing: 0.12em;
   text-align: left;
-  width: 75%;
-  margin-top: 20px;
+  width: 100%;
+  margin-top: 0px;
 }
 
 .shipping-address button, .billing-address button {
@@ -75,4 +72,26 @@
   color: #fff;
   border: 0;
   outline: 0;
+}
+
+@media(max-width:700px) {
+  .shipping-billing-address {
+    min-height: 55vh;
+    background: #F2D6CC;
+    border-radius: 20px;
+    padding: 20px;
+
+
+  }
+
+  .billing-address, .shipping-address {
+    /* width: 0%; */
+
+  }
+
+  .shipping-billing-flex {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+  }
 }
