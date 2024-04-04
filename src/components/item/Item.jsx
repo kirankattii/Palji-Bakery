@@ -16,7 +16,6 @@ const Item = (props) => {
 	const checkWishlist = async () => {
 	  try {
 		const response = await makeApi(`/api/get-my-wishlist`, "GET")
-		console.log("wishlist---", response.data.wishlist)
 		const wishlistItems = response.data.wishlist
   
 		const existsInWishlist = wishlistItems.some(
@@ -38,7 +37,6 @@ const Item = (props) => {
       const method = "POST";
       const endpoint = `/api/create-wishlist/${props.id}`;
       const data = await makeApi(endpoint, method);
-      console.log(data.data);
       setIsInWishlist(!isInWishlist);
     } catch (error) {
       console.log(error);
