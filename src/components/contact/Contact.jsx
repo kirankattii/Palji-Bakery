@@ -36,8 +36,16 @@ const Contact = () => {
 			toast.error('Please fill email');
 			return;
 		}
+		if(!Data.phonennumber){
+			toast.error('Please fill phonennumber');
+			return;
+		}
 		if(!Data.message){
 			toast.error('Please fill message');
+			return;
+		}
+		if(Data.phonennumber&&Data.phonennumber.length<10){
+			toast.error('Please enter valid phonennumber');
 			return;
 		}
 		try {
