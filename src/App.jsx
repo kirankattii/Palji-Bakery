@@ -3,7 +3,7 @@ import { useLocation } from "react-router-dom"
 
 import "./App.css"
 import Navbar from "./components/navbar/Navbar"
-import Home from "./components/home/Home" 
+import Home from "./components/home/Home"
 import { Route, Routes } from "react-router"
 import Footer from "./components/footer/Footer"
 import AboutUs from "./components/aboutus/AboutUs"
@@ -23,9 +23,9 @@ import ShippingAddress from "./components/shippingAddress/ShippingAddress"
 import EditUserProfile from "./components/editUserProfile/EditUserProfile"
 import CheckoutPayment from "./pages/CheckoutPayment"
 import BillingAddress from "./components/billingAddress/BillingAddress"
+import Payment from "./components/Payment/Payment"
 
 function App() {
-	
 	// const [categories, setCategories] = useState([])
 	// const location = useLocation()
 	// useEffect(() => {
@@ -114,6 +114,10 @@ function App() {
 				<Route
 					path="/cart/checkoutpayment"
 					element={<CheckoutPayment />}
+				/>
+				<Route
+					path="/cart/checkoutpayment/payment"
+					element={<Payment />}
 				/>
 				{/* <Route
 					path="/admin/*"
