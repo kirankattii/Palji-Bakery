@@ -31,7 +31,7 @@ const EditUserProfile = () => {
 					firstName: user.firstName,
 					lastName: user.lastName,
 					gender: user.gender,
-					dateofbirth: user.dateofbirth.substr(0, 10),
+					dateofbirth: user.dateofbirth.(0, 10),
 					email: user.email,
 					mobileNumber: user.mobileNumber.toString(),
 					userImage: user.userImage,

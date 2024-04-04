@@ -6,6 +6,13 @@
   align-items: center;
   justify-content: space-between;
   padding: 0 50px;
+  margin-top: -8px;
+  height: 90px;
+  background-color: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  /* Adjust the blur radius as needed */
+  /* border-radius: 10px; */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .left-navbar {
@@ -13,6 +20,8 @@
   width: 44%;
   display: flex;
   align-items: center;
+  padding-bottom: 15px;
+  /* margin-bottom: 15px; */
 
 }
 
@@ -20,6 +29,7 @@
   width: 50px;
   cursor: pointer;
   /* margin-top: -15px; */
+  padding-bottom: 15px;
 }
 
 .left-navbar ul {
@@ -48,7 +58,8 @@
 }
 
 .center-logo {
-  width: 120px;
+  width: 110px;
+  margin-bottom: 10px;
   /* place-self: center; */
   /* display: flex; */
 
@@ -60,6 +71,7 @@
   align-items: center;
   justify-content: space-between;
   color: white;
+  padding-bottom: 15px;
 }
 
 .right-navbar ul {
@@ -71,6 +83,7 @@
   align-items: center;
   border: 2px solid white;
   border-radius: 50px;
+  margin-bottom: 20px;
   /* gap: 5px; */
 }
 
@@ -97,6 +110,7 @@
 
 .nav-cart {
   position: relative;
+  padding-bottom: 15px;
 }
 
 .nav-cart span {
@@ -120,6 +134,7 @@
   font-size: 35px;
   cursor: pointer;
   color: white;
+
 }
 
 .animate-logo .center-logo {
@@ -178,6 +193,15 @@
 
 
 @media screen and (max-width: 1100px) {
+  .navbar {
+    background: none;
+    /* background-color: rgba(255, 255, 255, 0.2); */
+    backdrop-filter: none;
+    /* Adjust the blur radius as needed */
+    /* border-radius: 10px; */
+    box-shadow: none;
+  }
+
   .left-navbar, .right-navbar ul {
     display: none;
   }
@@ -205,6 +229,12 @@
     justify-content: end;
     gap: 30px;
   }
+
+  .nav-cart {
+    position: relative;
+    padding-bottom: 0px;
+  }
+
 
   .special-search, .search {
     display: none;
@@ -325,6 +355,7 @@
   /* width: 150px; */
   /* width: 250px; */
   width: 100%;
+  /* margin-top: 10px; */
   justify-content: center;
   transition: 0.5s ease;
   /* color: bla; */
