@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from "react"
 import "./CSS/userProfile.css"
 import { assets } from "../assets/assets"

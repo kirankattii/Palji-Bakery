@@ -24,6 +24,7 @@ import EditUserProfile from "./components/editUserProfile/EditUserProfile"
 import CheckoutPayment from "./pages/CheckoutPayment"
 import BillingAddress from "./components/billingAddress/BillingAddress"
 import Payment from "./components/Payment/Payment"
+import OrderSummary from "./pages/OrderSummary"
 
 function App() {
 	// const [categories, setCategories] = useState([])
@@ -118,6 +119,10 @@ function App() {
 				<Route
 					path="/cart/checkoutpayment/payment"
 					element={<Payment />}
+				/>
+				<Route
+					path="/userprofile/myorders/ordersummary"
+					element={<OrderSummary />}
 				/>
 				{/* <Route
 					path="/admin/*"

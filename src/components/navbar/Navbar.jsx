@@ -14,7 +14,7 @@ import ProfileDropdown from "../profileDropdown/ProfileDropdown"
 
 const Navbar = () => {
 	const [showNavbar, setShowNavbar] = useState(false)
-
+	const [categoryDropdownVisible, setCategoryDropdownVisible] = useState(false)
 	const { getTotalCartItems } = useContext(ShopContext)
 	useEffect(() => {
 		const timeoutId = setTimeout(() => {
@@ -49,6 +49,10 @@ const Navbar = () => {
 	const closeMenu = () => {
 		setMobileMenu(false)
 	}
+	const toggleCategoryDropdown = () => {
+		setCategoryDropdownVisible(!categoryDropdownVisible)
+	}
+
 	const [openProfile, setOpenProfile] = useState(false)
 
 	return showNavbar ? (
@@ -134,14 +138,36 @@ const Navbar = () => {
 									HOME
 								</Link>
 							</li>{" "}
-							<li>
+							{/* <li className="click-dropdown">
 								<Link
-									to="/products"
-									onClick={closeMenu}
+								
 								>
 									PRODUCTS
 								</Link>
-								{/* <ProductDropdown /> */}
+							</li> */}
+							{/* <li className="category-dropdown">
+								<Link>Hi</Link>
+								<br />
+								<Link>Hi</Link>
+								<br />
+								<Link>Hi</Link>
+								<br />
+								<Link>Hi</Link>
+							</li> */}
+							<li
+								className="click-dropdown"
+								onClick={toggleCategoryDropdown}
+							>
+								<Link>PRODUCTS</Link>
+								{categoryDropdownVisible && (
+									<div className="category-dropdown">
+										<Link>Gift Hamper</Link>
+										<br />
+										<Link>Savory</Link>
+										<br />
+										<Link>Biscuits</Link>
+									</div>
+								)}
 							</li>{" "}
 							<li>
 								<Link

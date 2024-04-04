@@ -14,6 +14,9 @@ const MyOrders = () => {
 					<p>Name</p>
 					<p>Price</p>
 					<p>Statue</p>
+					<p style={{ textAlign: "center", fontSize: "20px" }}>
+						see your <br /> orders
+					</p>
 				</div>
 				<hr />
 				{/* <br /> */}
@@ -26,6 +29,7 @@ const MyOrders = () => {
 				<p>{"Name"}</p>
 				<p>₹{}</p>
 				<p>{"Pending"}</p>
+				<button>View</button>
 				{/* <p>₹{item.price * cartItems[item._id]}</p> */}
 			</div>
 		</div>

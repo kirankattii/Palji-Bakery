@@ -1,7 +1,7 @@
 .navbar {
   position: fixed;
   width: 100%;
-  z-index: 10;
+  z-index: 200;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -221,6 +221,12 @@
     align-items: center;
     padding: 0 10px;
   }
+
+  .category-dropdown {
+    margin-left: 10px;
+    font-size: 18px;
+  }
+
 
   .right-navbar {
     margin-top: -20px;
