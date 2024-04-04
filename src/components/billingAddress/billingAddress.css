@@ -1,7 +1,7 @@
 .my-shipping-belling-address {
   padding-top: 20vh;
   width: 100%;
-  min-height: 150vh;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   /* justify-content: center; */
@@ -69,11 +69,20 @@
 .same-add-checkbox {
   display: flex;
   gap: 0;
+  align-items: center;
+  width: 100%;
   margin-top: -15px;
 }
 
+.same-add-checkbox input {
+  width: 15px;
+  height: 15px;
+}
+
 .same-add-checkbox p {
-  margin-left: 0px;
+  /* margin-left: 0px; */
+  width: 450%;
+  padding-top: 10px;
 }
 
 .my-shipping-address div, .my-billing-address div {
@@ -92,4 +101,34 @@
   width: 100%;
   margin: 30px auto;
   cursor: pointer;
+}
+
+@media(max-width:500px) {
+  .my-billing-address {
+    width: 100%;
+    padding: 0 20px;
+  }
+
+  .my-billing-address input {
+    width: 100%;
+  }
+
+  .same-add-checkbox {
+    display: flex;
+    gap: 0;
+    align-items: center;
+    width: 100%;
+    margin-left: -20px;
+    margin-top: -15px;
+  }
+
+
+  .same-add-checkbox p {
+    /* margin-left: 0px; */
+    width: 450%;
+    padding-top: 12px;
+    margin-left: -20px;
+  }
+
+
 }

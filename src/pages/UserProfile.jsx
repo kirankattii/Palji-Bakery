@@ -135,7 +135,7 @@ const UserProfile = () => {
 
 	return (
 		<div className="userProfile">
-			<hr />
+			<hr className="userprofile-hr" />
 			<div className="user-sidebar-info">
 				<div className="userProfile-sidebar">
 					<div className="userprofile-h1">
@@ -147,7 +147,10 @@ const UserProfile = () => {
 						/>
 						<h1>PROFILE</h1>
 					</div>
-					<div className="userprofile-name user-flexcol ">
+					<div
+						className="userprofile-name user-flexcol"
+						onClick={() => navigate("/userprofile")}
+					>
 						<img
 							className="myuser-profile-icon"
 							src={assets.userprofile_icon}

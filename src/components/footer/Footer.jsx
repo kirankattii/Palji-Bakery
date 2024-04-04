@@ -92,8 +92,8 @@ const Footer = () => {
 			<div className="copyright">
 				<p>COPYRIGHT © 2024 PalJI Bakery, All Rights Reserved.</p>
 				<p>
-					Designed & Developed By : 
-					<Link to="https://www.pitamaas.com/">Pitamaas</Link>
+					Designed & Developed By :  
+					<Link to="https://www.pitamaas.com/"> Pitamaas</Link>
 				</p>
 			</div>
 		</div>

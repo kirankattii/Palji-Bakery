@@ -2,10 +2,14 @@
   width: 100%;
   min-height: 100vh;
   padding: 0 100px;
-  padding-top: 20vh;
+  padding-top: 10vh;
   background: #efe2d7;
 
   /* border-top: 2px solid black; */
+}
+
+.userprofile-hr {
+  margin-top: 50px;
 }
 
 .user-sidebar-info {
@@ -108,6 +112,7 @@
 }
 
 
+
 .userProfile-info {
   display: flex;
   flex-direction: column;
@@ -115,7 +120,7 @@
 }
 
 .userprofile-h1 img {
-
+  cursor: pointer;
   display: none;
 }
 
@@ -140,7 +145,7 @@
     width: 100%;
     min-height: 100vh;
     padding: 0 10px;
-    padding-top: 20vh;
+    padding-top: 10vh;
     background: #efe2d7;
 
 
@@ -202,16 +207,22 @@
   .userProfile-sidebar {
     position: absolute;
     background: #efe2d7;
+    /* box-shadow: 0; */
     /* padding-left: 10px; */
     /* padding-right: 30px; */
     /* padding: 10px; */
-    padding-bottom: 250px;
+    padding-bottom: 100px;
+    padding-right: 10px;
     z-index: 100;
   }
 
 
   .userProfile-info {
     margin-left: 50px;
+  }
+
+  .userProfile-sidebar p {
+    /* padding-right: 10px; */
   }
 
   .userProfile-sidebar img {
@@ -236,4 +247,41 @@
 }
 
 
-@media(max-width:600px) {}
+@media(max-width:600px) {
+  .userProfile-sidebar h1 {
+    font-size: 23px;
+    margin-top: 2px;
+  }
+
+  .user-flexcol p {
+    font-family: Kumbh Sans;
+    font-size: 14px;
+
+    width: 150px;
+  }
+
+  .user-name {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .user-name span {
+    font-size: 14px;
+    padding-top: 10px;
+  }
+
+  .user-name p {
+    font-size: 20px;
+    margin-top: 0px;
+  }
+
+  .userprofile-h1 {
+    position: absolute;
+    display: flex;
+    margin-top: -10px;
+    align-items: center;
+    gap: 20px;
+  }
+
+}

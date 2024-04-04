@@ -1,7 +1,7 @@
 .my-shipping-belling-address {
   padding-top: 20vh;
   width: 100%;
-  min-height: 150vh;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   /* justify-content: center; */
@@ -92,4 +92,20 @@
   width: 100%;
   margin: 30px auto;
   cursor: pointer;
+  margin-top: 40px;
+}
+
+
+
+@media(max-width:500px) {
+  .my-shipping-address {
+    width: 100%;
+    padding: 0 20px;
+  }
+
+  .my-shipping-address input {
+    width: 100%;
+    /* margin: 20px; */
+    /* display: none; */
+  }
 }
