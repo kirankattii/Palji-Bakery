@@ -11,6 +11,8 @@ import "./navbar.css"
 import { ShopContext } from "../../context/ShopContext"
 import ProductDropdown from "../productDropdown/ProductDropdown"
 import ProfileDropdown from "../profileDropdown/ProfileDropdown"
+import { makeApi } from "../../api/callApi"
+import NavSearchList from "../navSearchList/NavSearchList"
 
 const Navbar = () => {
 	const [showNavbar, setShowNavbar] = useState(false)
@@ -54,6 +56,36 @@ const Navbar = () => {
 	}
 
 	const [openProfile, setOpenProfile] = useState(false)
+	const [products, setProducts] = useState([])
+	const [input, setInput] = useState("")
+	// useEffect(() => {
+	const fetchData = async (value) => {
+		try {
+			// setLoading(true)
+			const response = await makeApi(`/api/get-all-products`, "GET")
+
+			const getProduct = response.data.products
+			const result = getProduct.filter((product) => {
+				return (
+					value &&
+					product &&
+					product.name &&
+					product.name.toLowerCase().includes(value)
+				)
+			})
+			setProducts(result)
+			// console.log(result)
+		} catch (error) {
+			console.error("Error fetching products:", error)
+		}
+	}
+	// fetchData()
+	// }, [])
+	console.log(products)
+
+	const handleChange = (value) => {
+		setInput(value), fetchData(value)
+	}
 
 	return showNavbar ? (
 		<div className="navbar">
@@ -92,14 +124,19 @@ const Navbar = () => {
 						<Link to="/contact">CONTACT US</Link>
 					</li>
 				</ul>
-				<div
-					className={shouldApplySpecialStyles() ? "special-search" : "search"}
-				>
-					<input
-						type="text"
-						placeholder="SEARCH"
-					/>
-					<IoSearch className="search_icon" />
+				<div className="nav-search-bar">
+					<div
+						className={shouldApplySpecialStyles() ? "special-search" : "search"}
+					>
+						<input
+							type="text"
+							placeholder="SEARCH"
+							value={input}
+							onChange={(e) => handleChange(e.target.value)}
+						/>
+						<IoSearch className="search_icon" />
+					</div>
+					<NavSearchList product={products} />
 				</div>
 				<Link
 					to="/Signup"

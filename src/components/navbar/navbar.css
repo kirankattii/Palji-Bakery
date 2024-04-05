@@ -190,7 +190,10 @@
   display: none;
 }
 
-
+.nav-search-bar .nav-search {
+  /* display: none; */
+  position: absolute;
+}
 
 @media screen and (max-width: 1100px) {
   .navbar {
@@ -200,6 +203,10 @@
     /* Adjust the blur radius as needed */
     /* border-radius: 10px; */
     box-shadow: none;
+  }
+
+  .nav-search {
+    display: none;
   }
 
   .left-navbar, .right-navbar ul {

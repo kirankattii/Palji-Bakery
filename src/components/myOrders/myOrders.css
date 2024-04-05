@@ -30,3 +30,8 @@
   border-radius: 20px;
   font-size: 18px;
 }
+
+.order-summary2 img {
+  width: 120px;
+  margin-top: -20px;
+}

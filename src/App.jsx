@@ -121,7 +121,7 @@ function App() {
 					element={<Payment />}
 				/>
 				<Route
-					path="/userprofile/myorders/ordersummary"
+					path="/userprofile/myorders/:ordersummary"
 					element={<OrderSummary />}
 				/>
 				{/* <Route

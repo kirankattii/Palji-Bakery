@@ -13,9 +13,9 @@ const Product = (props) => {
 		setMaxPrice(value)
 	}
 	const [categories, setCategories] = useState([])
-	const [products, setProducts] = useState([])
 	const [searchQuery, setSearchQuery] = useState("")
 	const [category, setCategory] = useState("")
+	const [products, setProducts] = useState([])
 
 	// useEffect(() => {
 	// 	fetch("https://pajiweb.onrender.com/api/get-all-categories/")
@@ -23,7 +23,7 @@ const Product = (props) => {
 	// 		.then((data) => setCategories(data))
 	// 		.catch((error) => console.error("Error fetching categories:", error))
 	// }, [])
-
+	///api/get-all-products
 	useEffect(() => {
 		const fetchData = async () => {
 			try {
@@ -38,7 +38,7 @@ const Product = (props) => {
 			}
 		}
 		fetchData()
-	}, [searchQuery, category,maxPrice])
+	}, [searchQuery, category, maxPrice])
 
 	useEffect(() => {
 		async function fetchCategories() {
@@ -54,7 +54,6 @@ const Product = (props) => {
 		}
 		fetchCategories()
 	}, [])
-
 
 	return (
 		<div className="product">
