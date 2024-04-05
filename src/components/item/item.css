@@ -144,10 +144,10 @@
 /* Whishlist */
 .watchlist-icon {
   font-size: 24px;
-  color: #ffffff; 
+  color: #ffffff;
   transition: color 0.3s ease;
 }
 
 .watchlist-icon.wishlist-active {
-  color: red; 
+  color: red;
 }
