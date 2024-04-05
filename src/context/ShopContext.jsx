@@ -4,9 +4,13 @@ import { makeApi } from "../api/callApi"
 export const ShopContext = createContext(null)
 
 const ShopContextProvider = (props) => {
-	const [cartItems, setCartItems] = useState({})
+	const [cartItems, setCartItems] = useState(
+		JSON.parse(localStorage.getItem("cartItems")) || {}
+	)
 	const [all_products, setall_product] = useState([])
 	const [products, setProducts] = useState([])
+	// console.log(all_product)
+
 	useEffect(() => {
 		const fetchData = async () => {
 			try {
@@ -20,7 +24,7 @@ const ShopContextProvider = (props) => {
 		fetchData()
 	}, [])
 	const all_product = all_products
-	console.log(all_product)
+	// console.log(all_product)
 
 	const addToCart = (itemId) => {
 		if (!cartItems[itemId]) {
@@ -35,14 +39,24 @@ const ShopContextProvider = (props) => {
 
 	const getTotalCartAmount = () => {
 		let totalAmount = 0
-		// for (const item in cartItems) {
-		// 	if (cartItems[item] > 0) {
-		// 		let itemInfo = all_product.find(
-		// 			(product) => Number(product._id) === Number(item)
-		// 		)
-		// 		totalAmount += itemInfo.price * cartItems[item]
-		// 	}
-		// }
+		for (const item in cartItems) {
+			if (cartItems[item] > 0) {
+				let itemInfo = all_product.find((product) => product._id === item)
+
+				totalAmount += itemInfo.price * cartItems[item]
+			}
+		}
+		return totalAmount
+	}
+	const getTotalCartDiscountAmount = () => {
+		let totalAmount = 0
+		for (const item in cartItems) {
+			if (cartItems[item] > 0) {
+				let itemInfo = all_product.find((product) => product._id === item)
+
+				totalAmount += itemInfo.PriceAfterDiscount * cartItems[item]
+			}
+		}
 		return totalAmount
 	}
 	const getTotalCartItems = () => {
@@ -54,6 +68,12 @@ const ShopContextProvider = (props) => {
 		}
 		return totalItem
 	}
+
+	// Update localStorage whenever cartItems change
+	useEffect(() => {
+		localStorage.setItem("cartItems", JSON.stringify(cartItems))
+	}, [cartItems])
+
 	const contextValue = {
 		all_product,
 		cartItems,
@@ -62,6 +82,7 @@ const ShopContextProvider = (props) => {
 		removeFromCart,
 		getTotalCartAmount,
 		getTotalCartItems,
+		getTotalCartDiscountAmount,
 	}
 
 	return (

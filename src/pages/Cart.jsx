@@ -6,9 +6,21 @@ import { assets } from "../assets/assets"
 import { useNavigate } from "react-router"
 
 const Cart = () => {
-	const { cartItems, all_product, removeFromCart, getTotalCartAmount } =
-		useContext(ShopContext)
-	console.log("this is cart", all_product)
+	const {
+		cartItems,
+		getTotalCartDiscountAmount,
+		all_product,
+
+		removeFromCart,
+		getTotalCartAmount,
+	} = useContext(ShopContext)
+
+	const totalDiscount = getTotalCartAmount() - getTotalCartDiscountAmount()
+	const subtotal = getTotalCartAmount()
+	const taxAmount = subtotal * 0.05 // 5% tax
+	const totalPrice = getTotalCartAmount() - totalDiscount + taxAmount
+
+	// console.log("this is cart", all_product)
 
 	const navigate = useNavigate()
 	return (
@@ -102,11 +114,11 @@ const Cart = () => {
 							</div>{" "}
 							<div className="cart-billing-discount">
 								<p>DISCOUNT</p>
-								<p>₹{0}</p>
+								<p>₹{totalDiscount}</p>
 							</div>{" "}
 							<div className="cart-billing-tax">
 								<p>TAX</p>
-								<p>₹{0}</p>
+								<p>₹{taxAmount}</p>
 							</div>{" "}
 							<div className="cart-billing-shipping">
 								<p>SHIPPING</p>
@@ -114,7 +126,7 @@ const Cart = () => {
 							</div>{" "}
 							<div className="cart-billing-shipping">
 								<b>TOTAL</b>
-								<b>₹{getTotalCartAmount()}</b>
+								<b>₹{totalPrice}</b>
 							</div>
 						</div>
 						<button onClick={() => navigate("./checkoutpayment")}>
