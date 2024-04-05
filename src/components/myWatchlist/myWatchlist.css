@@ -8,3 +8,19 @@
   justify-content: center;
   padding: 50px 30px;
 }
+
+.wishlist-item-card {
+  width: 270px;
+}
+
+@media(max-width:800px) {
+  .wishlist-item-card {
+    width: 260px;
+  }
+}
+
+@media(max-width:500px) {
+  .wishlist-item-card {
+    width: 250px;
+  }
+}

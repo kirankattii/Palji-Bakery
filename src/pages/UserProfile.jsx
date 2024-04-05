@@ -37,7 +37,7 @@ const UserProfile = () => {
 				<div className="userProfile-sidebar">
 					<div className="userprofile-h1">
 						<img
-							src={userDatails?.userImage}
+							src={assets.userprofile_menu}
 							alt=""
 							className="userprofiele-menu"
 							onClick={() => setExtended((prev) => !prev)}
@@ -50,7 +50,8 @@ const UserProfile = () => {
 					>
 						<img
 							className="myuser-profile-icon"
-							src={assets.userprofile_icon}
+							// src={assets.userprofile_icon}
+							src={userDatails?.userImage}
 							alt=""
 						/>
 						{extended ? (

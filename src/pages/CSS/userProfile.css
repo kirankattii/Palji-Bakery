@@ -74,6 +74,8 @@
   padding-left: 25px;
 }
 
+
+
 .userprofile-name {
   /* display: flex;
   align-items: left;
@@ -111,6 +113,9 @@
   gap: 50px;
 }
 
+.myuser-profile-icon {
+  margin: auto 0;
+}
 
 
 .userProfile-info {
@@ -150,6 +155,12 @@
 
 
     /* border-top: 2px solid black; */
+  }
+
+  .myuser-profile-icon {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
   }
 
   .userProfile-sidebar img {

@@ -1,8 +1,10 @@
 import React from "react"
 import "./myOrders.css"
 import { assets } from "../../assets/assets"
+import { useNavigate } from "react-router"
 
 const MyOrders = () => {
+	const navigate = useNavigate()
 	return (
 		<div className="myorders">
 			<div className="userprofile-heading">
@@ -29,7 +31,7 @@ const MyOrders = () => {
 				<p>{"Name"}</p>
 				<p>₹{}</p>
 				<p>{"Pending"}</p>
-				<button>View</button>
+				<button onClick={() => navigate("./ordersummary")}>View</button>
 				{/* <p>₹{item.price * cartItems[item._id]}</p> */}
 			</div>
 		</div>

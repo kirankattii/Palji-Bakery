@@ -15,7 +15,6 @@ const MyWatchlist = (props) => {
 			try {
 				const response = await makeApi(`/api/get-my-wishlist`, "GET")
 				setWishlistItems(response.data.wishlist)
-
 			} catch (error) {
 				console.log(error)
 			}
@@ -23,92 +22,93 @@ const MyWatchlist = (props) => {
 		fetchWishlist()
 	}, [])
 
-
 	const toggleWishlist = async (productId) => {
 		try {
-			const method = "POST";
-			const endpoint = `/api/create-wishlist/${productId}`;
-			const data = await makeApi(endpoint, method);
-			console.log(data.data);
-			setWishlistItems(wishlistItems.filter(item => item.products._id !== productId));
-
+			const method = "POST"
+			const endpoint = `/api/create-wishlist/${productId}`
+			const data = await makeApi(endpoint, method)
+			console.log(data.data)
+			setWishlistItems(
+				wishlistItems.filter((item) => item.products._id !== productId)
+			)
 		} catch (error) {
-			console.log(error);
+			console.log(error)
 		}
 	}
 
-
 	return (
 		<div className="myWatchlist">
+			<div className="userprofile-heading">
+				<h1>MY WISHLIST</h1>
+			</div>
 			{wishlistItems.length === 0 ? (
 				<div className="text-center">
 					<h2>Your wishlist is empty</h2>
 				</div>
 			) : (
-			<div className="userprofile-heading wishlist-items">
-				{wishlistItems.map((item, index) => {
-					return (
-						<div
-							className="item "
-							key={index}
-						>
-							<div className="item-card ">
-								<IoIosHeart
-									className={`watchlist-icon pointer-event wishlist-active`}
-									onClick={() => toggleWishlist(item.products._id)}
-								/>
-								<Link to={`/openproduct/${item.products.id}`}>
-									<img
-										src={item.products.thumbnail}
-										alt=""
+				<div className="userprofile-heading wishlist-items">
+					{wishlistItems.map((item, index) => {
+						return (
+							<div
+								className="item wishlist-item-card"
+								key={index}
+							>
+								<div className="item-card ">
+									<IoIosHeart
+										className={`watchlist-icon pointer-event wishlist-active`}
+										onClick={() => toggleWishlist(item.products._id)}
 									/>
-								</Link>
-								<div className="item-price-name">
-									<p className="item-name">{item.products.name}</p>
-									<div className="old-new-price">
-										<p className="old-item-price">
-											₹{item.products.PriceAfterDiscount}
-										</p>
-										<p className="new-item-price">₹{item.products.price}</p>
-									</div>
-								</div>
-
-								{/* You need to handle cartItems and addToCart/removeFromCart */}
-
-								<div className="item-cart">
-									{!cartItems[item.products._id] ? (
-										<div
-											className="item-addto-cart "
-											onClick={() => addToCart(item.products._id)}
-										>
-											ADD TO CART
-										</div>
-									) : (
-										<div className="food-item-counter">
-											<img
-												onClick={() => removeFromCart(item.products._id)}
-												src={assets.add_icon_red}
-												alt=""
-											/>
-											<p className="cart-item-no">
-												{cartItems[item.products._id]}
+									<Link to={`/openproduct/${item.products.id}`}>
+										<img
+											src={item.products.thumbnail}
+											alt=""
+										/>
+									</Link>
+									<div className="item-price-name">
+										<p className="item-name">{item.products.name}</p>
+										<div className="old-new-price">
+											<p className="old-item-price">
+												₹{item.products.PriceAfterDiscount}
 											</p>
-											<img
-												onClick={() => addToCart(item.products._id)}
-												src={assets.add_icon_green}
-												alt=""
-											/>
+											<p className="new-item-price">₹{item.products.price}</p>
 										</div>
-									)}
-								</div>
+									</div>
 
-								{/* You need to handle cartItems and addToCart/removeFromCart */}
+									{/* You need to handle cartItems and addToCart/removeFromCart */}
+
+									<div className="item-cart">
+										{!cartItems[item.products._id] ? (
+											<div
+												className="item-addto-cart "
+												onClick={() => addToCart(item.products._id)}
+											>
+												ADD TO CART
+											</div>
+										) : (
+											<div className="food-item-counter">
+												<img
+													onClick={() => removeFromCart(item.products._id)}
+													src={assets.add_icon_red}
+													alt=""
+												/>
+												<p className="cart-item-no">
+													{cartItems[item.products._id]}
+												</p>
+												<img
+													onClick={() => addToCart(item.products._id)}
+													src={assets.add_icon_green}
+													alt=""
+												/>
+											</div>
+										)}
+									</div>
+
+									{/* You need to handle cartItems and addToCart/removeFromCart */}
+								</div>
 							</div>
-						</div>
-					)
-				})}
-			</div>
-				
+						)
+					})}
+				</div>
 			)}
 		</div>
 	)
