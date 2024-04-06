@@ -47,7 +47,7 @@ const MyWatchlist = (props) => {
 				</div>
 			) : (
 				<div className="userprofile-heading wishlist-items">
-					{wishlistItems.map((item, index) => {
+					{wishlistItems?.map((item, index) => {
 						return (
 							<div
 								className="item wishlist-item-card"
@@ -56,46 +56,46 @@ const MyWatchlist = (props) => {
 								<div className="item-card ">
 									<IoIosHeart
 										className={`watchlist-icon pointer-event wishlist-active`}
-										onClick={() => toggleWishlist(item.products._id)}
+										onClick={() => toggleWishlist(item?.products?._id)}
 									/>
-									<Link to={`/openproduct/${item.products.id}`}>
+									<Link to={`/openproduct/${item?.products?._id}`}>
 										<img
-											src={item.products.thumbnail}
+											src={item?.products?.thumbnail}
 											alt=""
 										/>
 									</Link>
 									<div className="item-price-name">
-										<p className="item-name">{item.products.name}</p>
+										<p className="item-name">{item?.products?.name}</p>
 										<div className="old-new-price">
 											<p className="old-item-price">
-												₹{item.products.PriceAfterDiscount}
+												₹{item?.products?.PriceAfterDiscount}
 											</p>
-											<p className="new-item-price">₹{item.products.price}</p>
+											<p className="new-item-price">₹{item?.products?.price}</p>
 										</div>
 									</div>
 
 									{/* You need to handle cartItems and addToCart/removeFromCart */}
 
 									<div className="item-cart">
-										{!cartItems[item.products._id] ? (
+										{!cartItems[item?.products?._id] ? (
 											<div
 												className="item-addto-cart "
-												onClick={() => addToCart(item.products._id)}
+												onClick={() => addToCart(item?.products._id)}
 											>
 												ADD TO CART
 											</div>
 										) : (
 											<div className="food-item-counter">
 												<img
-													onClick={() => removeFromCart(item.products._id)}
+													onClick={() => removeFromCart(item?.products._id)}
 													src={assets.add_icon_red}
 													alt=""
 												/>
 												<p className="cart-item-no">
-													{cartItems[item.products._id]}
+													{cartItems[item?.products._id]}
 												</p>
 												<img
-													onClick={() => addToCart(item.products._id)}
+													onClick={() => addToCart(item?.products._id)}
 													src={assets.add_icon_green}
 													alt=""
 												/>
