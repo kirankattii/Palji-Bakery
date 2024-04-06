@@ -4,8 +4,8 @@ import { ShopContext } from "../../context/ShopContext"
 import { assets } from "../../assets/assets"
 import { IoIosHeart } from "react-icons/io"
 const ProductDisplay = (props) => {
-	const { products } = props
-	// console.log(products[1])
+	// const { products } = props
+	console.log("product display", props.product.price)
 
 	const { cartItems, addToCart, removeFromCart } = useContext(ShopContext)
 	return (
@@ -71,27 +71,27 @@ const ProductDisplay = (props) => {
 						</div> */}
 					</div>
 				</div>
-				{/* <button onClick={() => addToCart(props.id)}>ADD To CART</button> */}{" "}
+				{/* <button onClick={() => addToCart(props.id)}>ADD To CART</button> */}
 				<div className="productdisplay-item-cart">
-					{!cartItems[props.id] ? (
+					{!cartItems[props.product._id] ? (
 						<div
 							className="productdisplay-item-addto-cart "
-							onClick={() => addToCart(props.id)}
+							onClick={() => addToCart(props.product._id)}
 						>
 							ADD TO CART
 						</div>
 					) : (
 						<div className="productdisplay-food-item-counter">
 							<img
-								onClick={() => removeFromCart(props.id)}
+								onClick={() => removeFromCart(props.product._id)}
 								src={assets.add_icon_red}
 								alt=""
 							/>
 							<p className="productdisplay-cart-item-no">
-								{cartItems[props.id]}
+								{cartItems[props.product._id]}
 							</p>
 							<img
-								onClick={() => addToCart(props.id)}
+								onClick={() => addToCart(props.product._id)}
 								src={assets.add_icon_green}
 								alt=""
 							/>

@@ -17,7 +17,7 @@ import NavSearchList from "../navSearchList/NavSearchList"
 const Navbar = () => {
 	const [showNavbar, setShowNavbar] = useState(false)
 	const [categoryDropdownVisible, setCategoryDropdownVisible] = useState(false)
-	const [isloggedIn, setIsloggedIn] = useState(false)
+	const [isloggedIn, setIsloggedIn] = useState(true)
 	const { getTotalCartItems } = useContext(ShopContext)
 	useEffect(() => {
 		const timeoutId = setTimeout(() => {
@@ -102,6 +102,7 @@ const Navbar = () => {
 		}
 		fetchCategories()
 	}, [])
+
 	console.log(categories)
 
 	return showNavbar ? (
