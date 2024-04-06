@@ -87,6 +87,22 @@ const Navbar = () => {
 	const handleChange = (value) => {
 		setInput(value), fetchData(value)
 	}
+	const [categories, setCategories] = useState([])
+
+	useEffect(() => {
+		async function fetchCategories() {
+			try {
+				const response = await makeApi("/api/get-all-categories", "GET")
+				if (response.status === 200) {
+					setCategories(response.data.categories)
+				}
+			} catch (error) {
+				console.log("Error fetching categories:", error)
+			}
+		}
+		fetchCategories()
+	}, [])
+	console.log(categories)
 
 	return showNavbar ? (
 		<div className="navbar">
