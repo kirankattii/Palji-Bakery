@@ -56,7 +56,7 @@ const OrderSummary = () => {
 				<img
 					src={
 						orderSummaryy.orderItems &&
-						orderSummaryy.orderItems[0].productId.image[0]
+						orderSummaryy.orderItems[0].productId.thumbnail
 					}
 					alt=""
 				/>

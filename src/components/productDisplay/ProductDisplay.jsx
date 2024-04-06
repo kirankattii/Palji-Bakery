@@ -4,8 +4,9 @@ import { ShopContext } from "../../context/ShopContext"
 import { assets } from "../../assets/assets"
 import { IoIosHeart } from "react-icons/io"
 const ProductDisplay = (props) => {
-	// const { products } = props
-	// console.log(props.products)
+	const { products } = props
+	// console.log(products[1])
+
 	const { cartItems, addToCart, removeFromCart } = useContext(ShopContext)
 	return (
 		<div className="productDisplay">
@@ -50,6 +51,36 @@ const ProductDisplay = (props) => {
 				<p>{props.product.description}</p>
 				<div className="productdisplay-addtocart">
 					<div className="productdisplay-item-cart">
+						{/* <div className="productdisplay-food-item-counter">
+							<img
+								onClick={() => removeFromCart(props.id)}
+								src={assets.add_icon_red}
+								alt=""
+							/>
+							<p className="productdisplay-cart-item-no">
+								{cartItems[props.id]}
+							</p>
+							<img
+								onClick={() => addToCart(props.id)}
+								src={assets.add_icon_green}
+								alt=""
+							/>
+						</div> */}
+						{/* <div className="productdisplay-whislist">
+							<IoIosHeart />
+						</div> */}
+					</div>
+				</div>
+				{/* <button onClick={() => addToCart(props.id)}>ADD To CART</button> */}{" "}
+				<div className="productdisplay-item-cart">
+					{!cartItems[props.id] ? (
+						<div
+							className="productdisplay-item-addto-cart "
+							onClick={() => addToCart(props.id)}
+						>
+							ADD TO CART
+						</div>
+					) : (
 						<div className="productdisplay-food-item-counter">
 							<img
 								onClick={() => removeFromCart(props.id)}
@@ -65,12 +96,8 @@ const ProductDisplay = (props) => {
 								alt=""
 							/>
 						</div>
-						<div className="productdisplay-whislist">
-							<IoIosHeart />
-						</div>
-					</div>
+					)}
 				</div>
-				<button onClick={() => addToCart(props.id)}>ADD To CART</button>
 				<button>BUY NOW</button>
 			</div>
 		</div>

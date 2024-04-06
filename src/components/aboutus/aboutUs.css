@@ -74,7 +74,7 @@ h1 span {
 
 .ours {
   width: 100%;
-  height: 100vh;
+  height: 110vh;
 
   display: flex;
   gap: 50px;
@@ -245,7 +245,7 @@ h1 span {
 
 @media screen and (max-width: 450px) {
   .ours {
-    height: 200vh;
+    height: 170vh;
   }
 
   .our-values h2, .our-mission h2 {

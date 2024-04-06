@@ -87,6 +87,23 @@ const Navbar = () => {
 		setInput(value), fetchData(value)
 	}
 
+	const [categories, setCategories] = useState([])
+
+	useEffect(() => {
+		async function fetchCategories() {
+			try {
+				const response = await makeApi("/api/get-all-categories", "GET")
+				if (response.status === 200) {
+					setCategories(response.data.categories)
+				}
+			} catch (error) {
+				console.log("Error fetching categories:", error)
+			}
+		}
+		fetchCategories()
+	}, [])
+	console.log(categories)
+
 	return showNavbar ? (
 		<div className="navbar">
 			<div className="left-navbar">
@@ -198,11 +215,19 @@ const Navbar = () => {
 								<Link>PRODUCTS</Link>
 								{categoryDropdownVisible && (
 									<div className="category-dropdown">
-										<Link>Gift Hamper</Link>
-										<br />
-										<Link>Savory</Link>
-										<br />
-										<Link>Biscuits</Link>
+										{categories.map((item, id) => {
+											return (
+												<div>
+													<Link
+														onClick={closeMenu}
+														to="/products"
+													>
+														{item.name}
+													</Link>
+													<br />
+												</div>
+											)
+										})}
 									</div>
 								)}
 							</li>{" "}
