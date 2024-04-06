@@ -20,7 +20,7 @@ const EditUserProfile = () => {
 		mobileNumber: "",
 		userImage: "",
 	})
-
+console.log("---------------------",editData)
 	// Fetch existing user details on component mount
 	useEffect(() => {
 		const fetchUserDetails = async () => {
@@ -31,7 +31,7 @@ const EditUserProfile = () => {
 					firstName: user.firstName,
 					lastName: user.lastName,
 					gender: user.gender,
-					dateofbirth: user.dateofbirth(0, 10),
+					// dateofbirth: user?.dateofbirth(0, 10),
 					email: user.email,
 					mobileNumber: user.mobileNumber.toString(),
 					userImage: user.userImage,
@@ -48,7 +48,7 @@ const EditUserProfile = () => {
 			...editData,
 			[event.target.name]: event.target.value,
 		})
-		if (name === "mobileNumber") {
+		if (event.target.name === "mobileNumber") {
 			setMobileNumberChanged(true)
 		}
 	}
@@ -57,9 +57,18 @@ const EditUserProfile = () => {
 		event.preventDefault()
 		try {
 			const userDataToUpdate = { ...editData }
+			console.log("mobileNumberChanged",mobileNumberChanged)
 			if (!mobileNumberChanged) {
 				delete userDataToUpdate.mobileNumber
 			}
+			// show error if mobile number is less than 10 digits
+			 if(mobileNumberChanged){
+				 if(editData.mobileNumber.length < 10){
+					 toast.error("Please enter valid mobile number")
+					 return
+				 }
+			 }
+			//  call api
 			const response = await makeApi(
 				"/api/update-user",
 				"PUT",
@@ -135,8 +144,8 @@ const EditUserProfile = () => {
 							</div>
 							<div>
 								<img
-									src={editData.userImage}
-									alt=""
+									src={editData?.userImage}
+									alt="profile"
 								/>
 							</div>
 						</div>
