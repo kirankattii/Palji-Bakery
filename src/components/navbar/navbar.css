@@ -198,11 +198,14 @@
 @media screen and (max-width: 1100px) {
   .navbar {
     background: none;
-    /* background-color: rgba(255, 255, 255, 0.2); */
+    background-color: #FEA59F;
     backdrop-filter: none;
     /* Adjust the blur radius as needed */
     /* border-radius: 10px; */
-    box-shadow: none;
+    /* backdrop-filter: blur(10px); */
+    /* Adjust the blur radius as needed */
+    /* border-radius: 10px; */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   }
 
   .nav-search {
@@ -248,6 +251,9 @@
     padding-bottom: 0px;
   }
 
+  .media-navbar {
+    backdrop-filter: none;
+  }
 
   .special-search, .search {
     display: none;
@@ -278,6 +284,7 @@
 
   .media-navbar ul, .media-navbar {
     display: block;
+    backdrop-filter: none;
   }
 
   .media-navbar {
@@ -295,6 +302,7 @@
     position: fixed;
     /* display: block; */
     top: 0;
+    backdrop-filter: none;
     right: 0;
     bottom: 0;
     padding-right: 10px;
@@ -318,7 +326,11 @@
 
 @media screen and (max-width: 500px) {
   .center-logo {
-    width: 120px;
+    width: 90px;
+  }
+
+  .navbar {
+    height: 75px;
   }
 
   .cart-icon, .special-cart-icon {
@@ -331,12 +343,6 @@
 
   .media-profile-icon img {
     width: 40px;
-  }
-}
-
-@media screen and (max-width: 400px) {
-  .center-logo {
-    width: 100px;
   }
 }
 

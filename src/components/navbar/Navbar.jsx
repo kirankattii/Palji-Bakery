@@ -86,18 +86,22 @@ const Navbar = () => {
 	const handleChange = (value) => {
 		setInput(value), fetchData(value)
 	}
+	const [categories, setCategories] = useState([])
 
-	const TestUserISloggedINorNot = ()=>{
-		const token = localStorage.getItem("token")
-		if(token){
-			setIsloggedIn(true)
-		}
-	}
 	useEffect(() => {
-		TestUserISloggedINorNot()
-	})
-
-	
+		async function fetchCategories() {
+			try {
+				const response = await makeApi("/api/get-all-categories", "GET")
+				if (response.status === 200) {
+					setCategories(response.data.categories)
+				}
+			} catch (error) {
+				console.log("Error fetching categories:", error)
+			}
+		}
+		fetchCategories()
+	}, [])
+	console.log(categories)
 
 	return showNavbar ? (
 		<div className="navbar">
@@ -109,14 +113,12 @@ const Navbar = () => {
 							src={user_icon}
 							alt=""
 						/>
-
 					</div>
-				):(
-					<button className="btn btn-primary" >
+				) : (
+					<button className="btn btn-primary">
 						<Link to="/login">LOGIN</Link>
 					</button>
-				)
-			}
+				)}
 
 				<ul>
 					<li>
@@ -220,11 +222,19 @@ const Navbar = () => {
 								<Link>PRODUCTS</Link>
 								{categoryDropdownVisible && (
 									<div className="category-dropdown">
-										<Link>Gift Hamper</Link>
-										<br />
-										<Link>Savory</Link>
-										<br />
-										<Link>Biscuits</Link>
+										{categories.map((item, id) => {
+											return (
+												<div>
+													<Link
+														onClick={closeMenu}
+														to="/products"
+													>
+														{item.name}
+													</Link>
+													<br />
+												</div>
+											)
+										})}
 									</div>
 								)}
 							</li>{" "}
