@@ -101,7 +101,13 @@ const Navbar = () => {
 		}
 		fetchCategories()
 	}, [])
-	console.log(categories)
+
+	useEffect(() => {
+		const checkUSerIsLoginOrNot  = localStorage.getItem("token")
+		if(checkUSerIsLoginOrNot){
+			setIsloggedIn(true)
+		} 
+	},[])
 
 	return showNavbar ? (
 		<div className="navbar">
