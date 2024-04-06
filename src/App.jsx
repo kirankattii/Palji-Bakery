@@ -25,6 +25,8 @@ import CheckoutPayment from "./pages/CheckoutPayment"
 import BillingAddress from "./components/billingAddress/BillingAddress"
 import Payment from "./components/Payment/Payment"
 import OrderSummary from "./pages/OrderSummary"
+import ForgotPasswordForm from "./components/login/sendMail"
+import OtpVerifiedForm from "./components/login/otp"
 
 function App() {
 	// const [categories, setCategories] = useState([])
@@ -128,6 +130,8 @@ function App() {
 					path="/admin/*"
 					element={<Admin />}
 				/> */}
+				 <Route path="/Forgot-Password" element={<ForgotPasswordForm />} />
+        <Route path="/otp-verified" element={<OtpVerifiedForm />} />
 			</Routes>
 			<Footer />
 		</div>
