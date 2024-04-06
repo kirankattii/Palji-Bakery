@@ -290,7 +290,7 @@ const Navbar = () => {
 				</div>
 			</div>
 			{openProfile && (
-				<ProfileDropdown
+				<ProfileDropdown 
 					openProfile={setOpenProfile}
 					setOpenProfile={setOpenProfile}
 					className="nav-profile-dropdown"

@@ -17,7 +17,11 @@ const Product = (props) => {
 	const [searchQuery, setSearchQuery] = useState("")
 	const [category, setCategory] = useState("")
 	const [products, setProducts] = useState([])
-
+	const [totalPages, setTotalPages] = useState(0)
+	const [toalProduct, setToalProduct] = useState(0)
+	console.log(toalProduct)
+	const [currentPage, setCurrentPage] = useState(1)
+	const ResultPerPage = 50
 	// useEffect(() => {
 	// 	fetch("https://pajiweb.onrender.com/api/get-all-categories/")
 	// 		.then((responce) => responce.json())
@@ -30,15 +34,23 @@ const Product = (props) => {
 			try {
 				// setLoading(true)
 				const response = await makeApi(
-					`/api/get-all-products?name=${searchQuery}&category=${category}&IsOutOfStock=false&maxPrice=${maxPrice} `,
+					`/api/get-all-products?name=${searchQuery}
+					&category=${category}
+					&IsOutOfStock=false&maxPrice=${maxPrice}
+					&page=${currentPage}&perPage=${ResultPerPage} `,
 					"GET"
 				)
 				setProducts(response.data.products)
+				setToalProduct(response.data.totalProducts)
 			} catch (error) {
 				console.error("Error fetching products:", error)
 			}
 		}
 		fetchData()
+	}, [searchQuery, category, maxPrice])
+	useEffect(() => {
+		const a = Math.ceil(toalProduct / ResultPerPage)
+		setTotalPages(a)
 	}, [searchQuery, category, maxPrice])
 
 	useEffect(() => {
@@ -55,6 +67,10 @@ const Product = (props) => {
 		}
 		fetchCategories()
 	}, [])
+
+	const handlePageClick = (pageNumber) => {
+		setCurrentPage(pageNumber)
+	}
 
 	return (
 		<div className="product">
@@ -127,6 +143,19 @@ const Product = (props) => {
 						categories={categories}
 					/>
 				</div>
+			</div>
+			<div className="pagination">
+				{Array.from({ length: totalPages }, (_, index) => index + 1).map(
+					(pageNumber) => (
+						<button
+							key={pageNumber}
+							className={pageNumber === currentPage ? "active" : ""}
+							onClick={() => handlePageClick(pageNumber)}
+						>
+							{pageNumber}
+						</button>
+					)
+				)}
 			</div>
 		</div>
 	)

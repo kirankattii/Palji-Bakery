@@ -312,3 +312,35 @@ input[type='range']::-webkit-slider-runnable-track {
     padding-bottom: 20px;
   }
 }
+
+
+
+
+
+
+  /* pagination */
+  .pagination {
+    margin: 20px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  
+  .pagination button {
+    margin: 10px;
+    padding: 14px 25px;
+    background-color: #f0f0f0;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .pagination button.active {
+    background-color: #de4cad;
+    color:var(--main-white-color);
+  }
+  
+  .pagination button:hover {
+    background-color: #ccc;
+  }
+  
+  
