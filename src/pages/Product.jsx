@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react"
 import "./CSS/product.css"
 import { assets } from "../assets/assets"
+import { useParams } from "react-router";
 
 import { makeApi } from "../api/callApi"
 import ShopCategory from "./ShopCategory"
 
 const Product = (props) => {
+	 
 	const [minPrice, setMinPrice] = useState(0)
 	const [maxPrice, setMaxPrice] = useState(1000)
 	const handlePriceChange = (event) => {

@@ -82,7 +82,6 @@ const Navbar = () => {
 	}
 	// fetchData()
 	// }, [])
-	console.log(products)
 
 	const handleChange = (value) => {
 		setInput(value), fetchData(value)
@@ -102,25 +101,24 @@ const Navbar = () => {
 		}
 		fetchCategories()
 	}, [])
-
 	console.log(categories)
 
 	return showNavbar ? (
 		<div className="navbar">
 			<div className="left-navbar">
-				{isloggedIn ? (
-					<div>
-						<img
-							onClick={() => setOpenProfile((prev) => !prev)}
-							src={user_icon}
-							alt=""
-						/>
-					</div>
-				) : (
-					<button className="btn btn-primary">
+				{/* {isloggedIn === true ? ( */}
+				<div>
+					<img
+						onClick={() => setOpenProfile((prev) => !prev)}
+						src={user_icon}
+						alt=""
+					/>
+				</div>
+				{/* ) : ( */}
+				{/* <button className="btn btn-primary">
 						<Link to="/login">LOGIN</Link>
-					</button>
-				)}
+					</button> */}
+				{/* )} */}
 
 				<ul>
 					<li>
