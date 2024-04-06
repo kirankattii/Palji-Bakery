@@ -41,7 +41,7 @@ const MyAccount = () => {
 						</div>
 						<div className="userprofile-birthdate">
 							<span>DATE OF BIRTH</span>
-							{/* <p>{userDatails.dateofbirth.substr(0, 10)}</p> */}
+							<p>{userDatails?.dateofbirth?.substr(0, 10)}</p>
 						</div>
 						<div className="userprofile-gender">
 							<span>GENDER</span>

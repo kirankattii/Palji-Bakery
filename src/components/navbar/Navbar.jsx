@@ -17,6 +17,7 @@ import NavSearchList from "../navSearchList/NavSearchList"
 const Navbar = () => {
 	const [showNavbar, setShowNavbar] = useState(false)
 	const [categoryDropdownVisible, setCategoryDropdownVisible] = useState(false)
+	const [isloggedIn, setIsloggedIn] = useState(false)
 	const { getTotalCartItems } = useContext(ShopContext)
 	useEffect(() => {
 		const timeoutId = setTimeout(() => {
@@ -87,14 +88,36 @@ const Navbar = () => {
 		setInput(value), fetchData(value)
 	}
 
+	const TestUserISloggedINorNot = ()=>{
+		const token = localStorage.getItem("token")
+		if(token){
+			setIsloggedIn(true)
+		}
+	}
+	useEffect(() => {
+		TestUserISloggedINorNot()
+	})
+
+	
+
 	return showNavbar ? (
 		<div className="navbar">
 			<div className="left-navbar">
-				<img
-					onClick={() => setOpenProfile((prev) => !prev)}
-					src={user_icon}
-					alt=""
-				/>
+				{isloggedIn ? (
+					<div>
+						<img
+							onClick={() => setOpenProfile((prev) => !prev)}
+							src={user_icon}
+							alt=""
+						/>
+
+					</div>
+				):(
+					<button className="btn btn-primary" >
+						<Link to="/login">LOGIN</Link>
+					</button>
+				)
+			}
 
 				<ul>
 					<li>
