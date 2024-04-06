@@ -82,7 +82,6 @@ const Navbar = () => {
 	}
 	// fetchData()
 	// }, [])
-	console.log(products)
 
 	const handleChange = (value) => {
 		setInput(value), fetchData(value)
@@ -102,12 +101,18 @@ const Navbar = () => {
 		}
 		fetchCategories()
 	}, [])
-	console.log(categories)
+
+	useEffect(() => {
+		const checkUSerIsLoginOrNot  = localStorage.getItem("token")
+		if(checkUSerIsLoginOrNot){
+			setIsloggedIn(true)
+		} 
+	},[])
 
 	return showNavbar ? (
 		<div className="navbar">
 			<div className="left-navbar">
-				{isloggedIn ? (
+				{isloggedIn === true ? (
 					<div>
 						<img
 							onClick={() => setOpenProfile((prev) => !prev)}
