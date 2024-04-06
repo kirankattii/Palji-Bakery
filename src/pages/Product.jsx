@@ -23,6 +23,7 @@ const Product = (props) => {
 	const [products, setProducts] = useState([])
 	const [totalPages, setTotalPages] = useState(0);
 	const [toalProduct, setToalProduct] = useState(0);
+	console.log(toalProduct);
 	const [currentPage, setCurrentPage] = useState(1);
 	const ResultPerPage = 50
 	// useEffect(() => {
@@ -147,19 +148,19 @@ const Product = (props) => {
 					/>
 				</div>
 			</div>
-				<div className="pagination">
-					{Array.from({ length: totalPages }, (_, index) => index + 1).map(
-						(pageNumber) => (
-							<button
-								key={pageNumber}
-								className={pageNumber === currentPage ? "active" : ""}
-								onClick={() => handlePageClick(pageNumber)}
-							>
-								{pageNumber}
-							</button>
-						)
-					)}
-				</div>
+			<div className="pagination">
+				{Array.from({ length: totalPages }, (_, index) => index + 1).map(
+					(pageNumber) => (
+						<button
+							key={pageNumber}
+							className={pageNumber === currentPage ? "active" : ""}
+							onClick={() => handlePageClick(pageNumber)}
+						>
+							{pageNumber}
+						</button>
+					)
+				)}
+			</div>
 		</div>
 	)
 }
