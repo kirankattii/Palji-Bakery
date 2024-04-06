@@ -74,6 +74,15 @@
   outline: 0;
 }
 
+.billing-address h2, .shipping-address h2 {
+  /* width: 0%; */
+  font-size: 20px;
+  color: #AE7B37;
+  width: 200%;
+  margin-bottom: -20px;
+
+}
+
 @media(max-width:700px) {
   .shipping-billing-address {
     min-height: 55vh;
@@ -84,14 +93,60 @@
 
   }
 
-  .billing-address, .shipping-address {
-    /* width: 0%; */
-
-  }
 
   .shipping-billing-flex {
     display: flex;
     justify-content: space-between;
     gap: 20px;
+  }
+
+  .shipping-address p, .billing-address p {
+    font-family: Kumbh Sans;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 18.6px;
+    letter-spacing: 0.12em;
+    text-align: left;
+    width: 180%;
+    margin-top: 0px;
+  }
+}
+
+@media(max-width:580px) {
+  .shipping-billing-flex {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .shipping-address p, .billing-address p {
+    font-family: Kumbh Sans;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 18.6px;
+    letter-spacing: 0.12em;
+    text-align: left;
+    width: 180%;
+    margin-top: 0px;
+  }
+
+  .billing-address {
+    /* width: 0%; */
+    width: 155px;
+  }
+}
+
+@media(max-width:400px) {
+
+  .billing-address {
+    /* width: 0%; */
+    width: 135px;
+  }
+}
+
+@media(max-width:360px) {
+
+  .billing-address {
+    /* width: 0%; */
+    width: 115px;
   }
 }

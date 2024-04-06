@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from "react"
 import "./CSS/product.css"
 import { assets } from "../assets/assets"
-import { useParams } from "react-router";
+import { useParams } from "react-router"
 
 import { makeApi } from "../api/callApi"
 import ShopCategory from "./ShopCategory"
 
 const Product = (props) => {
-	 
 	const [minPrice, setMinPrice] = useState(0)
 	const [maxPrice, setMaxPrice] = useState(1000)
 	const handlePriceChange = (event) => {
@@ -78,42 +77,44 @@ const Product = (props) => {
 							<p>₹{minPrice}</p>
 							<p>₹{maxPrice}</p>
 						</div>
-						<button>Filter</button>
+						{/* <button>Filter</button> */}
 					</div>
-					<div className="product-categories">
-						<h1>Product Categories:</h1>
-						<select
-							className="add_product_input_filed add_product_dropdown"
-							value={category}
-							onChange={(e) => setCategory(e.target.value)}
-						>
-							<option value="">Select Category</option>
-							<option value="">All</option>
-							{categories.map((category) => (
-								<option
-									key={category._id}
-									value={category._id}
-								>
-									{category.name}
-								</option>
-							))}
-						</select>
-					</div>
-					<div className="recentely-viewed"></div>
-					<div className="products-search">
-						<h1>Product Search:</h1>
-						<div>
-							<input
-								type="text"
-								placeholder="Search"
-								id="inputBox"
-								onChange={(e) => setSearchQuery(e.target.value)}
-								value={searchQuery}
-							/>
-							<img
-								src={assets.search_icon2}
-								alt=""
-							/>
+					<div className="search-and-category">
+						<div className="product-categories">
+							<h1>Product Categories:</h1>
+							<select
+								className="add_product_input_filed add_product_dropdown"
+								value={category}
+								onChange={(e) => setCategory(e.target.value)}
+							>
+								<option value="">Select Category</option>
+								<option value="">All</option>
+								{categories.map((category) => (
+									<option
+										key={category._id}
+										value={category._id}
+									>
+										{category.name}
+									</option>
+								))}
+							</select>
+						</div>
+						<div className="recentely-viewed"></div>
+						<div className="products-search">
+							<h1>Product Search:</h1>
+							<div>
+								<input
+									type="text"
+									placeholder="Search"
+									id="inputBox"
+									onChange={(e) => setSearchQuery(e.target.value)}
+									value={searchQuery}
+								/>
+								<img
+									src={assets.search_icon2}
+									alt=""
+								/>
+							</div>
 						</div>
 					</div>
 				</div>

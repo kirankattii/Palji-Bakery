@@ -163,10 +163,11 @@ const Navbar = () => {
 					<NavSearchList product={products} />
 				</div>
 				<Link
-					to="/Signup"
+					// to="/Signup"
 					className="media-profile-icon"
 				>
 					<img
+						onClick={() => setOpenProfile((prev) => !prev)}
 						src={user_icon}
 						alt=""
 					/>
@@ -215,11 +216,35 @@ const Navbar = () => {
 								<br />
 								<Link>Hi</Link>
 							</li> */}
-							<li
+							{/* <li
 								className="click-dropdown"
-								onClick={toggleCategoryDropdown}
+								// onClick={toggleCategoryDropdown}
 							>
-								<Link>PRODUCTS</Link>
+								<Link onClick={toggleCategoryDropdown}>PRODUCTS</Link>
+
+								<div className="category-dropdown">
+									{categories.map((item, id) => {
+										return (
+											<div>
+												<Link
+													onClick={closeMenu}
+													to="/products"
+												>
+													{item.name}
+												</Link>
+												<br />
+											</div>
+										)
+									})}
+								</div>
+							</li>{" "} */}
+							<li className="click-dropdown">
+								<Link
+									to="#"
+									onClick={toggleCategoryDropdown}
+								>
+									PRODUCTS <MdArrowDropDown />
+								</Link>
 								{categoryDropdownVisible && (
 									<div className="category-dropdown">
 										{categories.map((item, id) => {
@@ -237,7 +262,7 @@ const Navbar = () => {
 										})}
 									</div>
 								)}
-							</li>{" "}
+							</li>
 							<li>
 								<Link
 									to="/aboutus"
@@ -268,6 +293,7 @@ const Navbar = () => {
 				<ProfileDropdown
 					openProfile={setOpenProfile}
 					setOpenProfile={setOpenProfile}
+					className="nav-profile-dropdown"
 				/>
 			)}
 		</div>

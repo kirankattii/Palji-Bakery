@@ -42,21 +42,39 @@ const ShopContextProvider = (props) => {
 		for (const item in cartItems) {
 			if (cartItems[item] > 0) {
 				let itemInfo = all_product.find((product) => product._id === item)
-
-				totalAmount += itemInfo * cartItems[item]
+				if (itemInfo && itemInfo.price) {
+					totalAmount += itemInfo.price * cartItems[item]
+				}
 			}
 		}
 		return totalAmount
 	}
+	// const getTotalCartDiscountAmount = () => {
+	// 	let totalAmount = 0
+	// 	if (all_product.length === 0) {
+	// 		return totalAmount
+	// 	}
+	// 	for (const item in cartItems) {
+	// 		if (cartItems[item] > 0) {
+	// 			let itemInfo = all_product.find((product) => product._id === item)
+
+	// 			totalAmount += itemInfo.price * cartItems[item]
+	// 		}
+	// 	}
+	// 	return totalAmount
+	// }
+
 	const getTotalCartDiscountAmount = () => {
 		let totalAmount = 0
 		for (const item in cartItems) {
 			if (cartItems[item] > 0) {
 				let itemInfo = all_product.find((product) => product._id === item)
-
-				totalAmount += itemInfo * cartItems[item]
+				if (itemInfo && itemInfo.PriceAfterDiscount) {
+					totalAmount += itemInfo.PriceAfterDiscount * cartItems[item]
+				}
 			}
 		}
+		console.log("discount amount", totalAmount)
 		return totalAmount
 	}
 	const getTotalCartItems = () => {

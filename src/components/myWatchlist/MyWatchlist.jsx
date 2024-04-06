@@ -87,15 +87,15 @@ const MyWatchlist = (props) => {
 										) : (
 											<div className="food-item-counter">
 												<img
-													onClick={() => removeFromCart(item?.products._id)}
+													onClick={() => removeFromCart(item?.products?._id)}
 													src={assets.add_icon_red}
 													alt=""
 												/>
 												<p className="cart-item-no">
-													{cartItems[item?.products._id]}
+													{cartItems[item?.products?._id]}
 												</p>
 												<img
-													onClick={() => addToCart(item?.products._id)}
+													onClick={() => addToCart(item?.products?._id)}
 													src={assets.add_icon_green}
 													alt=""
 												/>
