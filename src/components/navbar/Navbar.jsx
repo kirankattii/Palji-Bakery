@@ -29,6 +29,11 @@ const Navbar = () => {
 
 	const location = useLocation()
 
+	const checkUSerIsLoginOrNot  = localStorage.getItem("token")
+	if(checkUSerIsLoginOrNot){
+		setIsloggedIn(true)
+	} 
+
 	const shouldApplySpecialStyles = () => {
 		return (
 			location.pathname === "/contact" ||
@@ -102,12 +107,7 @@ const Navbar = () => {
 		fetchCategories()
 	}, [])
 
-	useEffect(() => {
-		const checkUSerIsLoginOrNot  = localStorage.getItem("token")
-		if(checkUSerIsLoginOrNot){
-			setIsloggedIn(true)
-		} 
-	},[])
+	
 
 	return showNavbar ? (
 		<div className="navbar">
