@@ -29,11 +29,6 @@ const Navbar = () => {
 
 	const location = useLocation()
 
-	const checkUSerIsLoginOrNot  = localStorage.getItem("token")
-	if(checkUSerIsLoginOrNot){
-		setIsloggedIn(true)
-	} 
-
 	const shouldApplySpecialStyles = () => {
 		return (
 			location.pathname === "/contact" ||
@@ -107,12 +102,17 @@ const Navbar = () => {
 		fetchCategories()
 	}, [])
 
-	
+	useEffect(() => {
+		const checkUSerIsLoginOrNot  = localStorage.getItem("token")
+		if(checkUSerIsLoginOrNot){
+			setIsloggedIn(true)
+		} 
+	},[])
 
 	return showNavbar ? (
 		<div className="navbar">
 			<div className="left-navbar">
-				{isloggedIn === true ? (
+				{/* {isloggedIn === true ? ( */}
 					<div>
 						<img
 							onClick={() => setOpenProfile((prev) => !prev)}
@@ -120,11 +120,11 @@ const Navbar = () => {
 							alt=""
 						/>
 					</div>
-				) : (
-					<button className="btn btn-primary">
+				{/* ) : ( */}
+					{/* <button className="btn btn-primary">
 						<Link to="/login">LOGIN</Link>
-					</button>
-				)}
+					</button> */}
+				{/* )} */}
 
 				<ul>
 					<li>
