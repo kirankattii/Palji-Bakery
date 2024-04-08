@@ -57,14 +57,13 @@ const Product = (props) => {
 	useEffect(() => {
 		async function fetchCategories() {
 			try {
-				// setLoading(true)
 				const response = await makeApi("/api/get-all-categories", "GET")
 				if (response.status === 200) {
 					setCategories(response.data.categories)
 				}
 			} catch (error) {
 				console.log("Error fetching categories:", error)
-			}
+			} 
 		}
 		fetchCategories()
 	}, [])
