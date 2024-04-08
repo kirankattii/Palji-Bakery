@@ -137,7 +137,7 @@ const Product = (props) => {
 					(pageNumber) => (
 						<button
 							key={pageNumber}
-							className={pageNumber === currentPage ? "active" : ""}
+							className={pageNumber === 1 ? "active" : ""}
 							onClick={() => handlePageClick(pageNumber)}
 						>
 							{pageNumber}
