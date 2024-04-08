@@ -11,7 +11,6 @@ const ShopCategory = (props) => {
 	return (
 		<div className="ShopCategory-container">
 			<h1>{props.categories.name}</h1>
-
 			<div className="shopcategory-products">
 				{Array.isArray(props.products) &&
 					props.products.map((item, i) => {
