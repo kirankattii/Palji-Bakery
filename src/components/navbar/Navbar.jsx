@@ -59,6 +59,7 @@ const Navbar = () => {
 	const [openProfile, setOpenProfile] = useState(false)
 	const [products, setProducts] = useState([])
 	const [input, setInput] = useState("")
+	const [allProduct, setAllProduct] = useState([])
 	// useEffect(() => {
 	const fetchData = async (value) => {
 		try {
@@ -74,6 +75,7 @@ const Navbar = () => {
 					product.name.toLowerCase().includes(value)
 				)
 			})
+			setAllProduct(getProduct)
 			setProducts(result)
 			// console.log(result)
 		} catch (error) {
@@ -160,7 +162,10 @@ const Navbar = () => {
 						/>
 						<IoSearch className="search_icon" />
 					</div>
-					<NavSearchList product={products} />
+					<NavSearchList
+						product={products}
+						allProduct={allProduct}
+					/>
 				</div>
 				<Link
 					// to="/Signup"

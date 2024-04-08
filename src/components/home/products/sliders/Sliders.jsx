@@ -1,9 +1,11 @@
-import React from "react"
+import React, { useContext } from "react"
 import { assets } from "../../../../assets/assets"
 import "./slides.css"
 import productInfo from "../Products"
+import { ShopContext } from "../../../../context/ShopContext"
 
 const Sliders = ({ productInfo }) => {
+	const { cartItems, addToCart, removeFromCart } = useContext(ShopContext)
 	return (
 		<div className="container">
 			<div className="sliders">
@@ -27,11 +29,29 @@ const Sliders = ({ productInfo }) => {
 					</div>
 				</div>
 				<div className="bottom-slider">
-					<p>Add to Cart</p>
-					<div className="count1">
-						<span>-</span>
-						<p>0</p>
-						<span>+</span>
+					<div className="item-cart1">
+						{!cartItems[productInfo.id] ? (
+							<div
+								className="item-addto-cart1"
+								onClick={() => addToCart(productInfo.id)}
+							>
+								ADD TO CART
+							</div>
+						) : (
+							<div className="food-item-counter1">
+								<img
+									onClick={() => removeFromCart(productInfo.id)}
+									src={assets.add_icon_red}
+									alt=""
+								/>
+								<p className="cart-item-no1">{cartItems[productInfo.id]}</p>
+								<img
+									onClick={() => addToCart(productInfo.id)}
+									src={assets.add_icon_green}
+									alt=""
+								/>
+							</div>
+						)}
 					</div>
 				</div>
 			</div>

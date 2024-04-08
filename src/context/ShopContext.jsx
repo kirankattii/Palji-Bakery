@@ -74,6 +74,7 @@ const ShopContextProvider = (props) => {
 				}
 			}
 		}
+		totalAmount = parseFloat(totalAmount.toFixed(2))
 		console.log("discount amount", totalAmount)
 		return totalAmount
 	}

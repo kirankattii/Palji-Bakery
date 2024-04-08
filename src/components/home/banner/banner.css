@@ -21,6 +21,41 @@
 
 }
 
+.banner-item-cart {
+  padding: 7px 15px;
+  position: relative;
+}
+
+.banner-item-addto-cart {
+  cursor: pointer;
+}
+
+.banner-food-item-counter {
+  display: flex;
+  align-items: center;
+  gap: 50px;
+}
+
+.banner-food-item-counter img {
+  width: 30px;
+  cursor: pointer;
+
+}
+
+.banner-cart-item-no {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  color: #fff;
+  font-size: 18px;
+  transform: translate(-50%, -50%);
+}
+
+.banner-item-addto-cart {
+  cursor: pointer;
+  color: #fff;
+}
+
 /* Add a new class for applying dynamic background */
 /* .dynamic-bg {
   background: var(--banner-background);

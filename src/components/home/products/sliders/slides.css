@@ -101,6 +101,34 @@
   border-left: 1px solid black;
 }
 
+.item-cart1 {
+  display: flex;
+  justify-content: center;
+  margin: auto;
+  margin-top: -5px;
+  cursor: pointer;
+  /* background: #fec1bd; */
+}
+
+.food-item-counter1 {
+  display: flex;
+  align-items: center;
+  gap: 50px;
+}
+
+.food-item-counter1 img {
+  width: 30px;
+  cursor: pointer;
+}
+
+.cart-item-no1 {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  /* color: #fff; */
+  font-size: 18px;
+  transform: translate(-50%, -50%);
+}
 
 @media screen and (max-width: 750px) {
   .cookies-info h2 {

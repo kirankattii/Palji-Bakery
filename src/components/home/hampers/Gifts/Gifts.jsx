@@ -1,7 +1,9 @@
-import React from "react"
+import React, { useContext } from "react"
 import "./gifts.css"
 import { assets } from "../../../../assets/assets"
-const Gifts = () => {
+import { ShopContext } from "../../../../context/ShopContext"
+const Gifts = ({ products }) => {
+	const { cartItems, addToCart, removeFromCart } = useContext(ShopContext)
 	return (
 		<div className="gifts">
 			<div className="hampers">
@@ -13,7 +15,7 @@ const Gifts = () => {
 								alt=""
 							/>
 							<img
-								src={assets.hampers}
+								src={products.thumbnail}
 								alt=""
 							/>
 							<img
@@ -23,18 +25,36 @@ const Gifts = () => {
 						</div>
 						<div className="hamper-info">
 							<div className="price">
-								<p>1699/-</p>
-								<p>999/-</p>
+								<p>{products.price}/-</p>
+								<p>{products.PriceAfterDiscount}/-</p>
 							</div>
-							<h2>Gift Hamper</h2>
+							<h2>{products.name}</h2>
 						</div>
 					</div>
 					<div className="bottom-hampers">
-						<p>Add to Cart</p>
-						<div className="add-cart">
-							<span>-</span>
-							<p>0</p>
-							<span>+</span>
+						<div className="item-cart1">
+							{!cartItems[products._id] ? (
+								<div
+									className="item-addto-cart1"
+									onClick={() => addToCart(products._id)}
+								>
+									ADD TO CART
+								</div>
+							) : (
+								<div className="food-item-counter1">
+									<img
+										onClick={() => removeFromCart(products._id)}
+										src={assets.add_icon_red}
+										alt=""
+									/>
+									<p className="cart-item-no1">{cartItems[products._id]}</p>
+									<img
+										onClick={() => addToCart(products._id)}
+										src={assets.add_icon_green}
+										alt=""
+									/>
+								</div>
+							)}
 						</div>
 					</div>
 				</div>

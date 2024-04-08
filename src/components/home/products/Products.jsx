@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useContext, useEffect, useState } from "react"
 // import Slider from "./sliders/Sliders"
 
 import { assets } from "../../../assets/assets"
@@ -8,6 +8,8 @@ import Slider from "react-slick"
 import "slick-carousel/slick/slick.css"
 import "slick-carousel/slick/slick-theme.css"
 import { useNavigate } from "react-router"
+import { makeApi } from "../../../api/callApi"
+import { ShopContext } from "../../../context/ShopContext"
 // import Slider from "./sliders/Sliders.jsx"
 function Arrow(props) {
 	const { className, style, onClick } = props
@@ -24,28 +26,53 @@ function Arrow(props) {
 }
 
 const Products = () => {
+	const [products, setProducts] = useState([])
+
+	const { cartItems, addToCart, removeFromCart } = useContext(ShopContext)
+	useEffect(() => {
+		async function fetchCategories() {
+			try {
+				// setLoading(true)
+				const response = await makeApi(
+					"/api/get-all-products-by-category/65f3c6ee7fd052885f56d587",
+					"GET"
+				)
+				if (response.status === 200) {
+					setProducts(response.data.products)
+				}
+			} catch (error) {
+				console.log("Error fetching categories:", error)
+			}
+		}
+		fetchCategories()
+	}, [])
+
 	const product1 = {
-		productName: "Choco Chip Cookie",
+		id: products.length > 0 ? products[0]._id : "",
+		productName: products.length > 0 ? products[0].name : "",
 		cookieImage: assets.chocoChipCookie1,
 		cookieBgImage: assets.chocoChipCookiebg1,
-		originalPrice: 350,
-		discountedPrice: 199,
+		originalPrice: products.length > 0 ? products[0].PriceAfterDiscount : "",
+		discountedPrice: products.length > 0 ? products[0].price : "",
 		quantity: 0,
 	}
 	const product2 = {
-		productName: "Choco Chip Cookie",
+		id: products.length > 0 ? products[1]._id : "",
+		productName: products.length > 0 ? products[1].name : "",
 		cookieImage: assets.chocoChipCookie2,
 		cookieBgImage: assets.chocoChipCookiebg2,
-		originalPrice: 350,
-		discountedPrice: 199,
+		originalPrice: products.length > 0 ? products[1].PriceAfterDiscount : "",
+		discountedPrice: products.length > 0 ? products[1].price : "",
 		quantity: 0,
 	}
+	// PriceAfterDiscount
 	const product3 = {
-		productName: "Choco Chip Cookie",
+		id: products.length > 0 ? products[2]._id : "",
+		productName: products.length > 0 ? products[2].name : "",
 		cookieImage: assets.chocoChipCookie3,
 		cookieBgImage: assets.chocoChipCookiebg3,
-		originalPrice: 350,
-		discountedPrice: 199,
+		originalPrice: products.length > 0 ? products[2].PriceAfterDiscount : "",
+		discountedPrice: products.length > 0 ? products[2].price : "",
 		quantity: 0,
 	}
 	const settings = {

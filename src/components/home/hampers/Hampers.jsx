@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useEffect, useState } from "react"
 
 import { assets } from "../../../assets/assets"
 import "./hampers.css"
@@ -8,6 +8,7 @@ import Slider from "react-slick"
 import "slick-carousel/slick/slick.css"
 import "slick-carousel/slick/slick-theme.css"
 import { useNavigate } from "react-router"
+import { makeApi } from "../../../api/callApi"
 
 function Arrow(props) {
 	const { className, style, onClick } = props
@@ -24,6 +25,26 @@ function Arrow(props) {
 }
 
 const Hampers = () => {
+	const [products, setProducts] = useState([])
+
+	useEffect(() => {
+		async function fetchCategories() {
+			try {
+				// setLoading(true)
+				const response = await makeApi(
+					"/api/get-all-products-by-category/65f3c6cf7fd052885f56d584",
+					"GET"
+				)
+				if (response.status === 200) {
+					setProducts(response.data.products)
+				}
+			} catch (error) {
+				console.log("Error fetching categories:", error)
+			}
+		}
+		fetchCategories()
+	}, [])
+
 	const settings = {
 		className: "center",
 		dots: true,
@@ -79,15 +100,20 @@ const Hampers = () => {
 					{...settings}
 					className="gift-slide"
 				>
-					<div>
+					{products?.map((items) => {
+						return (
+							<div key={items._id}>
+								<Gifts products={items} />
+							</div>
+						)
+					})}
+
+					{/* <div>
 						<Gifts />
 					</div>
 					<div>
 						<Gifts />
-					</div>
-					<div>
-						<Gifts />
-					</div>
+					</div> */}
 				</Slider>
 			</div>
 			<div className="products-btn">

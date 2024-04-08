@@ -1,60 +1,83 @@
 //
 
-import React, { useState, useEffect } from "react"
+import React, { useState, useEffect, useContext } from "react"
 import "./banner.css"
 import { assets } from "../../../assets/assets"
+import { makeApi } from "../../../api/callApi"
+import { ShopContext } from "../../../context/ShopContext"
 
 const Banner = () => {
+	// /api/get-all-products-by-category/6612e7e4e7c1d7bf5589ec0c
 	const [currentSlide, setCurrentSlide] = useState(0)
 	const [backgroundColor, setBackgroundColor] = useState(null)
 	const [backgroundCart, setBackgroundCart] = useState(null)
 	const [animationDirection, setAnimationDirection] = useState(null)
+	const [products, setProducts] = useState([])
+	const { cartItems, addToCart, removeFromCart } = useContext(ShopContext)
+	useEffect(() => {
+		async function fetchCategories() {
+			try {
+				// setLoading(true)
+				const response = await makeApi(
+					"/api/get-all-products-by-category/6612e7e4e7c1d7bf5589ec0c",
+					"GET"
+				)
+				if (response.status === 200) {
+					setProducts(response.data.products)
+				}
+			} catch (error) {
+				console.log("Error fetching categories:", error)
+			}
+		}
+		fetchCategories()
+	}, [])
+	console.log("Banner", products)
 	const banner = [
 		{
-			title: "Jaggery & Til",
+			id: products.length > 0 ? products[0]._id : "",
+			title: products.length > 0 ? products[0].name : "",
 			subTitle: "Premium Cookies",
-			content:
-				"Savor our Jaggery and Til Premium Cookies: a sweet and nutty blend, combining the warmth of jaggery with the crunch of sesame seeds. Perfect for a healthful snack.",
-			banner_Image: assets.banner1,
+			content: products.length > 0 ? products[0].description : "",
+			banner_Image: products.length > 0 ? products[0].thumbnail : "",
 			backgroundColor:
 				"linear-gradient(180deg, rgba(255,102,92,1) 0%, rgba(254,165,159,1) 100%)",
 			backgroundCart: "#E31E24",
 		},
 		{
-			title: "Moong Dal Cashew",
+			id: products.length > 0 ? products[1]._id : "",
+			title: products.length > 0 ? products[1].name : "",
 			subTitle: "Premium Cookies",
-			content:
-				"Savor our Moong Dal Cashew Premium Cookies: a luxurious mix of nutty flavors, perfect crunch, and golden bake. Ideal for indulgence or gifting.",
-			banner_Image: assets.banner2,
+			content: products.length > 0 ? products[1].description : "",
+			banner_Image: products.length > 0 ? products[1].thumbnail : "",
 			backgroundCart: "#007897",
 			backgroundColor: "linear-gradient(180deg, #00B7FF 0%, #BEDAE4 100%)",
 		},
 		{
-			title: "Punjabi Atta",
+			id: products.length > 0 ? products[2]._id : "",
+			title: products.length > 0 ? products[2].name : "",
 			subTitle: "Premium Cookies",
-			content:
-				"Indulge in our Punjabi Atta Premium Cookies: a perfect fusion of traditional whole wheat richness and crisp texture for a wholesome treat.",
-			banner_Image: assets.banner3,
+			content: products.length > 0 ? products[2].description : "",
+			banner_Image: products.length > 0 ? products[2].thumbnail : "",
 			backgroundColor:
 				"linear-gradient(180deg, rgba(211,126,55,1) 0%, rgba(218,180,149,1) 100%)",
 			backgroundCart: "#65321C",
 		},
 		{
-			title: "Jeera Stick",
+			id: products.length > 0 ? products[3]._id : "",
+			title: products.length > 0 ? products[3].name : "",
 			subTitle: "Premium Cookies",
-			content:
-				"Relish our Jeera Sticks: a savory delight of cumin seeds baked into crispy, flavorful sticks. Ideal for snacking anytime.",
-			banner_Image: assets.banner4,
+			content: products.length > 0 ? products[3].description : "",
+			banner_Image: products.length > 0 ? products[3].thumbnail : "",
 			backgroundColor:
 				"linear-gradient(180deg, rgba(255,158,60,1) 0%, rgba(226,208,189,1) 100%)",
 			backgroundCart: "#BB8248",
 		},
 		{
-			title: "Pista Finger",
+			id: products.length > 0 ? products[4]._id : "",
+			title: products.length > 0 ? products[4].name : "",
 			subTitle: "Premium Cookies",
-			content:
-				"Enjoy our Pista Fingers: rich, buttery cookies infused with the delicate flavor of pistachios. Ideal for a luxurious snack or dessert.",
-			banner_Image: assets.banner5,
+			content: products.length > 0 ? products[4].description : "",
+			banner_Image: products.length > 0 ? products[4].thumbnail : "",
 			backgroundColor:
 				"linear-gradient(180deg, rgba(130,201,90,1) 0%, rgba(172,205,153,1) 50%, rgba(193,204,187,1) 100%)",
 			backgroundCart: "#519B29",
@@ -145,9 +168,37 @@ const Banner = () => {
 								className="cart5"
 								style={{ backgroundColor: backgroundCart }}
 							>
-								<button style={{ backgroundColor: backgroundCart }}>
+								{/* <button style={{ backgroundColor: backgroundCart }}>
 									Add to Cart
-								</button>
+								</button> */}
+								<div className="banner-item-cart">
+									{!cartItems[item.id] ? (
+										<div
+											className="banner-item-addto-cart"
+											style={{ backgroundColor: backgroundCart }}
+											onClick={() => addToCart(item.id)}
+										>
+											ADD TO CART
+										</div>
+									) : (
+										<div className="banner-food-item-counter">
+											<img
+												onClick={() => removeFromCart(item.id)}
+												src={assets.add_icon_red}
+												alt=""
+											/>
+											<p className="banner-cart-item-no">
+												{cartItems[item.id]}
+											</p>
+											<img
+												onClick={() => addToCart(item.id)}
+												src={assets.add_icon_green}
+												alt=""
+											/>
+										</div>
+									)}
+								</div>
+								{/* // */}
 							</div>
 						</div>
 						<div className="right-banner">

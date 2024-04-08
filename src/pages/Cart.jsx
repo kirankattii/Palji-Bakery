@@ -15,10 +15,19 @@ const Cart = () => {
 		getTotalCartAmount,
 	} = useContext(ShopContext)
 
-	const totalDiscount = getTotalCartAmount() - getTotalCartDiscountAmount()
+	// const totalDiscount = getTotalCartAmount() - getTotalCartDiscountAmount()
+	const totalDiscount = (
+		getTotalCartAmount() - getTotalCartDiscountAmount()
+	).toFixed(2)
 	const subtotal = getTotalCartAmount()
-	const taxAmount = subtotal * 0.05 // 5% tax
-	const totalPrice = getTotalCartAmount() - totalDiscount + taxAmount
+	// const taxAmount = subtotal * 0.05 // 5% tax
+	const taxAmount = (subtotal * 0.05).toFixed(2)
+	// const totalPrice = getTotalCartAmount() - totalDiscount + taxAmount
+	const totalPrice = (
+		getTotalCartAmount() -
+		totalDiscount +
+		parseFloat(taxAmount)
+	).toFixed(2)
 
 	// console.log("this is cart", all_product)
 
