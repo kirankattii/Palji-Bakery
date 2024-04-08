@@ -15,34 +15,56 @@ const Footer = () => {
 					/>
 					{/* <hr /> */}
 					<div className="social-icons">
-						<img
-							src={assets.insta_icon}
-							alt="Palji instagram"
-						/>
-						<img
-							src={assets.youtube_icon}
-							alt="Palji youtube"
-						/>
-						<img
-							src={assets.facebook_icon}
-							alt="Palji facebook"
-						/>
-						<img
-							src={assets.twitter_icon}
-							alt="Palji twitter"
-						/>
+						<Link to="https://www.instagram.com/paljibakeryldh?igsh=eXV2bW12cmttdTg%3D">
+							<img
+								src={assets.insta_icon}
+								alt="Palji instagram"
+							/>
+						</Link>
+						<Link to="https://youtu.be/6e6skG9ZWxI?si=ZVPwAJNLaySDvTXs">
+							<img
+								src={assets.youtube_icon}
+								alt="Palji youtube"
+							/>
+						</Link>
+						<Link to="https://m.facebook.com/paljibakery">
+							<img
+								src={assets.facebook_icon}
+								alt="Palji facebook"
+							/>
+						</Link>
+						<Link to="https://twitter.com/paljibakery?lang=en">
+							<img
+								src={assets.twitter_icon}
+								alt="Palji twitter"
+							/>
+						</Link>
 					</div>
 				</div>
 				<hr className="left-hr" />
 				<div className="middle-footer">
 					<ul>
-						<li>HOME</li>
-						<li>ABOUT US</li>
-						<li>BISCUIT</li>
-						<li>SAVORY</li>
-						<li>GIFT HAMPERS</li>
-						<li>CONTACT US</li>
-						<li>CART</li>
+						<li>
+							<Link to="/">HOME</Link>
+						</li>
+						<li>
+							<Link to="/aboutus">ABOUT US</Link>
+						</li>
+						<li>
+							<Link to="/products">BISCUIT</Link>
+						</li>
+						<li>
+							<Link to="/products">SAVORY</Link>
+						</li>
+						<li>
+							<Link to="/products">GIFT HAMPERS</Link>
+						</li>
+						<li>
+							<Link to="/contact">CONTACT US</Link>
+						</li>
+						<li>
+							<Link to="/cart">CART</Link>
+						</li>
 						<li>TERMS & CONDITIONS</li>
 					</ul>
 				</div>

@@ -5,6 +5,7 @@ import "./banner.css"
 import { assets } from "../../../assets/assets"
 import { makeApi } from "../../../api/callApi"
 import { ShopContext } from "../../../context/ShopContext"
+import { Link, useNavigate } from "react-router-dom"
 
 const Banner = () => {
 	// /api/get-all-products-by-category/6612e7e4e7c1d7bf5589ec0c
@@ -13,6 +14,8 @@ const Banner = () => {
 	const [backgroundCart, setBackgroundCart] = useState(null)
 	const [animationDirection, setAnimationDirection] = useState(null)
 	const [products, setProducts] = useState([])
+	const navigate = useNavigate()
+
 	const { cartItems, addToCart, removeFromCart } = useContext(ShopContext)
 	useEffect(() => {
 		async function fetchCategories() {
@@ -135,6 +138,16 @@ const Banner = () => {
 		setBackgroundColor(banner[currentSlide].backgroundColor)
 		setBackgroundCart(banner[currentSlide].backgroundCart)
 	}, [currentSlide])
+
+	const handleAddToCart = () => {
+		const token = localStorage.getItem("token")
+		if (!token) {
+			navigate("/login") // Redirect to login page if not logged in
+			return
+		}
+		addToCart(item.id)
+	}
+
 	return (
 		<div
 			className="banner"
@@ -177,6 +190,7 @@ const Banner = () => {
 											className="banner-item-addto-cart"
 											style={{ backgroundColor: backgroundCart }}
 											onClick={() => addToCart(item.id)}
+											// onClick={handleAddToCart}
 										>
 											ADD TO CART
 										</div>

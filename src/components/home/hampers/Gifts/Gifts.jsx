@@ -1,9 +1,24 @@
 import React, { useContext } from "react"
 import "./gifts.css"
+import { Link, useNavigate } from "react-router-dom"
+
 import { assets } from "../../../../assets/assets"
 import { ShopContext } from "../../../../context/ShopContext"
 const Gifts = ({ products }) => {
 	const { cartItems, addToCart, removeFromCart } = useContext(ShopContext)
+	const navigate = useNavigate()
+
+	const handleAddToCart = () => {
+		const token = localStorage.getItem("token")
+		if (!token) {
+			navigate("/login") // Redirect to login page if not logged in
+			return
+		}
+		addToCart(products._id)
+	}
+	// console.log(products._id)
+	console.log(!cartItems[products._id])
+
 	return (
 		<div className="gifts">
 			<div className="hampers">
@@ -36,7 +51,8 @@ const Gifts = ({ products }) => {
 							{!cartItems[products._id] ? (
 								<div
 									className="item-addto-cart1"
-									onClick={() => addToCart(products._id)}
+									// onClick={() => addToCart(products._id)}
+									onClick={handleAddToCart}
 								>
 									ADD TO CART
 								</div>

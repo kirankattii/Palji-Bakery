@@ -77,7 +77,6 @@ const Product = (props) => {
 							<p>₹{minPrice}</p>
 							<p>₹{maxPrice}</p>
 						</div>
-						{/* <button>Filter</button> */}
 					</div>
 					<div className="search-and-category">
 						<div className="product-categories">

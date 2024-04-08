@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react"
 import "./item.css"
 import { IoIosHeart } from "react-icons/io"
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import { ShopContext } from "../../context/ShopContext"
 import { assets } from "../../assets/assets"
 import { makeApi } from "../../api/callApi"
@@ -9,7 +9,7 @@ import { makeApi } from "../../api/callApi"
 const Item = (props) => {
 	const { cartItems, addToCart, removeFromCart } = useContext(ShopContext)
 	const [isInWishlist, setIsInWishlist] = useState(false)
-
+	const navigate = useNavigate()
 	useEffect(() => {
 		const checkWishlist = async () => {
 			try {
@@ -40,6 +40,15 @@ const Item = (props) => {
 		}
 	}
 
+	const handleAddToCart = () => {
+		const token = localStorage.getItem("token")
+		if (!token) {
+			navigate("/login") // Redirect to login page if not logged in
+			return
+		}
+		addToCart(props.id)
+	}
+
 	return (
 		<div className="item">
 			<div className="item-card">
@@ -66,7 +75,8 @@ const Item = (props) => {
 					{!cartItems[props.id] ? (
 						<div
 							className="item-addto-cart "
-							onClick={() => addToCart(props.id)}
+							// onClick={() => addToCart(props.id)}
+							onClick={handleAddToCart}
 						>
 							ADD TO CART
 						</div>

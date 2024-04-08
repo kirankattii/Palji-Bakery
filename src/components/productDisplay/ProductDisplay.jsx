@@ -1,5 +1,7 @@
 import React, { useContext } from "react"
 import "./productDisplay.css"
+import { Link, useNavigate } from "react-router-dom"
+
 import { ShopContext } from "../../context/ShopContext"
 import { assets } from "../../assets/assets"
 import { IoIosHeart } from "react-icons/io"
@@ -8,6 +10,15 @@ const ProductDisplay = (props) => {
 	console.log("product display", props.product.price)
 
 	const { cartItems, addToCart, removeFromCart } = useContext(ShopContext)
+	const navigate = useNavigate()
+	const handleAddToCart = () => {
+		const token = localStorage.getItem("token")
+		if (!token) {
+			navigate("/login") // Redirect to login page if not logged in
+			return
+		}
+		addToCart(props.product._id)
+	}
 	return (
 		<div className="productDisplay">
 			<div className="product-display-left">
@@ -76,7 +87,8 @@ const ProductDisplay = (props) => {
 					{!cartItems[props.product._id] ? (
 						<div
 							className="productdisplay-item-addto-cart "
-							onClick={() => addToCart(props.product._id)}
+							// onClick={() => addToCart(props.product._id)}
+							onClick={handleAddToCart}
 						>
 							ADD TO CART
 						</div>

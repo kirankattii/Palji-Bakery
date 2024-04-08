@@ -31,6 +31,7 @@ const Cart = () => {
 
 	// console.log("this is cart", all_product)
 
+	console.log(cartItems)
 	const navigate = useNavigate()
 	return (
 		<div className="cart-container">
@@ -48,7 +49,7 @@ const Cart = () => {
 				{all_product.map((item, i) => {
 					if (cartItems[item._id] > 0) {
 						return (
-							<div>
+							<div key={item._id}>
 								<div className="cart-items-title cart-items-item">
 									<img
 										src={item.thumbnail}

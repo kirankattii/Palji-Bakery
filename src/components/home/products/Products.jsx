@@ -48,7 +48,7 @@ const Products = () => {
 	}, [])
 
 	const product1 = {
-		id: products.length > 0 ? products[0]._id : "",
+		id: products.length > 0 ? products[0]?._id : "",
 		productName: products.length > 0 ? products[0].name : "",
 		cookieImage: assets.chocoChipCookie1,
 		cookieBgImage: assets.chocoChipCookiebg1,
@@ -57,7 +57,7 @@ const Products = () => {
 		quantity: 0,
 	}
 	const product2 = {
-		id: products.length > 0 ? products[1]._id : "",
+		id: products.length > 0 ? products[1]?._id : "",
 		productName: products.length > 0 ? products[1].name : "",
 		cookieImage: assets.chocoChipCookie2,
 		cookieBgImage: assets.chocoChipCookiebg2,
@@ -67,7 +67,7 @@ const Products = () => {
 	}
 	// PriceAfterDiscount
 	const product3 = {
-		id: products.length > 0 ? products[2]._id : "",
+		id: products.length > 0 ? products[2]?._id : "",
 		productName: products.length > 0 ? products[2].name : "",
 		cookieImage: assets.chocoChipCookie3,
 		cookieBgImage: assets.chocoChipCookiebg3,
