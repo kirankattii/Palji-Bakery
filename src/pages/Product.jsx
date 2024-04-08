@@ -21,11 +21,7 @@ const Product = (props) => {
 	const [searchQuery, setSearchQuery] = useState("")
 	const [category, setCategory] = useState("")
 	const [products, setProducts] = useState([])
-	const [totalPages, setTotalPages] = useState(0);
-	const [toalProduct, setToalProduct] = useState(0);
-	console.log(toalProduct);
-	const [currentPage, setCurrentPage] = useState(1);
-	const ResultPerPage = 50
+
 	// useEffect(() => {
 	// 	fetch("https://pajiweb.onrender.com/api/get-all-categories/")
 	// 		.then((responce) => responce.json())
@@ -52,10 +48,6 @@ const Product = (props) => {
 		}
 		fetchData()
 	}, [searchQuery, category, maxPrice])
-	useEffect(() => {
-		const a = Math.ceil(toalProduct / ResultPerPage);
-		setTotalPages(a);
-	}, [searchQuery, category, maxPrice]);
 
 	useEffect(() => {
 		async function fetchCategories() {
@@ -71,10 +63,6 @@ const Product = (props) => {
 		}
 		fetchCategories()
 	}, [])
-
-	const handlePageClick = (pageNumber) => {
-		setCurrentPage(pageNumber);
-	};
 
 	return (
 		<div className="product">
