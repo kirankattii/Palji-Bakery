@@ -9,7 +9,7 @@ import { makeApi } from "../../api/callApi"
 const Item = (props) => {
 	const { cartItems, addToCart, removeFromCart } = useContext(ShopContext)
 	const [isInWishlist, setIsInWishlist] = useState(false)
-
+	const [loading, setLoading] = useState(false)
 	useEffect(() => {
 		const checkWishlist = async () => {
 			try {
