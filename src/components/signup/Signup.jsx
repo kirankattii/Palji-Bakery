@@ -73,7 +73,7 @@ const Signup = () => {
 		if (!formData.lastName) {
 			toast.error("Please fill lastName")
 			return
-		}
+		}  
 
 		try {
 			const response = await makeApi("/api/register-user", "post", formData)
