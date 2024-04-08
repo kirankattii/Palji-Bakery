@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react"
 import { makeApi } from "../../api/callApi"
-import { Link, useNavigate } from 'react-router-dom';
-import { ToastContainer, toast } from "react-toastify";
-
+import { Link, useNavigate } from "react-router-dom"
+import { ToastContainer, toast } from "react-toastify"
 
 import "./signup.css"
 
 const Signup = () => {
+	const navigate = useNavigate()
+	const [signupSuccess, setSignupSuccess] = useState(false)
 	const [state, setState] = useState("Login")
 	const [formData, setFormData] = useState({
 		firstName: "",
@@ -21,22 +22,23 @@ const Signup = () => {
 
 	const login = async () => {
 		if (!formData.email) {
-			toast.error('Please fill email');
-			return;
+			toast.error("Please fill email")
+			return
 		}
 		if (!formData.password) {
-			toast.error('Please fill password');
-			return;
+			toast.error("Please fill password")
+			return
 		}
 		try {
 			const response = await makeApi("/api/login-user", "post", formData)
 			const responseData = response.data
 			if (responseData.success) {
 				localStorage.setItem("token", responseData.token)
-				toast.success(response.data.message, {
+				setSignupSuccess(true)
+				toast.success(responseData.message, {
 					onClose: () => {
-						window.location.replace("/")
-					}
+						navigate("/")
+					},
 				})
 			} else {
 				console.log("Login failed:", responseData.error)
@@ -44,32 +46,33 @@ const Signup = () => {
 			}
 		} catch (error) {
 			console.log("Error during login:", error)
-			toast.error(error.response.data.message);
+			toast.error(error.response.data.message)
 			// Handle error
 		}
 	}
 
 	const signup = async () => {
 		console.log("Signup function executed", formData)
+
 		if (!formData.email) {
-			toast.error('Please fill email');
-			return;
+			toast.error("Please fill email")
+			return
 		}
 		if (!formData.password) {
-			toast.error('Please fill password');
-			return;
+			toast.error("Please fill password")
+			return
 		}
 		if (!formData.mobileNumber) {
-			toast.error('Please fill mobileNumber');
-			return;
+			toast.error("Please fill mobileNumber")
+			return
 		}
 		if (!formData.firstName) {
-			toast.error('Please fill firstName');
-			return;
+			toast.error("Please fill firstName")
+			return
 		}
 		if (!formData.lastName) {
-			toast.error('Please fill lastName');
-			return;
+			toast.error("Please fill lastName")
+			return
 		}
 
 		try {
@@ -77,19 +80,25 @@ const Signup = () => {
 			const responseData = response.data
 			if (responseData.success) {
 				localStorage.setItem("token", responseData.token)
-				toast.success(responseData.data.message, {
+				setSignupSuccess(true)
+				toast.success(responseData.message || "Sign up Successfully", {
 					onClose: () => {
-						window.location.replace("/")
-					}
+						navigate("/")
+					},
 				})
 			} else {
 				console.log("Signup failed:", responseData.error)
 				// Handle signup failure
 			}
 		} catch (error) {
-			console.log("Error during signup:", error)
-			toast.error(error.response.data.message);
+			// console.log("Error during signup:", error)
+			// toast.error(error.response.data.message)
+
 			// Handle error
+			console.log("Error during signup:", error)
+			const errorMessage =
+				error.response?.data?.message || "An error occurred during signup."
+			toast.error(errorMessage)
 		}
 	}
 
@@ -149,11 +158,22 @@ const Signup = () => {
 					/>
 					<button
 						onClick={() => {
-							state === "Login" ? login() : singup()
+							state === "Login" ? login() : signup()
 						}}
 					>
 						Continue
 					</button>
+					{state === "Login" ? (
+						<Link
+							to="/Forgot-Password"
+							className="login-forgot-password"
+						>
+							Forgot Password
+						</Link>
+					) : (
+						""
+					)}
+
 					{state === "Sign Up" ? (
 						<p>
 							Already have an account ?{" "}
@@ -166,7 +186,7 @@ const Signup = () => {
 						</p>
 					) : (
 						<p className="loginsignup-login">
-							Create an account
+							Create an account <span> </span>
 							<span
 								onClick={() => setState("Sign Up")}
 								style={{ cursor: "pointer" }}

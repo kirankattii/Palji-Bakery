@@ -66,6 +66,10 @@ const OrderSummary = () => {
 							orderSummaryy.orderItems[0].productId.name}
 					</p>
 					<p>
+						Quantity:
+						{orderSummaryy.orderItems && orderSummaryy.orderItems[0].quantity}
+					</p>
+					<p>
 						₹
 						{orderSummaryy.orderItems && orderSummaryy.orderItems[0].totalPrice}
 					</p>

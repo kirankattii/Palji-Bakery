@@ -12,6 +12,7 @@
   flex-direction: column;
   width: 30%;
   gap: 10px;
+  position: relative;
 }
 
 .signup-form p {
@@ -20,11 +21,24 @@
 
 .signup-form p span {
   color: #E5087E;
+  text-decoration: underline;
 }
 
 .signup .signup-form div {
   display: flex;
   gap: 10px;
+}
+
+.login-forgot-password {
+  /* position: absolute; */
+  /* bottom: -2px;
+  right: 0; */
+  display: flex;
+  align-items: flex-end;
+  text-decoration: underline;
+  /* margin: 20px 0px; */
+  color: #E5087E;
+  font-weight: 600px;
 }
 
 .signup .signup-form input {
@@ -48,6 +62,12 @@
   color: #fff;
   border-radius: 5px;
   cursor: pointer;
+}
+
+.loginsignup-login {
+
+  /* margin-bottom: -20px; */
+  /* pb25 */
 }
 
 @media screen and (max-width: 1000px) {

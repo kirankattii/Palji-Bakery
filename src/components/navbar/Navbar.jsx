@@ -17,7 +17,7 @@ import NavSearchList from "../navSearchList/NavSearchList"
 const Navbar = () => {
 	const [showNavbar, setShowNavbar] = useState(false)
 	const [categoryDropdownVisible, setCategoryDropdownVisible] = useState(false)
-	const [isloggedIn, setIsloggedIn] = useState(true)
+	const [isloggedIn, setIsloggedIn] = useState(false)
 	const { getTotalCartItems } = useContext(ShopContext)
 	useEffect(() => {
 		const timeoutId = setTimeout(() => {
@@ -105,22 +105,40 @@ const Navbar = () => {
 	}, [])
 	console.log(categories)
 
+	useEffect(() => {
+		// Check if token exists in local storage or any other state
+		const token = localStorage.getItem("token")
+		// Assuming token is stored in local storage
+
+		if (token) {
+			setIsloggedIn(true) // Set isloggedIn to true if token exists
+		} else {
+			setIsloggedIn(false) // Set isloggedIn to false if token doesn't exist
+		}
+
+		const timeoutId = setTimeout(() => {
+			setShowNavbar(true)
+		}, 1000)
+
+		return () => clearTimeout(timeoutId)
+	}, [localStorage.getItem("token")])
+
 	return showNavbar ? (
 		<div className="navbar">
 			<div className="left-navbar">
-				{/* {isloggedIn === true ? ( */}
-				<div>
-					<img
-						onClick={() => setOpenProfile((prev) => !prev)}
-						src={user_icon}
-						alt=""
-					/>
-				</div>
-				{/* ) : ( */}
-				{/* <button className="btn btn-primary">
+				{isloggedIn ? (
+					<div>
+						<img
+							onClick={() => setOpenProfile((prev) => !prev)}
+							src={user_icon}
+							alt=""
+						/>
+					</div>
+				) : (
+					<button className="btn btn-primary">
 						<Link to="/login">LOGIN</Link>
-					</button> */}
-				{/* )} */}
+					</button>
+				)}
 
 				<ul>
 					<li>
@@ -177,17 +195,18 @@ const Navbar = () => {
 						alt=""
 					/>
 				</Link>
-				<Link to="/cart">
-					<div className="nav-cart">
-						<span className="cart-no">{getTotalCartItems()}</span>
-						<HiMiniShoppingBag
-							className={
-								shouldApplySpecialStyles() ? "special-cart-icon" : "cart-icon"
-							}
-						/>
-					</div>
-				</Link>
-
+				{isloggedIn && (
+					<Link to="/cart">
+						<div className="nav-cart">
+							<span className="cart-no">{getTotalCartItems()}</span>
+							<HiMiniShoppingBag
+								className={
+									shouldApplySpecialStyles() ? "special-cart-icon" : "cart-icon"
+								}
+							/>
+						</div>
+					</Link>
+				)}
 				<div className="media-navbar">
 					<nav>
 						<ul className={moblieMenu ? "" : "hide-mobile-menu"}>
