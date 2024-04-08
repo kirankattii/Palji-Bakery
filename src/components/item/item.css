@@ -151,3 +151,33 @@
 .watchlist-icon.wishlist-active {
   color: red;
 }
+
+.whist_loader_main_div{
+  width: 100%;
+  /* background: yellow; */
+  display: flex;
+  justify-content: flex-end;
+  padding-right: 20px;
+  padding-top: 10px;
+}
+
+.whislist_loader {
+  width: 15px;
+  aspect-ratio: 1.95;
+  --c: no-repeat linear-gradient(#000 0 0);
+  background: 
+    var(--c) 0%   100%,
+    var(--c) 50%  100%,
+    var(--c) 100% 100%;
+  background-size: 20% 45%;
+  animation: l5 1s infinite linear;
+  transition: all 0.7s ease-in-out;
+  z-index: 3;
+
+}
+@keyframes l5 {
+  20% {background-position: 0% 50% ,50% 100%,100% 100%}
+  40% {background-position: 0% 0%  ,50% 50% ,100% 100%}
+  60% {background-position: 0% 100%,50% 0%  ,100% 50% }
+  80% {background-position: 0% 100%,50% 100%,100% 0%  }
+}
