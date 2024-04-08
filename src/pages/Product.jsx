@@ -7,10 +7,6 @@ import { makeApi } from "../api/callApi"
 import ShopCategory from "./ShopCategory"
 
 const Product = (props) => {
-<<<<<<< HEAD
-=======
-
->>>>>>> 878a9e0 (added pagination in product)
 	const [minPrice, setMinPrice] = useState(0)
 	const [maxPrice, setMaxPrice] = useState(1000)
 	const handlePriceChange = (event) => {
