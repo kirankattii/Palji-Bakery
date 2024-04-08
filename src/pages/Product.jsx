@@ -133,7 +133,7 @@ const Product = (props) => {
 				</div>
 			</div>
 			<div className="pagination">
-				{Array.from({ length: totalPages }, (_, index) => index + 1).map(
+				{Array.from({ length: 10 }, (_, index) => index + 1).map(
 					(pageNumber) => (
 						<button
 							key={pageNumber}
