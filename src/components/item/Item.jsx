@@ -9,7 +9,7 @@ import { makeApi } from "../../api/callApi"
 const Item = (props) => {
 	const { cartItems, addToCart, removeFromCart } = useContext(ShopContext)
 	const [isInWishlist, setIsInWishlist] = useState(false)
-	const navigate = useNavigate()
+
 	useEffect(() => {
 		const checkWishlist = async () => {
 			try {
@@ -31,12 +31,15 @@ const Item = (props) => {
 
 	const toggleWishlist = async () => {
 		try {
+			setLoading(true)
 			const method = "POST"
 			const endpoint = `/api/create-wishlist/${props.id}`
 			const data = await makeApi(endpoint, method)
 			setIsInWishlist(!isInWishlist)
 		} catch (error) {
 			console.log(error)
+		} finally {
+			setLoading(false)
 		}
 	}
 
@@ -52,12 +55,20 @@ const Item = (props) => {
 	return (
 		<div className="item">
 			<div className="item-card">
-				<IoIosHeart
-					className={`watchlist-icon pointer-event ${
-						isInWishlist ? "wishlist-active" : ""
-					}`}
-					onClick={toggleWishlist}
-				/>
+				{loading ? (
+					<div className="whist_loader_main_div">
+						<div class="whislist_loader"></div>
+					</div>
+				) : (
+					<div>
+						<IoIosHeart
+							className={`watchlist-icon pointer-event ${
+								isInWishlist ? "wishlist-active" : ""
+							}`}
+							onClick={toggleWishlist}
+						/>
+					</div>
+				)}
 				<Link to={`/openproduct/${props.id}`}>
 					<img
 						src={props.image}
