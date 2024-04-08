@@ -9,6 +9,7 @@ const ShopContextProvider = (props) => {
 	)
 	const [all_products, setall_product] = useState([])
 	const [products, setProducts] = useState([])
+	const [showLoginPage, setShowLoginPage] = useState(false)
 	// console.log(all_product)
 
 	useEffect(() => {
@@ -27,6 +28,12 @@ const ShopContextProvider = (props) => {
 	// console.log(all_product)
 
 	const addToCart = (itemId) => {
+		const token = localStorage.getItem("token")
+		if (!token) {
+			// Set redirect state to true if token doesn't exist
+			// setRedirect(true)
+			// return // Prevent further execution of addToCart
+		}
 		if (!cartItems[itemId]) {
 			setCartItems((prev) => ({ ...prev, [itemId]: 1 }))
 		} else {
@@ -90,9 +97,12 @@ const ShopContextProvider = (props) => {
 
 	// Update localStorage whenever cartItems change
 	useEffect(() => {
-		localStorage.setItem("cartItems", JSON.stringify(cartItems))
+		if (!localStorage.getItem("token")) {
+			localStorage.removeItem("cartItems")
+		} else {
+			localStorage.setItem("cartItems", JSON.stringify(cartItems))
+		}
 	}, [cartItems])
-
 	const contextValue = {
 		all_product,
 		cartItems,
@@ -105,9 +115,11 @@ const ShopContextProvider = (props) => {
 	}
 
 	return (
-		<ShopContext.Provider value={contextValue}>
-			{props.children}
-		</ShopContext.Provider>
+		<>
+			<ShopContext.Provider value={contextValue}>
+				{props.children}
+			</ShopContext.Provider>
+		</>
 	)
 }
 
