@@ -29,11 +29,18 @@ const Product = (props) => {
 		const fetchData = async () => {
 			try {
 				// setLoading(true)
+				// const response = await makeApi(
+				// 	`/api/get-all-products?name=${searchQuery}
+				// 	&category=${category}
+				// 	&IsOutOfStock=false&maxPrice=${maxPrice}
+				// 	&page=${currentPage}&perPage=${ResultPerPage} `,
+				// 	"GET"
+				// )
 				const response = await makeApi(
 					`/api/get-all-products?name=${searchQuery}
 					&category=${category}
 					&IsOutOfStock=false&maxPrice=${maxPrice}
-					&page=${currentPage}&perPage=${ResultPerPage} `,
+					 `,
 					"GET"
 				)
 				setProducts(response.data.products)
@@ -132,7 +139,7 @@ const Product = (props) => {
 					/>
 				</div>
 			</div>
-			<div className="pagination">
+			{/* <div className="pagination">
 				{Array.from({ length: 10 }, (_, index) => index + 1).map(
 					(pageNumber) => (
 						<button
@@ -144,7 +151,7 @@ const Product = (props) => {
 						</button>
 					)
 				)}
-			</div>
+			</div> */}
 		</div>
 	)
 }
