@@ -18,15 +18,16 @@ const Product = (props) => {
 	const [category, setCategory] = useState("")
 	const [products, setProducts] = useState([])
 	const [ResultPerPage, setResultPerPage] = useState(50);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [totalPages, setTotalPages] = useState(0);
-  const [toalProduct, setToalProduct] = useState(0);
+	const [currentPage, setCurrentPage] = useState(1);
+	const [totalPages, setTotalPages] = useState(0);
+	const [toalProduct, setToalProduct] = useState(0);
+	const [loading, setLoading] = useState(false)
+	// const [loading, setLoading] = useState(true)
 
-	
 	useEffect(() => {
 		const fetchData = async () => {
 			try {
-				// setLoading(true)
+				setLoading(true)
 				const response = await makeApi(
 					`/api/get-all-products?name=${searchQuery}
 					&category=${category}
@@ -45,14 +46,17 @@ const Product = (props) => {
 				setToalProduct(response.data.totalProducts)
 			} catch (error) {
 				console.error("Error fetching products:", error)
+			} 
+			finally {
+				setLoading(false)
 			}
 		}
 		fetchData()
-	}, [searchQuery, category, maxPrice,currentPage])
+	}, [searchQuery, category, maxPrice, currentPage])
 	useEffect(() => {
 		const a = Math.ceil(toalProduct / ResultPerPage);
 		setTotalPages(a);
-	  }, [products, ResultPerPage,currentPage]);
+	}, [products, ResultPerPage, currentPage]);
 
 	useEffect(() => {
 		async function fetchCategories() {
@@ -63,13 +67,13 @@ const Product = (props) => {
 				}
 			} catch (error) {
 				console.log("Error fetching categories:", error)
-			} 
+			}
 		}
 		fetchCategories()
 	}, [])
 	const handlePageClick = (pageNumber) => {
 		setCurrentPage(pageNumber);
-	  };
+	};
 	return (
 		<div className="product">
 			<div className="product-header">
@@ -136,25 +140,45 @@ const Product = (props) => {
 				<hr />
 				<div className="all-products">
 					{/* <Item /> */}
-					<ShopCategory
-						products={products}
-						categories={categories}
-					/>
+					{loading ? (
+						<div className="all_products_spinner_loader_div" >
+							<div class="all_products_spinner_loader">
+								<div></div>
+								<div></div>
+								<div></div>
+								<div></div>
+								<div></div>
+								<div></div>
+								<div></div>
+								<div></div>
+								<div></div>
+								<div></div>
+							</div>
+						</div>
+					)
+						: (
+
+							<ShopCategory
+								products={products}
+								categories={categories}
+							/>
+						)}
+
 				</div>
 			</div>
 			<div className="pagination">
-          {Array.from({ length: totalPages }, (_, index) => index + 1).map(
-            (pageNumber) => (
-              <button
-                key={pageNumber}
-                className={pageNumber === currentPage ? "active" : ""}
-                onClick={() => handlePageClick(pageNumber)}
-              >
-                {pageNumber}
-              </button>
-            )
-          )}
-        </div>
+				{Array.from({ length: totalPages }, (_, index) => index + 1).map(
+					(pageNumber) => (
+						<button
+							key={pageNumber}
+							className={pageNumber === currentPage ? "active" : ""}
+							onClick={() => handlePageClick(pageNumber)}
+						>
+							{pageNumber}
+						</button>
+					)
+				)}
+			</div>
 		</div>
 	)
 }
