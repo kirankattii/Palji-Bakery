@@ -17,10 +17,10 @@ const Product = (props) => {
 	const [searchQuery, setSearchQuery] = useState("")
 	const [category, setCategory] = useState("")
 	const [products, setProducts] = useState([])
-	const [ResultPerPage, setResultPerPage] = useState(50);
-	const [currentPage, setCurrentPage] = useState(1);
-	const [totalPages, setTotalPages] = useState(0);
-	const [toalProduct, setToalProduct] = useState(0);
+	const [ResultPerPage, setResultPerPage] = useState(50)
+	const [currentPage, setCurrentPage] = useState(1)
+	const [totalPages, setTotalPages] = useState(0)
+	const [toalProduct, setToalProduct] = useState(0)
 	const [loading, setLoading] = useState(false)
 	// const [loading, setLoading] = useState(true)
 
@@ -32,7 +32,7 @@ const Product = (props) => {
 					`/api/get-all-products?name=${searchQuery}
 					&category=${category}
 					&IsOutOfStock=false&maxPrice=${maxPrice}
-					&page=${currentPage}&perPage=${ResultPerPage} `,
+					&page=${currentPage}&perPage=${ResultPerPage}`,
 					"GET"
 				)
 				// const response = await makeApi(
@@ -46,17 +46,16 @@ const Product = (props) => {
 				setToalProduct(response.data.totalProducts)
 			} catch (error) {
 				console.error("Error fetching products:", error)
-			} 
-			finally {
+			} finally {
 				setLoading(false)
 			}
 		}
 		fetchData()
 	}, [searchQuery, category, maxPrice, currentPage])
 	useEffect(() => {
-		const a = Math.ceil(toalProduct / ResultPerPage);
-		setTotalPages(a);
-	}, [products, ResultPerPage, currentPage]);
+		const a = Math.ceil(toalProduct / ResultPerPage)
+		setTotalPages(a)
+	}, [products, ResultPerPage, currentPage])
 
 	useEffect(() => {
 		async function fetchCategories() {
@@ -72,8 +71,8 @@ const Product = (props) => {
 		fetchCategories()
 	}, [])
 	const handlePageClick = (pageNumber) => {
-		setCurrentPage(pageNumber);
-	};
+		setCurrentPage(pageNumber)
+	}
 	return (
 		<div className="product">
 			<div className="product-header">
@@ -140,7 +139,7 @@ const Product = (props) => {
 				<div className="all-products">
 					{/* <Item /> */}
 					{loading ? (
-						<div className="all_products_spinner_loader_div" >
+						<div className="all_products_spinner_loader_div">
 							<div class="all_products_spinner_loader">
 								<div></div>
 								<div></div>
@@ -154,15 +153,12 @@ const Product = (props) => {
 								<div></div>
 							</div>
 						</div>
-					)
-						: (
-
-							<ShopCategory
-								products={products}
-								categories={categories}
-							/>
-						)}
-
+					) : (
+						<ShopCategory
+							products={products}
+							categories={categories}
+						/>
+					)}
 				</div>
 			</div>
 			<div className="pagination">

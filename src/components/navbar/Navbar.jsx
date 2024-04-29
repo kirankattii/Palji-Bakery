@@ -38,8 +38,6 @@ const Navbar = () => {
 			location.pathname === "/products/savory" ||
 			location.pathname === "/products/biscuits" ||
 			location.pathname === "/cart"
-
-			// location.pathname === "/openproduct"
 		)
 	}
 
@@ -185,16 +183,23 @@ const Navbar = () => {
 						allProduct={allProduct}
 					/>
 				</div>
-				<Link
-					// to="/Signup"
-					className="media-profile-icon"
-				>
-					<img
-						onClick={() => setOpenProfile((prev) => !prev)}
-						src={user_icon}
-						alt=""
-					/>
-				</Link>
+				{isloggedIn ? (
+					<div
+						// to="/Signup"
+						className="media-profile-icon"
+					>
+						<img
+							onClick={() => setOpenProfile((prev) => !prev)}
+							src={user_icon}
+							style={{ cursor: "pointer" }}
+							alt=""
+						/>
+					</div>
+				) : (
+					<button className="btn btn-primary">
+						<Link to="/login">LOGIN</Link>
+					</button>
+				)}
 				{isloggedIn && (
 					<Link to="/cart">
 						<div className="nav-cart">
@@ -273,7 +278,7 @@ const Navbar = () => {
 									<div className="category-dropdown">
 										{categories.map((item, id) => {
 											return (
-												<div>
+												<div key={item._id}>
 													<Link
 														onClick={closeMenu}
 														to="/products"
@@ -314,7 +319,7 @@ const Navbar = () => {
 				</div>
 			</div>
 			{openProfile && (
-				<ProfileDropdown 
+				<ProfileDropdown
 					openProfile={setOpenProfile}
 					setOpenProfile={setOpenProfile}
 					className="nav-profile-dropdown"

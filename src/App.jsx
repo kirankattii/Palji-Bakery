@@ -27,6 +27,7 @@ import Payment from "./components/Payment/Payment"
 import OrderSummary from "./pages/OrderSummary"
 import ForgotPasswordForm from "./components/login/sendMail"
 import OtpVerifiedForm from "./components/login/otp"
+import ProductDetails from "./components/productDetails/ProductDetails"
 
 function App() {
 	// const [categories, setCategories] = useState([])
@@ -126,12 +127,22 @@ function App() {
 					path="/userprofile/myorders/:ordersummary"
 					element={<OrderSummary />}
 				/>
+				<Route
+					path="/:productdetails/:productdetails"
+					element={<ProductDetails />}
+				/>
 				{/* <Route
 					path="/admin/*"
 					element={<Admin />}
 				/> */}
-				 <Route path="/Forgot-Password" element={<ForgotPasswordForm />} />
-        <Route path="/otp-verified" element={<OtpVerifiedForm />} />
+				<Route
+					path="/Forgot-Password"
+					element={<ForgotPasswordForm />}
+				/>
+				<Route
+					path="/otp-verified"
+					element={<OtpVerifiedForm />}
+				/>
 			</Routes>
 			<Footer />
 		</div>

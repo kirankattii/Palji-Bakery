@@ -28,10 +28,11 @@ const ShopContextProvider = (props) => {
 	// console.log(all_product)
 
 	const addToCart = (itemId) => {
-		const token = localStorage.getItem("token")
-		if (!token) {
-			return
-		}
+		// const token = localStorage.getItem("token")
+		// if (!token) {
+		// 	return
+		// }
+
 		if (!cartItems[itemId]) {
 			setCartItems((prev) => ({ ...prev, [itemId]: 1 }))
 		} else {
@@ -111,6 +112,8 @@ const ShopContextProvider = (props) => {
 		getTotalCartItems,
 		getTotalCartDiscountAmount,
 	}
+	console.log("cartitems", cartItems)
+	console.log("cartitems discount", getTotalCartDiscountAmount())
 
 	return (
 		<>

@@ -69,7 +69,7 @@ const Item = (props) => {
 						/>
 					</div>
 				)}
-				<Link to={`/openproduct/${props.id}`}>
+				<Link to={`/productdisplay/${props.id}`}>
 					<img
 						src={props.image}
 						alt=""

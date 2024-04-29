@@ -18,7 +18,7 @@ const ProductDropdown = () => {
 		}
 		fetchCategories()
 	}, [])
-	console.log(categories)
+	// console.log(categories)
 
 	return (
 		<div className="product-dropdown">

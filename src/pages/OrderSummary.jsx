@@ -66,11 +66,11 @@ const OrderSummary = () => {
 							orderSummaryy.orderItems[0].productId.name}
 					</p>
 					<p>
-						Quantity:
+						Quantity : <span> </span>
 						{orderSummaryy.orderItems && orderSummaryy.orderItems[0].quantity}
 					</p>
 					<p>
-						₹
+						Price : ₹
 						{orderSummaryy.orderItems && orderSummaryy.orderItems[0].totalPrice}
 					</p>
 				</div>

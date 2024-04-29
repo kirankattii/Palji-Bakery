@@ -8,7 +8,7 @@ import { IoIosHeart } from "react-icons/io"
 const ProductDisplay = (props) => {
 	// const { products } = props
 	console.log("product display", props.product.price)
-
+	// const { productId } = useParams()
 	const { cartItems, addToCart, removeFromCart } = useContext(ShopContext)
 	const navigate = useNavigate()
 	const handleAddToCart = () => {
@@ -19,6 +19,8 @@ const ProductDisplay = (props) => {
 		}
 		addToCart(props.product._id)
 	}
+	console.log("this is openproduct", props)
+
 	return (
 		<div className="productDisplay">
 			<div className="product-display-left">

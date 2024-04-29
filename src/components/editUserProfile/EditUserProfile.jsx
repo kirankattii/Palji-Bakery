@@ -20,7 +20,7 @@ const EditUserProfile = () => {
 		mobileNumber: "",
 		userImage: "",
 	})
-console.log("---------------------",editData)
+	console.log("---------------------", editData)
 	// Fetch existing user details on component mount
 	useEffect(() => {
 		const fetchUserDetails = async () => {
@@ -57,17 +57,17 @@ console.log("---------------------",editData)
 		event.preventDefault()
 		try {
 			const userDataToUpdate = { ...editData }
-			console.log("mobileNumberChanged",mobileNumberChanged)
+			console.log("mobileNumberChanged", mobileNumberChanged)
 			if (!mobileNumberChanged) {
 				delete userDataToUpdate.mobileNumber
 			}
 			// show error if mobile number is less than 10 digits
-			 if(mobileNumberChanged){
-				 if(editData.mobileNumber.length < 10){
-					 toast.error("Please enter valid mobile number")
-					 return
-				 }
-			 }
+			if (mobileNumberChanged) {
+				if (editData.mobileNumber.length < 10) {
+					toast.error("Please enter valid mobile number")
+					return
+				}
+			}
 			//  call api
 			const response = await makeApi(
 				"/api/update-user",
@@ -138,11 +138,10 @@ console.log("---------------------",editData)
 									id="file"
 									type="file"
 									onChange={(e) => handleProfileUpload(e)}
-									// required
 									className="p-5"
 								/>
 							</div>
-							<div>
+							<div className="select-user-img">
 								<img
 									src={editData?.userImage}
 									alt="profile"
@@ -174,25 +173,27 @@ console.log("---------------------",editData)
 						<div className="edit-gender">
 							<label htmlFor="">Gender</label>
 							<div>
-								<div>
-									<input
-										type="radio"
-										name="gender"
-										value="male"
-										checked={editData.gender === "male"}
-										onChange={onChangeHandler}
-									/>
-									<label htmlFor="male">Male</label>
-								</div>
-								<div>
-									<input
-										type="radio"
-										name="gender"
-										value="female"
-										checked={editData.gender === "female"}
-										onChange={onChangeHandler}
-									/>
-									<label htmlFor="female">Female</label>
+								<div className="male-female">
+									<div>
+										<input
+											type="radio"
+											name="gender"
+											value="male"
+											checked={editData.gender === "male"}
+											onChange={onChangeHandler}
+										/>
+										<label htmlFor="male">Male</label>
+									</div>
+									<div>
+										<input
+											type="radio"
+											name="gender"
+											value="female"
+											checked={editData.gender === "female"}
+											onChange={onChangeHandler}
+										/>
+										<label htmlFor="female">Female</label>
+									</div>
 								</div>
 							</div>
 						</div>
@@ -205,16 +206,6 @@ console.log("---------------------",editData)
 								onChange={onChangeHandler}
 							/>
 						</div>
-						{/* <div className="edit-city">
-            <label htmlFor="">City</label>
-            <input
-              type="text"
-              placeholder="City"
-              name="city"
-              value={editData.city}
-              onChange={onChangeHandler}
-            />
-          </div> */}
 					</div>
 					<div className="edit-contacts">
 						<h2>Contacts</h2>
@@ -226,7 +217,6 @@ console.log("---------------------",editData)
 								name="email"
 								value={editData.email}
 								onChange={onChangeHandler}
-								//   can not be changed
 								disabled
 							/>
 						</div>
