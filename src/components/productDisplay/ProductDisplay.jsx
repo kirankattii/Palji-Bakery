@@ -1,15 +1,30 @@
 import React, { useContext } from "react"
 import "./productDisplay.css"
+import { Link, useNavigate } from "react-router-dom"
+
 import { ShopContext } from "../../context/ShopContext"
 import { assets } from "../../assets/assets"
 import { IoIosHeart } from "react-icons/io"
+import BackButton from "./backButton"
 const ProductDisplay = (props) => {
 	// const { products } = props
 	console.log("product display", props.product.price)
-
+	// const { productId } = useParams()
 	const { cartItems, addToCart, removeFromCart } = useContext(ShopContext)
+	const navigate = useNavigate()
+	const handleAddToCart = () => {
+		const token = localStorage.getItem("token")
+		if (!token) {
+			navigate("/login") // Redirect to login page if not logged in
+			return
+		}
+		addToCart(props.product._id)
+	}
+	console.log("this is openproduct", props)
+
 	return (
 		<div className="productDisplay">
+			<BackButton pageLocation="/products" />
 			<div className="product-display-left">
 				<div className="productdisplay-img-list">
 					{/* {props.product.image.map((item, i) => {
@@ -20,7 +35,14 @@ const ProductDisplay = (props) => {
 							/>
 						)
 					})} */}
-					<img
+					{props.product.image.map((item, id) => (
+						<img
+							key={id}
+							src={item}
+							alt=""
+						/>
+					))}
+					{/* <img
 						src={props.product.thumbnail}
 						alt=""
 					/>{" "}
@@ -31,11 +53,7 @@ const ProductDisplay = (props) => {
 					<img
 						src={props.product.thumbnail}
 						alt=""
-					/>{" "}
-					<img
-						src={props.product.thumbnail}
-						alt=""
-					/>
+					/> */}
 				</div>
 				<div className="productdisplay-img">
 					<img
@@ -76,7 +94,8 @@ const ProductDisplay = (props) => {
 					{!cartItems[props.product._id] ? (
 						<div
 							className="productdisplay-item-addto-cart "
-							onClick={() => addToCart(props.product._id)}
+							// onClick={() => addToCart(props.product._id)}
+							onClick={handleAddToCart}
 						>
 							ADD TO CART
 						</div>

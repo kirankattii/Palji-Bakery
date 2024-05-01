@@ -8,7 +8,8 @@ import "./signup.css"
 const Signup = () => {
 	const navigate = useNavigate()
 	const [signupSuccess, setSignupSuccess] = useState(false)
-	const [state, setState] = useState("Sign Up")
+	const [loading, setLoading] = useState(false)
+	const [state, setState] = useState("Login")
 	const [formData, setFormData] = useState({
 		firstName: "",
 		lastName: "",
@@ -21,14 +22,18 @@ const Signup = () => {
 	}
 
 	const login = async () => {
+		setLoading(true)
 		if (!formData.email) {
 			toast.error("Please fill email")
+			setLoading(false)
 			return
 		}
 		if (!formData.password) {
 			toast.error("Please fill password")
+			setLoading(false)
 			return
 		}
+
 		try {
 			const response = await makeApi("/api/login-user", "post", formData)
 			const responseData = response.data
@@ -48,6 +53,8 @@ const Signup = () => {
 			console.log("Error during login:", error)
 			toast.error(error.response.data.message)
 			// Handle error
+		} finally {
+			setLoading(false) // Set loading back to false after authentication attempt
 		}
 	}
 
@@ -160,8 +167,9 @@ const Signup = () => {
 						onClick={() => {
 							state === "Login" ? login() : signup()
 						}}
+						disabled={loading}
 					>
-						Continue
+						{loading ? "Loading..." : "Continue"}
 					</button>
 					{state === "Login" ? (
 						<Link

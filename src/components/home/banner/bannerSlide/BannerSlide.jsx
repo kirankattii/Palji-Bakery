@@ -13,7 +13,7 @@ const BannerSlide = ({ bannerInfo }) => {
 						<p className="content">{bannerInfo.content}</p>
 					</div>
 					<div className="cart5">
-						<button>Add to Cart</button>
+						<button>Add Cart</button>
 					</div>
 				</div>
 				<div className="right-banner">

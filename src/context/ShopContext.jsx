@@ -7,10 +7,10 @@ const ShopContextProvider = (props) => {
 	const [cartItems, setCartItems] = useState(
 		JSON.parse(localStorage.getItem("cartItems")) || {}
 	)
+
 	const [all_products, setall_product] = useState([])
-	const [products, setProducts] = useState([])
-	const [showLoginPage, setShowLoginPage] = useState(false)
-	// console.log(all_product)
+	// const [products, setProducts] = useState([])
+	// const [showLoginPage, setShowLoginPage] = useState(false)
 
 	useEffect(() => {
 		const fetchData = async () => {
@@ -28,12 +28,11 @@ const ShopContextProvider = (props) => {
 	// console.log(all_product)
 
 	const addToCart = (itemId) => {
-		const token = localStorage.getItem("token")
-		if (!token) {
-			// Set redirect state to true if token doesn't exist
-			// setRedirect(true)
-			// return // Prevent further execution of addToCart
-		}
+		// const token = localStorage.getItem("token")
+		// if (!token) {
+		// 	return
+		// }
+
 		if (!cartItems[itemId]) {
 			setCartItems((prev) => ({ ...prev, [itemId]: 1 }))
 		} else {
@@ -113,6 +112,8 @@ const ShopContextProvider = (props) => {
 		getTotalCartItems,
 		getTotalCartDiscountAmount,
 	}
+	console.log("cartitems", cartItems)
+	console.log("cartitems discount", getTotalCartDiscountAmount())
 
 	return (
 		<>

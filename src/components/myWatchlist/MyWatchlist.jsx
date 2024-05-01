@@ -8,6 +8,7 @@ import { assets } from "../../assets/assets"
 
 const MyWatchlist = (props) => {
 	const [wishlistItems, setWishlistItems] = useState([])
+	const [loading, setLoading] = useState(false)
 	const { all_product, cartItems, addToCart, removeFromCart } =
 		useContext(ShopContext)
 	useEffect(() => {
@@ -41,6 +42,7 @@ const MyWatchlist = (props) => {
 			<div className="userprofile-heading">
 				<h1>MY WISHLIST</h1>
 			</div>
+
 			{wishlistItems.length === 0 ? (
 				<div className="text-center">
 					<h2>Your wishlist is empty</h2>
@@ -58,7 +60,8 @@ const MyWatchlist = (props) => {
 										className={`watchlist-icon pointer-event wishlist-active`}
 										onClick={() => toggleWishlist(item?.products?._id)}
 									/>
-									<Link to={`/openproduct/${item?.products?._id}`}>
+									{/* <Link to={`/openproduct/${item?.products?._id}`}> */}
+									<Link to={`/productdisplay/${item?.products?._id}`}>
 										<img
 											src={item?.products?.thumbnail}
 											alt=""

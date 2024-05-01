@@ -37,7 +37,7 @@
 
 .cookies-info .price {
   position: absolute;
-  bottom: 50px;
+  bottom: 20px;
   gap: 10px;
   align-items: first baseline;
   display: flex;
@@ -52,7 +52,7 @@
 }
 
 .cookies-info .price p:nth-child(2) {
-  font-size: 50px;
+  font-size: 40px;
 }
 
 .cookies-images img:nth-child(1) {
@@ -67,7 +67,7 @@
   width: 200px;
   bottom: 70px;
   position: absolute;
-  right: -40px;
+  right: -10px;
   font-size: 30px;
 }
 
@@ -172,11 +172,17 @@
     right: -40px;
   }
 
+  .cookies-info {
+    width: 100%;
+  }
+
   .cookies-info h2 {
 
     bottom: 50px;
-    right: -65px;
+    /* right: -85px; */
     font-size: 25px;
+    width: 150px;
+    margin-right: 45px;
   }
 
   .cookies-info .price p:nth-child(2) {

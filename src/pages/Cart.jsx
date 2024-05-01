@@ -24,6 +24,7 @@ const Cart = () => {
 
 	// console.log("this is cart", all_product)
 
+	console.log(cartItems)
 	const navigate = useNavigate()
 
 	const [shippingAddresses, setShippingAddresses] = useState([]);

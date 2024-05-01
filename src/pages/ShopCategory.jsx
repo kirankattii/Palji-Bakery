@@ -1,4 +1,4 @@
-import React, { useContext } from "react"
+import React, { useContext, useState } from "react"
 import "./CSS/shopCategory.css"
 import { ShopContext } from "../context/ShopContext"
 
@@ -6,6 +6,25 @@ import Item from "../components/item/Item"
 
 const ShopCategory = (props) => {
 	const { all_product } = useContext(ShopContext)
+	const [AllProductLoader, setAllProductLoader] = useState(false)
+	const [toalProduct, setToalProduct] = useState(0)
+
+	const [products, setProducts] = useState([])
+	const fetchProduct = async () => {
+		try {
+			setAllProductLoader(true)
+			const response = await makeApi(
+				`/api/get-all-products?name=${search}&category=${category}&minPrice=${minPrice}&maxPrice=${maxPrice}&page=${currentPage}&perPage=${ResultPerPage}&IsOutOfStock=false`,
+				"GET"
+			)
+			setProducts(response.data.products)
+			setToalProduct(response.data.totalProducts)
+		} catch (error) {
+			console.log(error)
+		} finally {
+			setAllProductLoader(false)
+		}
+	}
 	// console.log(all_product)
 	// console.log("this is", props.products)
 	return (
