@@ -3,7 +3,7 @@ import { makeApi } from "../../api/callApi"
 import { Link, useNavigate } from "react-router-dom"
 import { ToastContainer, toast } from "react-toastify"
 
-import "./signup.css"
+import "./signup.css" 
 
 const Signup = () => {
 	const navigate = useNavigate()
