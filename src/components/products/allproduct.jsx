@@ -5,7 +5,7 @@ import "../../pages/CSS/product/allproduct.css"
 import { IoIosHeart } from "react-icons/io"
 
 import AddIcon from "../../assets/add_icon_green.png"
-import RemoveIcon from "../../assets/add_icon_white.png"
+import RemoveIcon from "../../assets/remove_icon_red.png"
 // import Primaryloader from "../loaders/primaryloader.jsx"
 import Primaryloader from "../loaders/primaryloader.jsx"
 
@@ -229,7 +229,7 @@ function Allproduct({ search, category, minPrice, maxPrice }) {
 										<div className="Add_to_cart_and_watchlist_button">
 											<>
 												{isInCart(product._id) ? (
-													<div className="Add_to_cart_and_watchlist_child">
+													<div className="Add_to_cart_and_watchlist_child Add_to_cart_and_watchlist_child1">
 														{AddTocartLoader ? (
 															<div>
 																{" "}

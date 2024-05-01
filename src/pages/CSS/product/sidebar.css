@@ -1,6 +1,8 @@
 .main_product_sidebar_top_parent_div {
   display: flex;
   /* padding-top: 15vh; */
+  background: #efe2d7;
+
 }
 
 .main_product_sidebar_div {
@@ -26,6 +28,8 @@
   color: var(--golden-color);
   font-size: 24px;
   /* padding-top: 10vh; */
+  color: #AE7B37;
+
 }
 
 /* search */
@@ -33,7 +37,8 @@
   width: 100%;
   padding: 10px 20px;
   border-radius: 50px;
-  border: 1px solid var(--navy-blue-color);
+  border: 2px solid #E5087E;
+  outline: 0;
 }
 
 .proudct_sidebar_heading {
@@ -49,9 +54,12 @@
   width: 100%;
   text-align: center;
   transition: all 0.5s ease;
-  border: 1px solid var(--navy-blue-color);
+  border: 2px solid #E5087E;
   padding: 10px;
   border-radius: 50px;
+  background: #E5087E;
+  border-radius: 10px;
+  color: #fff;
   cursor: pointer;
 }
 
@@ -67,6 +75,7 @@
 /* price range */
 .main_price_range_product_sidebar {
   display: flex;
+  /* background: #000; */
 }
 
 .input_for_max_price {
@@ -80,10 +89,11 @@
 .input-ranges {
   width: 100%;
   -webkit-appearance: none;
-  background-color: var(--navy-blue-color);
+  background-color: #E5087E;
   height: 4px;
   outline: none;
   margin: 10px 0;
+
   transition: all 0.5s ease;
 }
 
@@ -92,7 +102,7 @@
   width: 17px;
   height: 17px;
   border-radius: 50%;
-  background-color: var(--golden-color);
+  background-color: #E5087E;
   cursor: pointer;
 }
 

@@ -134,7 +134,7 @@ const Navbar = () => {
 					</div>
 				) : (
 					<button className="btn btn-primary">
-						<Link to="/login">LOGIN</Link>
+						<Link to="/Signup">LOGIN</Link>
 					</button>
 				)}
 
@@ -183,7 +183,7 @@ const Navbar = () => {
 						allProduct={allProduct}
 					/>
 				</div>
-				{isloggedIn ? (
+				{/* {isloggedIn ? (
 					<div
 						// to="/Signup"
 						className="media-profile-icon"
@@ -199,7 +199,7 @@ const Navbar = () => {
 					<button className="btn btn-primary">
 						<Link to="/login">LOGIN</Link>
 					</button>
-				)}
+				)} */}
 				{isloggedIn && (
 					<Link to="/cart">
 						<div className="nav-cart">
