@@ -3,6 +3,7 @@ import "./payment.css"
 import { assets } from "../../assets/assets"
 
 const Payment = () => {
+   
 	return (
 		<div className="payment">
 			<div className="cart-item">
@@ -14,19 +15,23 @@ const Payment = () => {
 					<p>Total:</p>
 				</div>
 				<br />
-				<hr />
+				<hr /> 
 
 				<div>
+				{cartPoductList && cartPoductList.map((item,index) => (
+
 					<div className="cart-items-title cart-items-item">
 						<img
 							src={assets.userprofile_icon}
 							alt=""
 						/>
 						<p>{"name"}</p>
-						<p>₹{182}</p>
+						<p>₹ {item.productId.price}</p>
 						<p>{5}</p>
 						<p>₹{120}</p>
 					</div>
+                                ))}
+
 					{/* <hr /> */}
 				</div>
 			</div>
@@ -95,7 +100,7 @@ const Payment = () => {
 						<div className="cart-billing-charges">
 							<div className="cart-billing-subtotal">
 								<p>SUBTOTAL</p>
-								<p>₹{}</p>
+								<p>₹{cartItem.taxPrice}</p>
 							</div>{" "}
 							<div className="cart-billing-discount">
 								<p>DISCOUNT</p>
