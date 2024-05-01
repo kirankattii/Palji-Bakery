@@ -10,12 +10,9 @@ import "slick-carousel/slick/slick-theme.css"
 import { useNavigate } from "react-router"
 import { makeApi } from "../../../api/callApi"
 import { ShopContext } from "../../../context/ShopContext"
-import LoginPopup from "../../../LoginPopup/LoginPopup"
-
 // import Slider from "./sliders/Sliders.jsx"
 function Arrow(props) {
 	const { className, style, onClick } = props
-
 	return (
 		<div
 			className={className}
@@ -30,15 +27,6 @@ function Arrow(props) {
 
 const Products = () => {
 	const [products, setProducts] = useState([])
-	const [showPopup, setShowPopup] = useState(false)
-	const handleAddToCart = (item) => {
-		const token = localStorage.getItem("token")
-		if (!token) {
-			setShowPopup(true) // Show the login popup if user is not logged in
-		} else {
-			addToCart(item.id) // Add item to cart if user is logged in
-		}
-	}
 
 	const { cartItems, addToCart, removeFromCart } = useContext(ShopContext)
 	useEffect(() => {
@@ -121,37 +109,29 @@ const Products = () => {
 	}
 	const navigator = useNavigate()
 	return (
-		<>
-			{showPopup && (
-				<LoginPopup
-					onClose={() => setShowPopup(false)}
-					onLoginSuccess={() => addToCart(item.id)}
-				/>
-			)}
-			<div className="product-container">
-				<h1>Featured Products</h1>
-				<p className="sub-heading">Discover our Signature Selection</p>
-				<div className="all-slides">
-					<Slider
-						{...settings}
-						className="product-slide"
-					>
-						<div>
-							<Sliders productInfo={product1} />
-						</div>
-						<div>
-							<Sliders productInfo={product2} />
-						</div>
-						<div>
-							<Sliders productInfo={product3} />
-						</div>
-					</Slider>
-				</div>
-				<div className="products-btn">
-					<button onClick={() => navigator("/products")}>ALL PRODUCTS</button>
-				</div>
+		<div className="product-container">
+			<h1>Featured Products</h1>
+			<p className="sub-heading">Discover our Signature Selection</p>
+			<div className="all-slides">
+				<Slider
+					{...settings}
+					className="product-slide"
+				>
+					<div>
+						<Sliders productInfo={product1} />
+					</div>
+					<div>
+						<Sliders productInfo={product2} />
+					</div>
+					<div>
+						<Sliders productInfo={product3} />
+					</div>
+				</Slider>
 			</div>
-		</>
+			<div className="products-btn">
+				<button onClick={() => navigator("/products")}>ALL PRODUCTS</button>
+			</div>
+		</div>
 	)
 }
 
