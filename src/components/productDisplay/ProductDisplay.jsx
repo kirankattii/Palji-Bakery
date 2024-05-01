@@ -5,6 +5,7 @@ import { Link, useNavigate } from "react-router-dom"
 import { ShopContext } from "../../context/ShopContext"
 import { assets } from "../../assets/assets"
 import { IoIosHeart } from "react-icons/io"
+import BackButton from "./backButton"
 const ProductDisplay = (props) => {
 	// const { products } = props
 	console.log("product display", props.product.price)
@@ -23,6 +24,7 @@ const ProductDisplay = (props) => {
 
 	return (
 		<div className="productDisplay">
+			<BackButton pageLocation="/products" />
 			<div className="product-display-left">
 				<div className="productdisplay-img-list">
 					{/* {props.product.image.map((item, i) => {
@@ -33,7 +35,14 @@ const ProductDisplay = (props) => {
 							/>
 						)
 					})} */}
-					<img
+					{props.product.image.map((item, id) => (
+						<img
+							key={id}
+							src={item}
+							alt=""
+						/>
+					))}
+					{/* <img
 						src={props.product.thumbnail}
 						alt=""
 					/>{" "}
@@ -44,11 +53,7 @@ const ProductDisplay = (props) => {
 					<img
 						src={props.product.thumbnail}
 						alt=""
-					/>{" "}
-					<img
-						src={props.product.thumbnail}
-						alt=""
-					/>
+					/> */}
 				</div>
 				<div className="productdisplay-img">
 					<img
