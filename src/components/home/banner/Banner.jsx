@@ -6,6 +6,7 @@ import { assets } from "../../../assets/assets"
 import { makeApi } from "../../../api/callApi"
 import { ShopContext } from "../../../context/ShopContext"
 import { Link, useNavigate } from "react-router-dom"
+import LoginPopup from "../../../LoginPopup/LoginPopup"
 
 const Banner = () => {
 	// /api/get-all-products-by-category/6612e7e4e7c1d7bf5589ec0c
@@ -13,10 +14,13 @@ const Banner = () => {
 	const [backgroundColor, setBackgroundColor] = useState(null)
 	const [backgroundCart, setBackgroundCart] = useState(null)
 	const [animationDirection, setAnimationDirection] = useState(null)
+	const [showPopup, setShowPopup] = useState(false)
 	const [products, setProducts] = useState([])
 	const navigate = useNavigate()
+	// const [showPopup, setShowPopup] = useState(false)
 
 	const { cartItems, addToCart, removeFromCart } = useContext(ShopContext)
+
 	useEffect(() => {
 		async function fetchCategories() {
 			try {
@@ -34,6 +38,7 @@ const Banner = () => {
 		}
 		fetchCategories()
 	}, [])
+
 	console.log("Banner", products)
 	const banner = [
 		{
@@ -139,104 +144,120 @@ const Banner = () => {
 		setBackgroundCart(banner[currentSlide].backgroundCart)
 	}, [currentSlide])
 
-	const handleAddToCart = () => {
+	const handleAddToCart = (item) => {
 		const token = localStorage.getItem("token")
 		if (!token) {
-			navigate("/login") // Redirect to login page if not logged in
-			return
+			setShowPopup(true) // Show the login popup if user is not logged in
+		} else {
+			addToCart(item.id) // Add item to cart if user is logged in
 		}
-		addToCart(item.id)
 	}
 
 	return (
-		<div
-			className="banner"
-			style={{ background: backgroundColor }}
-		>
+		<>
+			{showPopup && (
+				<LoginPopup
+					onClose={() => setShowPopup(false)}
+					onLoginSuccess={() => addToCart(item.id)}
+				/>
+			)}
 			<div
-				className={`palji-banners ${animationDirection}`}
-				style={{ transform: `translateX(-${currentSlide * 100}%)` }}
+				className="banner"
+				style={{ background: backgroundColor }}
 			>
-				{banner.map((item, index) => (
-					<div
-						key={index}
-						className="slide banner-flex"
-						style={{ backgroundColor: item.backgroundColor }}
-					>
-						<div className="left-banner">
-							<div className="banner-info">
-								<div
-									className={`title ${currentSlide === index ? "show" : ""}`}
-								>
-									<h2>{item.title}</h2>
-									<p>{item.subTitle}</p>
+				<div
+					className={`palji-banners ${animationDirection}`}
+					style={{ transform: `translateX(-${currentSlide * 100}%)` }}
+				>
+					{banner.map((item, index) => (
+						<div
+							key={index}
+							className="slide banner-flex"
+							style={{ backgroundColor: item.backgroundColor }}
+						>
+							<div className="left-banner">
+								<div className="banner-info">
+									<div
+										className={`title ${currentSlide === index ? "show" : ""}`}
+									>
+										<h2>{item.title}</h2>
+										<p>{item.subTitle}</p>
+									</div>
+									<p
+										className={`content ${
+											currentSlide === index ? "show" : ""
+										}`}
+									>
+										{item.content}
+									</p>
 								</div>
-								<p
-									className={`content ${currentSlide === index ? "show" : ""}`}
+								<div
+									className="cart5"
+									style={{ backgroundColor: backgroundCart }}
 								>
-									{item.content}
-								</p>
-							</div>
-							<div
-								className="cart5"
-								style={{ backgroundColor: backgroundCart }}
-							>
-								{/* <button style={{ backgroundColor: backgroundCart }}>
+									{/* <button style={{ backgroundColor: backgroundCart }}>
 									Add to Cart
 								</button> */}
-								<div className="banner-item-cart">
-									{!cartItems[item.id] ? (
-										<div
-											className="banner-item-addto-cart"
-											style={{ backgroundColor: backgroundCart }}
-											onClick={() => addToCart(item.id)}
-											// onClick={handleAddToCart}
-										>
-											ADD TO CART
-										</div>
-									) : (
-										<div className="banner-food-item-counter">
-											<img
-												onClick={() => removeFromCart(item.id)}
-												src={assets.add_icon_red}
-												alt=""
-											/>
-											<p className="banner-cart-item-no">
-												{cartItems[item.id]}
-											</p>
-											<img
+									<div className="banner-item-cart">
+										{!cartItems[item.id] ? (
+											<div
+												className="banner-item-addto-cart"
+												style={{ backgroundColor: backgroundCart }}
 												onClick={() => addToCart(item.id)}
-												src={assets.add_icon_green}
-												alt=""
-											/>
-										</div>
-									)}
+												// onClick={handleAddToCart}
+											>
+												<button
+													className="banner-cart-button"
+													// onClick={handleAddToCart}
+													onClick={() => handleAddToCart(item)}
+												>
+													ADD TO CART
+												</button>
+											</div>
+										) : (
+											<div className="banner-food-item-counter">
+												<img
+													onClick={() => removeFromCart(item.id)}
+													src={assets.add_icon_red}
+													alt=""
+												/>
+												<p className="banner-cart-item-no">
+													{cartItems[item.id]}
+												</p>
+												<img
+													onClick={() => addToCart(item.id)}
+													src={assets.add_icon_green}
+													alt=""
+												/>
+											</div>
+										)}
+									</div>
+									{/* // */}
 								</div>
-								{/* // */}
+							</div>
+							<div className="right-banner">
+								<img
+									src={item.banner_Image}
+									alt=""
+								/>
 							</div>
 						</div>
-						<div className="right-banner">
-							<img
-								src={item.banner_Image}
-								alt=""
-							/>
-						</div>
-					</div>
-				))}
+					))}
+				</div>
+				<div className="arrow-btn">
+					<img
+						src={assets.left_arrow}
+						alt=""
+						onClick={handlePrevSlide}
+					/>
+					<img
+						src={assets.right_arrow}
+						alt=""
+						onClick={handleNextSlide}
+					/>
+				</div>
 			</div>
-			<div className="arrow-btn">
-				<img
-					src={assets.left_arrow}
-					alt=""
-					onClick={handlePrevSlide}
-				/>
-				<img
-					src={assets.right_arrow}
-					alt=""
-					onClick={handleNextSlide}
-				/>
-			</div>
-		</div>
+		</>
 	)
 }
 
