@@ -1,4 +1,6 @@
-import React from "react"
+import { useEffect, useState } from "react"
+import { useLocation } from "react-router-dom"
+
 import "./App.css"
 import Navbar from "./components/navbar/Navbar"
 import Home from "./components/home/Home"
@@ -9,6 +11,7 @@ import Contact from "./components/contact/Contact"
 import Login from "./components/login/Login"
 import Signup from "./components/signup/Signup"
 import UserProfile from "./pages/UserProfile"
+import Product from "./pages/Product"
 import ShopCategory from "./pages/ShopCategory"
 import OpenProduct from "./pages/OpenProduct"
 import Cart from "./pages/Cart"
@@ -25,7 +28,6 @@ import OrderSummary from "./pages/OrderSummary"
 import ForgotPasswordForm from "./components/login/sendMail"
 import OtpVerifiedForm from "./components/login/otp"
 import ProductDetails from "./components/productDetails/ProductDetails"
-import Products from "./pages/products.jsx"
 
 function App() {
 	// const [categories, setCategories] = useState([])
@@ -51,7 +53,7 @@ function App() {
 					path="/aboutus"
 					element={<AboutUs />}
 				/>
-				{/* <Route
+				<Route
 					path="/products"
 					element={<Product />}
 				/>
@@ -63,11 +65,7 @@ function App() {
 						path=":productId"
 						element={<OpenProduct />}
 					/>
-				</Route> */}
-				<Route
-					path="/product/*"
-					element={<Products />}
-				/>
+				</Route>
 				<Route
 					path="/contact"
 					element={<Contact />}

@@ -143,7 +143,7 @@ const Navbar = () => {
 						<Link to="/">HOME</Link>
 					</li>
 					<li className="product-navbar">
-						<Link to="/product/all-products">
+						<Link to="/products">
 							Products <MdArrowDropDown />
 						</Link>
 						<ProductDropdown />
