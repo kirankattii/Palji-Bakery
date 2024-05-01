@@ -1,6 +1,6 @@
 import React, { useState } from "react"
 import "./contact.css"
-import { makeApi } from "../../api/callApi"
+import { makeApi } from "../../api/callApi.tsx"
 import { ToastContainer, toast } from "react-toastify";
 
 

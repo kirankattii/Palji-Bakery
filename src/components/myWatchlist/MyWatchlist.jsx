@@ -78,7 +78,7 @@ const MyWatchlist = (props) => {
 
 									<div className="item-cart">
 										{!cartItems[item?.products?._id] ? (
-											<div
+									  		<div
 												className="item-addto-cart "
 												onClick={() => addToCart(item?.products._id)}
 											>

@@ -3,12 +3,12 @@ import { makeApi } from "../../api/callApi"
 import { Link, useNavigate } from "react-router-dom"
 import { ToastContainer, toast } from "react-toastify"
 
-import "./signup.css"
+import "./signup.css" 
 
 const Signup = () => {
 	const navigate = useNavigate()
 	const [signupSuccess, setSignupSuccess] = useState(false)
-	const [state, setState] = useState("Login")
+	const [state, setState] = useState("Sign Up")
 	const [formData, setFormData] = useState({
 		firstName: "",
 		lastName: "",
@@ -73,7 +73,7 @@ const Signup = () => {
 		if (!formData.lastName) {
 			toast.error("Please fill lastName")
 			return
-		}  
+		}
 
 		try {
 			const response = await makeApi("/api/register-user", "post", formData)

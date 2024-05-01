@@ -1,9 +1,10 @@
-import React, { useContext } from "react"
+import React, { useContext, useEffect, useState } from "react"
 import "./CSS/cart.css"
 // import all_product from "../assets/all_products"
 import { ShopContext } from "../context/ShopContext"
 import { assets } from "../assets/assets"
 import { useNavigate } from "react-router"
+import { makeApi } from "../api/callApi"
 
 const Cart = () => {
 	const {
@@ -19,19 +20,64 @@ const Cart = () => {
 	const totalDiscount = (
 		getTotalCartAmount() - getTotalCartDiscountAmount()
 	).toFixed(2)
-	const subtotal = getTotalCartAmount()
-	// const taxAmount = subtotal * 0.05 // 5% tax
-	const taxAmount = (subtotal * 0.05).toFixed(2)
-	// const totalPrice = getTotalCartAmount() - totalDiscount + taxAmount
-	const totalPrice = (
-		getTotalCartAmount() -
-		totalDiscount +
-		parseFloat(taxAmount)
-	).toFixed(2)
+
 
 	// console.log("this is cart", all_product)
 
 	const navigate = useNavigate()
+
+	const [shippingAddresses, setShippingAddresses] = useState([]);
+	const [loading, setLoading] = useState(false);
+	const [selectedAddress, setSelectedAddress] = useState(null);
+	const [cartItem, setCartItem] = useState([]);
+	const [cartPoductList, setCartProductList] = useState([])
+	const [coupanCode, setCoupanCode] = useState(null)
+
+
+
+	const fetchShippingAddresses = async () => {
+		try {
+			setLoading(true);
+			const response = await makeApi("/api/get-my-shiped-address", "GET");
+			setShippingAddresses(response.data.shipedaddress);
+			setLoading(false);
+		} catch (error) {
+			console.error("Error fetching shipping addresses: ", error);
+			setLoading(false);
+		}
+	}
+	useEffect(() => {
+		const fetchCartItem = async () => {
+			const response = await makeApi("/api/my-cart", "GET");
+			setCartItem(response.data);
+			setCartProductList(response.data.orderItems)
+
+		}
+		fetchCartItem();
+	}, []);
+	// action
+	console.log("coupanCode",coupanCode)
+	const SubmitCoupan = async (e) => {
+		e.preventDefault();
+		try {
+			const applyCoupan = await makeApi("/api/apply-coupon", "POST", {
+				coupanCode: coupanCode
+			})
+			console.log(applyCoupan.data.message)
+		} catch (error) {
+			console.log(error)
+		}
+
+	}
+	const handleAddressSelect = (address) => {
+		setSelectedAddress(address);
+	}
+
+	// calling getting data
+	useEffect(() => {
+		fetchShippingAddresses();
+	}, []);
+
 	return (
 		<div className="cart-container">
 			<div className="cart-item">
@@ -45,73 +91,57 @@ const Cart = () => {
 				</div>
 				<br />
 				<hr />
-				{all_product.map((item, i) => {
-					if (cartItems[item._id] > 0) {
-						return (
-							<div>
-								<div className="cart-items-title cart-items-item">
-									<img
-										src={item.thumbnail}
-										alt=""
-									/>
-									<p>{item.name}</p>
-									<p>₹{item.price}</p>
-									<p>{cartItems[item._id]}</p>
-									<p>₹{item.price * cartItems[item._id]}</p>
-									<p
-										className="cross"
-										onClick={() => removeFromCart(item._id)}
-									>
-										<img
-											className="remove-cart"
-											src={assets.cart_remove}
-											alt=""
-										/>
-									</p>
-								</div>
-								{/* <hr /> */}
-							</div>
-						)
-					}
-				})}
+				{cartPoductList && cartPoductList.map((item, index) => (
+
+					<div key={index} >
+						<div className="cart-items-title cart-items-item">
+							<img
+								src={item.productId.thumbnail}
+								alt=""
+							/>
+							<p>{item.productId.name}</p>
+							<p>₹{item.productId.price}</p>
+							<p>{item.quantity}</p>
+							<p>₹{item.totalPrice}</p>
+							<p
+								className="cross"
+								onClick={() => removeFromCart(item._id)}
+							>
+								<img
+									className="remove-cart"
+									src={assets.cart_remove}
+									alt=""
+								/>
+							</p>
+						</div>
+						{/* <hr /> */}
+					</div>
+
+				))}
 			</div>
 			<div className="cart-bottomm">
 				<div className="cart-address">
 					<h2>ADDRESS</h2>
 					<div className="cart-shipping-address">
-						<div className="cart-shipping-address-button">
-							<input type="checkbox" />
-							<div>
-								<button onClick={() => navigate("/shipping-address")}>
-									Edit
-								</button>
-								<button>Delete</button>
+
+						{!loading && shippingAddresses.map((address, index) => (
+							<div key={index} className="address-item">
+								<input
+									type="radio"
+									id={`address-${index}`}
+									name="shipping-address"
+									value={address._id}
+									checked={selectedAddress === address}
+									onChange={() => handleAddressSelect(address)}
+									className='address-radio'
+								/>
+								<label htmlFor={`address-${index}`} className="address-label" >
+									{`${address.firstname} ${address.lastname}, ${address.address}, ${address.city}, ${address.state}, ${address.country}`}
+								</label>
 							</div>
-						</div>
-						<p>
-							7297,Street No. 6, 22ft road, durga puri, haibowal kalan, near
-							ekam fashion point, ludhiana, punjab, 141001 9501987577
-							<br />
-							<span>96969696</span>
-						</p>
+						))}
 					</div>
-					<div className="cart-shipping-address">
-						<div className="cart-shipping-address-button">
-							<input type="checkbox" />
-							<div>
-								<button onClick={() => navigate("/billing-address")}>
-									Edit
-								</button>
-								<button>Delete</button>
-							</div>
-						</div>
-						<p>
-							7297,Street No. 6, 22ft road, durga puri, haibowal kalan, near
-							ekam fashion point, ludhiana, punjab, 141001 9501987577
-							<br />
-							<span>96969696</span>
-						</p>
-					</div>
+
 				</div>
 				<div className="cart-billing">
 					<div className="cart-order-summary">
@@ -119,7 +149,7 @@ const Cart = () => {
 						<div className="cart-billing-charges">
 							<div className="cart-billing-subtotal">
 								<p>SUBTOTAL</p>
-								<p>₹{getTotalCartAmount()}</p>
+								<p>₹{cartItem.totalPrice}</p>
 							</div>{" "}
 							<div className="cart-billing-discount">
 								<p>DISCOUNT</p>
@@ -127,15 +157,15 @@ const Cart = () => {
 							</div>{" "}
 							<div className="cart-billing-tax">
 								<p>TAX</p>
-								<p>₹{taxAmount}</p>
+								<p>₹{cartItem.taxPrice}</p>
 							</div>{" "}
 							<div className="cart-billing-shipping">
 								<p>SHIPPING</p>
-								<p>FREE</p>
+								<p>{cartItem.shippingPrice}</p>
 							</div>{" "}
 							<div className="cart-billing-shipping">
 								<b>TOTAL</b>
-								<b>₹{totalPrice}</b>
+								<b>₹{cartItem.TotalProductPrice}</b>
 							</div>
 						</div>
 						<button onClick={() => navigate("./checkoutpayment")}>
@@ -152,8 +182,10 @@ const Cart = () => {
 							<input
 								type="text"
 								placeholder="COUPON CODE"
+								value={coupanCode}
+								onChange={(e) => setCoupanCode(e.target.value)}
 							/>
-							<button>APPLY</button>
+							<button onClick={(e) => SubmitCoupan(e)}>APPLY</button>
 						</div>
 					</div>
 				</div>
@@ -163,3 +195,6 @@ const Cart = () => {
 }
 
 export default Cart
+
+
+// add address api

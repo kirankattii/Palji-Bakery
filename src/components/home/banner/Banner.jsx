@@ -174,7 +174,7 @@ const Banner = () => {
 								<div className="banner-item-cart">
 									{!cartItems[item.id] ? (
 										<div
-											className="banner-item-addto-cart"
+											className="banner-item-addto-cart bg-black"
 											style={{ backgroundColor: backgroundCart }}
 											onClick={() => addToCart(item.id)}
 										>
