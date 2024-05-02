@@ -28,7 +28,7 @@ function Product() {
 					element={<ProductDetails />}
 				/>
 			</Routes>
-			<Ecombar />
+			{/* <Ecombar /> */}
 		</div>
 	)
 }

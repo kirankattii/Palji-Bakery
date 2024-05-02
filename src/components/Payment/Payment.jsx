@@ -1,144 +1,215 @@
-import React from "react"
+import React, { useEffect, useState } from "react"
 import "./payment.css"
 import { assets } from "../../assets/assets"
+import Orderbar from "../orderbar/orderbar.jsx"
+
+import CartCalculation from "../CartCalculation/cartCalculation.jsx"
+import { useNavigate } from "react-router-dom"
+import SucessGIF from "../../assets/cupcakes.png"
+import Primaryloader from "../loaders/primaryloader.jsx"
+import { makeApi } from "../../api/callApi"
 
 const Payment = () => {
-   
+	const navigation = useNavigate()
+	const [shippingAddresses, setShippingAddresses] = useState([])
+	const [selectedAddress, setSelectedAddress] = useState(null)
+	const [selectPaymentMethod, setSelectPaymentMethod] = useState(null)
+	const [loading, setLoading] = useState(false)
+	const [cartItem, setCartItem] = useState([])
+	const [currentPage, setCurrentPage] = useState("CHECKOUT")
+	const [orderPlaced, setOrderPlaced] = useState(false)
+
+	useEffect(() => {
+		const fetchCartItem = async () => {
+			const response = await makeApi("/api/my-cart", "GET")
+			setCartItem(response.data)
+		}
+		fetchCartItem()
+	}, [])
+
+	const fetchShippingAddresses = async () => {
+		try {
+			setLoading(true)
+			const response = await makeApi("/api/get-my-shiped-address", "GET")
+			setShippingAddresses(response.data.shipedaddress)
+			setLoading(false)
+		} catch (error) {
+			console.error("Error fetching shipping addresses: ", error)
+			setLoading(false)
+		}
+	}
+
+	useEffect(() => {
+		fetchShippingAddresses()
+	}, [])
+
+	const handleAddressSelect = (address) => {
+		setSelectedAddress(address)
+	}
+
+	const handlepaymentmethodSelect = (payment) => {
+		setSelectPaymentMethod(payment)
+	}
+
+	const handleSubmit = async (event) => {
+		event.preventDefault()
+		const data = {
+			shippingAddress: selectedAddress,
+			paymentMethod: selectPaymentMethod,
+			CartId: cartItem._id,
+		}
+		try {
+			setLoading(true)
+			const response = await makeApi("/api/create-second-order", "POST", data)
+			setOrderPlaced(true)
+			setTimeout(() => {
+				setOrderPlaced(false)
+				navigation("/product/all-products")
+			}, 5000)
+		} catch (error) {
+			console.error("Error fetching shipping addresses: ", error)
+		} finally {
+			setLoading(false)
+		}
+	}
 	return (
 		<div className="payment">
-			<div className="cart-item">
-				<div className="cart-items-title cart-items-title2">
-					<p>Items</p>
-					<p>Name</p>
-					<p>Price</p>
-					<p>Qty</p>
-					<p>Total:</p>
+			{orderPlaced && (
+				<div className="success-gif-container">
+					<img
+						src={SucessGIF}
+						alt="Success GIF"
+						className="success-gif"
+					/>
 				</div>
-				<br />
-				<hr /> 
-
+			)}
+			{!orderPlaced && (
 				<div>
-				{cartPoductList && cartPoductList.map((item,index) => (
-
-					<div className="cart-items-title cart-items-item">
-						<img
-							src={assets.userprofile_icon}
-							alt=""
-						/>
-						<p>{"name"}</p>
-						<p>₹ {item.productId.price}</p>
-						<p>{5}</p>
-						<p>₹{120}</p>
-					</div>
-                                ))}
-
-					{/* <hr /> */}
-				</div>
-			</div>
-			<div className="cart-bottomm">
-				<div className="cart-address">
-					<h2>ADDRESS</h2>
-					<div className="cart-shipping-address">
-						<div className="cart-shipping-address-button">
-							<input type="checkbox" />
-							<div>
-								<button onClick={() => navigate("/shipping-address")}>
-									Edit
-								</button>
-								<button>Delete</button>
-							</div>
-						</div>
-						<p>
-							7297,Street No. 6, 22ft road, durga puri, haibowal kalan, near
-							ekam fashion point, ludhiana, punjab, 141001 9501987577
-							<br />
-							<span>96969696</span>
-						</p>
-					</div>
-					<div className="cart-shipping-address">
-						<div className="cart-shipping-address-button">
-							<input type="checkbox" />
-							<div>
-								<button onClick={() => navigate("/billing-address")}>
-									Edit
-								</button>
-								<button>Delete</button>
-							</div>
-						</div>
-						<p>
-							7297,Street No. 6, 22ft road, durga puri, haibowal kalan, near
-							ekam fashion point, ludhiana, punjab, 141001 9501987577
-							<br />
-							<span>96969696</span>
-						</p>
-					</div>
-					<div className="two-payment">
-						<h2>Payment Method:</h2>
+					{/* {currentPage === "CHECKOUT" ? (
 						<div>
-							<div className="payment1">
-								<input type="checkbox" />
-								<img
-									src={assets.rozerpay}
-									alt=""
+							<div>
+								<Orderbar activeOptionName="CHECKOUT" />
+							</div>
+							<div className="main_checkout_div">
+						
+								<div className="shipping-address-container Order_page_display_none ">
+									<div className="shipping-address-title">Shipping Address</div>
+									<div className="shipping-address-list">
+										{loading && (
+											<div>
+												{" "}
+												<Primaryloader />{" "}
+											</div>
+										)}
+										{!loading &&
+											shippingAddresses.map((address, index) => (
+												<div
+													key={index}
+													className="address-item"
+												>
+													<input
+														type="radio"
+														id={`address-${index}`}
+														name="shipping-address"
+														value={address._id}
+														checked={selectedAddress === address}
+														onChange={() => handleAddressSelect(address)}
+														className="address-radio"
+													/>
+													<label
+														htmlFor={`address-${index}`}
+														className="address-label"
+													>
+														{`${address.firstname} ${address.lastname}, ${address.address}, ${address.city}, ${address.state}, ${address.country}`}
+													</label>
+												</div>
+											))}
+									</div>
+								</div>
+						
+								<div onClick={() => setCurrentPage("PAYMENT")}>
+									<CartCalculation
+										tax={cartItem.taxPrice}
+										shipping={cartItem.shippingPrice}
+										total={cartItem.totalPrice}
+										CoupanApplied={cartItem.Iscoupanapplied}
+										Final={cartItem.TotalProductPrice}
+										ButtonName="PROCEED TO PAYMENT"
+									/>
+								</div>
+							</div>
+						</div>
+					) : ( */}
+					<div>
+						<div>
+							<Orderbar activeOptionName="PAYMENT" />
+						</div>
+
+						<div className="main_checkout_div">
+							<div className="shipping-address-container">
+								<div className="shipping-address-title">Payment Method</div>
+								<div>
+									<div
+										className="address-item"
+										onClick={() =>
+											handlepaymentmethodSelect("Cash On Delievery")
+										}
+									>
+										<input
+											type="radio"
+											id={`Cash On Delievery`}
+											name="shipping-address"
+											value="Cash On Delievery"
+											checked={selectPaymentMethod === "Cash On Delievery"}
+											onChange={() =>
+												handlepaymentmethodSelect("Cash On Delievery")
+											}
+											className="address-radio"
+										/>
+										<label
+											htmlFor={`payment`}
+											className="address-label"
+										>
+											Cash On Delievery
+										</label>
+									</div>
+									<div
+										className="address-item"
+										onClick={() => handlepaymentmethodSelect("Razorpay")}
+									>
+										<input
+											type="radio"
+											id={`Razorpay`}
+											name="shipping-address"
+											value="Razorpay"
+											checked={selectPaymentMethod === "Razorpay"}
+											onChange={() => handlepaymentmethodSelect("Razorpay")}
+											className="address-radio"
+										/>
+										<label
+											htmlFor={`payment`}
+											className="address-label"
+										>
+											Razorpay
+										</label>
+									</div>
+								</div>
+							</div>
+							<div onClick={(e) => handleSubmit(e)}>
+								<CartCalculation
+									tax={cartItem.taxPrice}
+									shipping={cartItem.shippingPrice}
+									total={cartItem.totalPrice}
+									CoupanApplied={cartItem.Iscoupanapplied}
+									Final={cartItem.TotalProductPrice}
+									ButtonName="PLACE ORDER"
 								/>
-								<p>RAZORRPAY</p>
-							</div>
-							<div className="payment1">
-								<input type="checkbox" />
-								<img
-									src={assets.cashDelivery}
-									alt=""
-								/>
-								<p>CASH ON DELIVERY</p>
 							</div>
 						</div>
 					</div>
+					{/* )} */}
 				</div>
-				<div className="cart-billing">
-					<div className="cart-order-summary">
-						<h2>order summary</h2>
-						<div className="cart-billing-charges">
-							<div className="cart-billing-subtotal">
-								<p>SUBTOTAL</p>
-								<p>₹{cartItem.taxPrice}</p>
-							</div>{" "}
-							<div className="cart-billing-discount">
-								<p>DISCOUNT</p>
-								<p>₹{0}</p>
-							</div>{" "}
-							<div className="cart-billing-tax">
-								<p>TAX</p>
-								<p>₹{0}</p>
-							</div>{" "}
-							<div className="cart-billing-shipping">
-								<p>SHIPPING</p>
-								<p>FREE</p>
-							</div>{" "}
-							<div className="cart-billing-shipping">
-								<b>TOTAL</b>
-								<b>₹{}</b>
-							</div>
-						</div>
-						<button onClick={() => navigate("./checkoutpayment")}>
-							proceed to checkout
-						</button>
-						<hr />
-						<p className="cart-delivery-day">
-							estimated delivery by <span>29 february, 24</span>
-						</p>
-					</div>
-					<div className="cart-promocode">
-						<h2>HAVE A COUPON ?</h2>
-						<div className="cart-promocode-input">
-							<input
-								type="text"
-								placeholder="COUPON CODE"
-							/>
-							<button>APPLY</button>
-						</div>
-					</div>
-				</div>
-			</div>
+			)}
 		</div>
 	)
 }

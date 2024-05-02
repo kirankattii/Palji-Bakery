@@ -63,6 +63,7 @@
   background: transparent;
   border: 0;
   outline: 0;
+  width: 50%;
   border-radius: 10px;
   border: 2px solid #000;
   border-radius: 50px;
@@ -74,8 +75,19 @@
 .checkout-shipping-address {
   display: flex;
   /* align-items: center; */
+  flex-direction: column;
   gap: 20px;
+  width: 60%;
+
   margin-left: -30px;
+}
+
+.address-item {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  /* margin-top: 10px; */
+
 }
 
 .checkout-shipping-address h2 {

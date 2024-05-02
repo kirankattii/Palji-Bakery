@@ -118,13 +118,13 @@ const Products = () => {
 					className="product-slide"
 				>
 					<div>
-						<Sliders productInfo={product1} />
+						<Sliders products={product1} />
 					</div>
 					<div>
-						<Sliders productInfo={product2} />
+						<Sliders products={product2} />
 					</div>
 					<div>
-						<Sliders productInfo={product3} />
+						<Sliders products={product3} />
 					</div>
 				</Slider>
 			</div>

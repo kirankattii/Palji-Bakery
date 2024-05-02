@@ -9,7 +9,9 @@
 }
 
 
-
+.banner-cart-button {
+  background: transparent;
+}
 
 .palji-banners {
   display: flex;

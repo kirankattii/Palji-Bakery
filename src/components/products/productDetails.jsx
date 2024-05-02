@@ -5,7 +5,7 @@ import { useNavigate, useParams } from "react-router-dom"
 import "../../pages/CSS/product/productDetails.css"
 
 import AddIcon from "../../assets/add_icon_green.png"
-import RemoveIcon from "../../assets/add_icon_white.png"
+import RemoveIcon from "../../assets/remove_icon_red.png"
 import Primaryloader from "../loaders/primaryloader.jsx"
 import BackButton from "./backButton.jsx"
 import HorizotalLoader from "../loaders/horizotalLoader.jsx"
@@ -234,22 +234,22 @@ function ProductDetails() {
 										</div>
 									</div>
 									{/* <button onClick={() => addToCart(id)}>ADD To CART</button> */}
-									<div className="productdisplay-item-cart">
+									<div className="productdisplay-item-cart productdisplay-item-car1">
 										{!isInCart ? (
 											<>
-												{AddTocartLoader ? (
+												{/* {AddTocartLoader ? (
 													<div>
 														{" "}
 														<HorizotalLoader />{" "}
 													</div>
-												) : (
-													<div
-														className="productdisplay-item-addto-cart "
-														onClick={() => addToCart(product._id)}
-													>
-														ADD TO CART
-													</div>
-												)}
+												) : ( */}
+												<div
+													className="productdisplay-item-addto-cart "
+													onClick={() => addToCart(product._id)}
+												>
+													ADD TO CART
+												</div>
+												{/* )} */}
 											</>
 										) : (
 											<div className="productdisplay-food-item-counter">
@@ -258,17 +258,17 @@ function ProductDetails() {
 													src={RemoveIcon}
 													alt=""
 												/>
-												{AddTocartLoader ? (
+												{/* {AddTocartLoader ? (
 													<div className="w-50 ">
 														{" "}
 														<HorizotalLoader />{" "}
 													</div>
-												) : (
-													<p className="productdisplay-cart-item-no">
-														{/* {cartItems[product._id]} */}
-														<span>{getProductQuantity(product._id)}</span>
-													</p>
-												)}
+												) : ( */}
+												<p className="productdisplay-cart-item-no">
+													{/* {cartItems[product._id]} */}
+													<span>{getProductQuantity(product._id)}</span>
+												</p>
+												{/* )} */}
 												<img
 													onClick={() => addToCart(product._id)}
 													src={AddIcon}
@@ -277,7 +277,12 @@ function ProductDetails() {
 											</div>
 										)}
 									</div>
-									<button onClick={() => handleBuyNow()}>BUY NOW</button>
+									<button
+										className="buy-now-btn"
+										onClick={() => handleBuyNow()}
+									>
+										BUY NOW
+									</button>
 								</div>
 							</div>
 						</div>

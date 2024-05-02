@@ -21,63 +21,58 @@ const Cart = () => {
 		getTotalCartAmount() - getTotalCartDiscountAmount()
 	).toFixed(2)
 
-
 	// console.log("this is cart", all_product)
 
 	console.log(cartItems)
 	const navigate = useNavigate()
 
-	const [shippingAddresses, setShippingAddresses] = useState([]);
-	const [loading, setLoading] = useState(false);
-	const [selectedAddress, setSelectedAddress] = useState(null);
-	const [cartItem, setCartItem] = useState([]);
+	const [shippingAddresses, setShippingAddresses] = useState([])
+	const [loading, setLoading] = useState(false)
+	const [selectedAddress, setSelectedAddress] = useState(null)
+	const [cartItem, setCartItem] = useState([])
 	const [cartPoductList, setCartProductList] = useState([])
 	const [coupanCode, setCoupanCode] = useState(null)
 
-
-
 	const fetchShippingAddresses = async () => {
 		try {
-			setLoading(true);
-			const response = await makeApi("/api/get-my-shiped-address", "GET");
-			setShippingAddresses(response.data.shipedaddress);
-			setLoading(false);
+			setLoading(true)
+			const response = await makeApi("/api/get-my-shiped-address", "GET")
+			setShippingAddresses(response.data.shipedaddress)
+			setLoading(false)
 		} catch (error) {
-			console.error("Error fetching shipping addresses: ", error);
-			setLoading(false);
+			console.error("Error fetching shipping addresses: ", error)
+			setLoading(false)
 		}
 	}
 	useEffect(() => {
 		const fetchCartItem = async () => {
-			const response = await makeApi("/api/my-cart", "GET");
-			setCartItem(response.data);
+			const response = await makeApi("/api/my-cart", "GET")
+			setCartItem(response.data)
 			setCartProductList(response.data.orderItems)
-
 		}
-		fetchCartItem();
-	}, []);
+		fetchCartItem()
+	}, [])
 	// action
-	console.log("coupanCode",coupanCode)
+	console.log("coupanCode", coupanCode)
 	const SubmitCoupan = async (e) => {
-		e.preventDefault();
+		e.preventDefault()
 		try {
 			const applyCoupan = await makeApi("/api/apply-coupon", "POST", {
-				coupanCode: coupanCode
+				coupanCode: coupanCode,
 			})
 			console.log(applyCoupan.data.message)
 		} catch (error) {
 			console.log(error)
 		}
-
 	}
 	const handleAddressSelect = (address) => {
-		setSelectedAddress(address);
+		setSelectedAddress(address)
 	}
 
 	// calling getting data
 	useEffect(() => {
-		fetchShippingAddresses();
-	}, []);
+		fetchShippingAddresses()
+	}, [])
 
 	return (
 		<div className="cart-container">
@@ -92,40 +87,38 @@ const Cart = () => {
 				</div>
 				<br />
 				<hr />
-				{cartPoductList && cartPoductList.map((item, index) => (
-
-					<div key={index} >
-						<div className="cart-items-title cart-items-item">
-							<img
-								src={item.productId.thumbnail}
-								alt=""
-							/>
-							<p>{item.productId.name}</p>
-							<p>₹{item.productId.price}</p>
-							<p>{item.quantity}</p>
-							<p>₹{item.totalPrice}</p>
-							<p
-								className="cross"
-								onClick={() => removeFromCart(item._id)}
-							>
+				{cartPoductList &&
+					cartPoductList.map((item, index) => (
+						<div key={index}>
+							<div className="cart-items-title cart-items-item">
 								<img
-									className="remove-cart"
-									src={assets.cart_remove}
+									src={item.productId.thumbnail}
 									alt=""
 								/>
-							</p>
+								<p>{item.productId.name}</p>
+								<p>₹{item.productId.price}</p>
+								<p>{item.quantity}</p>
+								<p>₹{item.totalPrice}</p>
+								<p
+									className="cross"
+									onClick={() => removeFromCart(item._id)}
+								>
+									<img
+										className="remove-cart"
+										src={assets.cart_remove}
+										alt=""
+									/>
+								</p>
+							</div>
+							{/* <hr /> */}
 						</div>
-						{/* <hr /> */}
-					</div>
-
-				))}
+					))}
 			</div>
 			<div className="cart-bottomm">
 				<div className="cart-address">
-					<h2>ADDRESS</h2>
+					{/* <h2>ADDRESS</h2> */}
 					<div className="cart-shipping-address">
-
-						{!loading && shippingAddresses.map((address, index) => (
+						{/* {!loading && shippingAddresses.map((address, index) => (
 							<div key={index} className="address-item">
 								<input
 									type="radio"
@@ -140,9 +133,8 @@ const Cart = () => {
 									{`${address.firstname} ${address.lastname}, ${address.address}, ${address.city}, ${address.state}, ${address.country}`}
 								</label>
 							</div>
-						))}
+						))} */}
 					</div>
-
 				</div>
 				<div className="cart-billing">
 					<div className="cart-order-summary">
@@ -177,7 +169,7 @@ const Cart = () => {
 							estimated delivery by <span>29 february, 24</span>
 						</p>
 					</div>
-					<div className="cart-promocode">
+					{/* <div className="cart-promocode">
 						<h2>HAVE A COUPON ?</h2>
 						<div className="cart-promocode-input">
 							<input
@@ -188,7 +180,7 @@ const Cart = () => {
 							/>
 							<button onClick={(e) => SubmitCoupan(e)}>APPLY</button>
 						</div>
-					</div>
+					</div> */}
 				</div>
 			</div>
 		</div>
@@ -196,6 +188,5 @@ const Cart = () => {
 }
 
 export default Cart
-
 
 // add address api

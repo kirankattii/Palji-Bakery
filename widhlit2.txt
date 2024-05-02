@@ -1,28 +1,49 @@
-import React, { useEffect, useState } from "react"
-// import "../../styles/product/allproduct.css"
-import "../../pages/CSS/product/allproduct.css"
-
+import React, { useContext, useEffect, useState } from "react"
+import { makeApi } from "../../api/callApi"
+import "./myWatchlist.css"
 import { IoIosHeart } from "react-icons/io"
-
-import AddIcon from "../../assets/add_icon_green.png"
-import RemoveIcon from "../../assets/add_icon_white.png"
-// import Primaryloader from "../loaders/primaryloader.jsx"
+import { Link } from "react-router-dom"
+import { ShopContext } from "../../context/ShopContext"
 import Primaryloader from "../loaders/primaryloader.jsx"
-
 import Heartloader from "../loaders/hearloader.jsx"
 import HorizotalLoader from "../loaders/horizotalLoader.jsx"
-import { Link } from "react-router-dom"
-import LoginPopup from "../login/Login.jsx"
-// import { makeApi } from "../../api/callApi.js"
-import { makeApi } from "../../api/callApi"
-// import { makeApi } from "../"
-function Allproduct({ search, category, minPrice, maxPrice }) {
-	const [products, setProducts] = useState([])
-	const [loading, setLoading] = useState(false)
-	const [wishlistItems, setWishlistItems] = useState([])
-	const [cartItems, setCartItems] = useState([])
-	const [ResultPerPage, setResultPerPage] = useState(26)
+import { assets } from "../../assets/assets"
 
+const MyWatchlist = ({ search, category, minPrice, maxPrice }) => {
+	// const [wishlistItems, setWishlistItems] = useState([])
+	// const [loading, setLoading] = useState(false)
+	// const { all_product, cartItems, addToCart, removeFromCart } =
+	// 	useContext(ShopContext)
+	// useEffect(() => {
+	// 	const fetchWishlist = async () => {
+	// 		try {
+	// 			const response = await makeApi(`/api/get-my-wishlist`, "GET")
+	// 			setWishlistItems(response.data.wishlist)
+	// 		} catch (error) {
+	// 			console.log(error)
+	// 		}
+	// 	}
+	// 	fetchWishlist()
+	// }, [])
+
+	// const toggleWishlist = async (productId) => {
+	// 	try {
+	// 		const method = "POST"
+	// 		const endpoint = `/api/create-wishlist/${productId}`
+	// 		const data = await makeApi(endpoint, method)
+	// 		console.log(data.data)
+	// 		setWishlistItems(
+	// 			wishlistItems.filter((item) => item.products._id !== productId)
+	// 		)
+	// 	} catch (error) {
+	// 		console.log(error)
+	// 	}
+	// }
+	const [products, setProducts] = useState([])
+	const [wishlistItems, setWishlistItems] = useState([])
+	const [watchlistProducts, setWatchlistProducts] = useState([])
+	const [cartItems, setCartItems] = useState([])
+	const [ResultPerPage, setResultPerPage] = useState(20)
 	const [currentPage, setCurrentPage] = useState(1)
 	const [totalPages, setTotalPages] = useState(0)
 	const [toalProduct, setToalProduct] = useState(0)
@@ -45,10 +66,7 @@ function Allproduct({ search, category, minPrice, maxPrice }) {
 	const fetchProduct = async () => {
 		try {
 			setAllProductLoader(true)
-			const response = await makeApi(
-				`/api/get-all-products?name=${search}&category=${category}&minPrice=${minPrice}&maxPrice=${maxPrice}&page=${currentPage}&perPage=${ResultPerPage}&IsOutOfStock=false`,
-				"GET"
-			)
+			const response = await makeApi(`/api/get-all-products`, "GET")
 			setProducts(response.data.products)
 			setToalProduct(response.data.totalProducts)
 		} catch (error) {
@@ -80,6 +98,7 @@ function Allproduct({ search, category, minPrice, maxPrice }) {
 			try {
 				setAddToWishlistLoader(true)
 				const response = await makeApi("/api/get-my-wishlist", "GET")
+				setWatchlistProducts(response.data.wishlist)
 				const wishlistIds = response.data.wishlist
 					.filter((item) => item.products !== null)
 					.map((item) => item.products._id)
@@ -193,125 +212,84 @@ function Allproduct({ search, category, minPrice, maxPrice }) {
 	}
 
 	return (
-		<>
-			{showPopup && <LoginPopup onClose={closePopup} />}
+		<div className="myWatchlist">
+			<div className="userprofile-heading">
+				<h1>MY WISHLIST</h1>
+			</div>
 
-			<div className="top_parent_div_all_product">
-				{AllProductLoader ? (
-					<div className="All_Product_loader">
-						<div className="">
-							<Primaryloader />
-						</div>
-					</div>
-				) : (
-					<div className="">
-						<div className="main_all_product_div">
-							{products.map((product, index) => (
-								<div
-									className="product_div_all_product_parent"
-									key={index}
-								>
-									<div className="product_div_all_product">
-										<Link to={`/product/product-details/${product._id}`}>
-											<div>
-												<img
-													src={product.thumbnail}
-													alt="product"
-													className="all_product_product_thumbnail"
-													loading="lazy"
-												/>
-											</div>
-										</Link>
-										<div className="product_name_and_price">
-											<div>{product.name}</div>
-											<div>₹{product.PriceAfterDiscount}</div>
-										</div>
-										<div className="Add_to_cart_and_watchlist_button">
-											<>
-												{isInCart(product._id) ? (
-													<div className="Add_to_cart_and_watchlist_child">
-														{AddTocartLoader ? (
-															<div>
-																{" "}
-																<HorizotalLoader />{" "}
-															</div>
-														) : (
-															<div className="cart-quantity">
-																<img
-																	src={RemoveIcon}
-																	alt="AddIcon"
-																	className="Icon_add_to_cart"
-																	onClick={() => removeFromCart(product._id)}
-																/>
-																<span>{getProductQuantity(product._id)}</span>
-																<img
-																	src={AddIcon}
-																	alt="AddIcon"
-																	className="Icon_add_to_cart"
-																	onClick={() => addToCart(product._id)}
-																/>
-															</div>
-														)}
-													</div>
-												) : (
-													<div>
-														{AddTocartLoader ? (
-															<div>
-																{" "}
-																<HorizotalLoader />{" "}
-															</div>
-														) : (
-															<div
-																className="Add_to_cart_button"
-																onClick={() => addToCart(product._id)}
-															>
-																Add to Cart
-															</div>
-														)}
-													</div>
-												)}
-											</>
-
-											<div className="Add_to_cart_and_watchlist_child">
-												{AddToWishlistLoader ? (
-													<div className="heart_loader_all_product">
-														{" "}
-														<Heartloader />
-													</div>
-												) : (
-													<IoIosHeart
-														className={`watchlist-icon pointer-event ${
-															wishlistItems.includes(product._id)
-																? "wishlist-active"
-																: ""
-														}`}
-														onClick={() => toggleWishlist(product._id)}
-													/>
-												)}
-											</div>
+			{wishlistItems.length === 0 ? (
+				<div className="text-center">
+					<h2>Your wishlist is empty</h2>
+				</div>
+			) : (
+				<div className="userprofile-heading wishlist-items">
+					{watchlistProducts?.map((item, index) => {
+						return (
+							<div
+								className="item wishlist-item-card"
+								key={index}
+							>
+								<div className="item-card ">
+									<IoIosHeart
+										className={`watchlist-icon pointer-event wishlist-active`}
+										onClick={() => toggleWishlist(item?.products?._id)}
+									/>
+									{/* <Link to={`/openproduct/${item?.products?._id}`}> */}
+									<Link to={`/productdisplay/${item?.products?._id}`}>
+										<img
+											src={item?.products?.thumbnail}
+											alt=""
+										/>
+									</Link>
+									<div className="item-price-name">
+										<p className="item-name">{item?.products?.name}</p>
+										<div className="old-new-price">
+											<p className="old-item-price">
+												₹{item?.products?.PriceAfterDiscount}
+											</p>
+											<p className="new-item-price">₹{item?.products?.price}</p>
 										</div>
 									</div>
+
+									{/* You need to handle cartItems and addToCart/removeFromCart */}
+
+									<div className="item-cart">
+										{!isInCart[item?.products?._id] ? (
+											<div
+												className="item-addto-cart "
+												onClick={() => addToCart(item?.products._id)}
+											>
+												ADD TO CART
+											</div>
+										) : (
+											<div className="food-item-counter">
+												<img
+													// onClick={() => removeFromCart(item?.products?._id)}
+													onClick={() => removeFromCart(item.products._id)}
+													src={assets.add_icon_red}
+													alt=""
+												/>
+												<p className="cart-item-no">
+													{cartItems[item?.products?._id]}
+												</p>
+												<img
+													onClick={() => addToCart(item?.products?._id)}
+													src={assets.add_icon_green}
+													alt=""
+												/>
+											</div>
+										)}
+									</div>
+
+									{/* You need to handle cartItems and addToCart/removeFromCart */}
 								</div>
-							))}
-						</div>
-						<div className="pagination">
-							{Array.from({ length: totalPages }, (_, index) => index + 1).map(
-								(pageNumber) => (
-									<button
-										key={pageNumber}
-										className={pageNumber === currentPage ? "active" : ""}
-										onClick={() => handlePageClick(pageNumber)}
-									>
-										{pageNumber}
-									</button>
-								)
-							)}
-						</div>
-					</div>
-				)}
-			</div>
-		</>
+							</div>
+						)
+					})}
+				</div>
+			)}
+		</div>
 	)
 }
 
-export default Allproduct
+export default MyWatchlist

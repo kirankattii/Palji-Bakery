@@ -26,7 +26,7 @@ const MyOrders = () => {
 	}, [])
 	// console.log(orderStatus) // Check if orderStatus is populated correctly
 
-	// console.log("Order status", orderStatus)
+	console.log("Order status", orderStatus)
 	return (
 		<div className="myorders">
 			<div className="userprofile-heading">

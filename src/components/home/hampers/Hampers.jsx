@@ -27,23 +27,67 @@ function Arrow(props) {
 const Hampers = () => {
 	const [products, setProducts] = useState([])
 
-	useEffect(() => {
-		async function fetchCategories() {
-			try {
-				// setLoading(true)
-				const response = await makeApi(
-					"/api/get-all-products-by-category/65f3c6cf7fd052885f56d584",
-					"GET"
-				)
-				if (response.status === 200) {
-					setProducts(response.data.products)
-				}
-			} catch (error) {
-				console.log("Error fetching categories:", error)
-			}
-		}
-		fetchCategories()
-	}, [])
+	// useEffect(() => {
+	// 	async function fetchCategories() {
+	// 		try {
+	// 			// setLoading(true)
+	// 			const response = await makeApi(
+	// 				"/api/get-all-products-by-category/65f3c6cf7fd052885f56d584",
+	// 				"GET"
+	// 			)
+	// 			if (response.status === 200) {
+	// 				setProducts(response.data.products)
+	// 			}
+	// 		} catch (error) {
+	// 			console.log("Error fetching categories:", error)
+	// 		}
+	// 	}
+	// 	fetchCategories()
+	// }, [])
+
+	// const addToCart = async (productId) => {
+	// 	try {
+	// 		const response = await makeApi("/api/add-to-cart", "POST", {
+	// 			productId,
+	// 			quantity: 1,
+	// 		})
+	// 		if (response.status === 200) {
+	// 			// Handle success, maybe show a message
+	// 			console.log("Product added to cart successfully")
+	// 		}
+	// 	} catch (error) {
+	// 		console.log("Error adding product to cart:", error)
+	// 	}
+	// }
+
+	// const removeFromCart = async (productId) => {
+	// 	try {
+	// 		const response = await makeApi("/api/remove-from-cart", "POST", {
+	// 			productId,
+	// 		})
+	// 		if (response.status === 200) {
+	// 			// Handle success, maybe show a message
+	// 			console.log("Product removed from cart successfully")
+	// 		}
+	// 	} catch (error) {
+	// 		console.log("Error removing product from cart:", error)
+	// 	}
+	// }
+
+	// const getProductQuantity = async (productId) => {
+	// 	try {
+	// 		const response = await makeApi(
+	// 			`/api/get-product-quantity/${productId}`,
+	// 			"GET"
+	// 		)
+	// 		if (response.status === 200) {
+	// 			return response.data.quantity
+	// 		}
+	// 	} catch (error) {
+	// 		console.log("Error fetching product quantity:", error)
+	// 	}
+	// 	return 0
+	// }
 
 	const settings = {
 		className: "center",
@@ -103,7 +147,12 @@ const Hampers = () => {
 					{products?.map((items) => {
 						return (
 							<div key={items._id}>
-								<Gifts products={items} />
+								<Gifts
+									products={items}
+									// addToCart={addToCart}
+									// removeFromCart={removeFromCart}
+									// getProductQuantity={getProductQuantity}
+								/>
 							</div>
 						)
 					})}
