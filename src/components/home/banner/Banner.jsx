@@ -289,7 +289,7 @@ const Banner = () => {
 											<h2>{item.name}</h2>
 											<p>Premium Cookies</p>
 										</div>
-										<p>{item.description}</p>
+										<p className="contents">{item.description}</p>
 									</div>
 									<div
 										className="cart5"

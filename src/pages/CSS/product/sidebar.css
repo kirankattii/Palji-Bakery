@@ -5,6 +5,7 @@
 
 }
 
+
 .main_product_sidebar_div {
   max-width: 300px;
   min-width: 300px;
@@ -194,3 +195,11 @@
 }
 
 /* big screeens e icon remmove krna h */
+
+.main_product_sidebar_div.more_icon_sidebar, .more_icon_sidebar_div {
+  z-index: 25500;
+}
+
+.main_product_sidebar_top_parent_div {
+  z-index: 5000;
+}

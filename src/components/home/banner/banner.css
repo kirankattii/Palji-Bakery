@@ -1,6 +1,6 @@
 .banner {
   width: 100%;
-  height: 100vh;
+  min-height: 100vh;
   background: rgb(255, 107, 107);
   display: flex;
 
@@ -8,6 +8,9 @@
   overflow: hidden;
 }
 
+.contents {
+  font-size: 19px;
+}
 
 .banner-cart-button {
   background: transparent;
@@ -115,7 +118,7 @@
   font-size: 24px;
   font-weight: 500;
   line-height: 35px;
-  letter-spacing: 0em;
+  /* letter-spacing: 0em; */
   text-align: left;
 }
 
@@ -255,6 +258,11 @@
     /* flex-direction: column; */
   }
 
+  .banner {
+    /* margin-bottom: 150px; */
+    padding: 50px 0;
+  }
+
   .arrow-btn {
 
     position: absolute;
@@ -268,9 +276,26 @@
   .arrow-btn img {
     width: 40px;
   }
+
+  .banner {}
+
 }
 
-@media screen and (max-width: 500px) {}
+@media screen and (max-width: 500px) {
+  .right-banner img {
+    width: 300px;
+    margin-top: -30px;
+  }
+
+  .content {
+    margin-top: -50px;
+    font-size: 0px;
+  }
+
+  .contents {
+    margin-top: -20px;
+  }
+}
 
 @media screen and (max-width: 400px) {
   .left-banner .banner-info h2 {
@@ -336,26 +361,26 @@
 
 
 
-
+/* 
 .left-banner .banner-info h2,
 .left-banner .banner-info p {
-  /* opacity: 0; */
+  opacity: 0;
   transform: translateY(-0%);
   transition: opacity 0.5s ease, transform 0.5s ease;
-}
+} */
 
-.left-banner .banner-info .content {
+/* .left-banner .banner-info .content {
   opacity: 0;
   transform: translateY(-50%);
   transition: opacity 0.5s ease, transform 0.5s ease;
-}
+} */
 
-.left-banner .banner-info h2.show,
+/* .left-banner .banner-info h2.show,
 .left-banner .banner-info p.show,
 .left-banner .banner-info .content.show {
   opacity: 1;
   transform: translateY(0);
-}
+} */
 
 /* .left-banner .banner-info h2,
 .left-banner .banner-info p,
