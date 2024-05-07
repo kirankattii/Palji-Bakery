@@ -4,7 +4,7 @@ import { assets } from "../../assets/assets"
 import Orderbar from "../orderbar/orderbar.jsx"
 
 import CartCalculation from "../CartCalculation/cartCalculation.jsx"
-import { useNavigate } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import SucessGIF from "../../assets/Order Placed.gif"
 import Primaryloader from "../loaders/primaryloader.jsx"
 import { makeApi } from "../../api/callApi"
@@ -137,8 +137,8 @@ const Payment = () => {
 									</div>
 								</div>
 							</div>
-							<div onClick={(e) => handleSubmit(e)}>
-								<CartCalculation
+							<div>
+								{/* <CartCalculation
 									tax={cartItem.taxPrice}
 									shipping={cartItem.shippingPrice}
 									total={cartItem.totalPrice}
@@ -146,7 +146,44 @@ const Payment = () => {
 									Final={cartItem.TotalProductPrice}
 									ButtonName="PLACE ORDER"
 									disabled={!selectPaymentMethod}
-								/>
+								/> */}
+								<div className="cart-order-summary">
+									<h2>order summary</h2>
+									<div className="cart-billing-charges">
+										<div className="cart-billing-subtotal">
+											<p>SUBTOTAL</p>
+											<p>
+												₹
+												{cartItem.totalPrice
+													? cartItem.totalPrice.toFixed(2)
+													: "0.00"}
+											</p>
+										</div>{" "}
+										<div className="cart-billing-discount">
+											<p>DISCOUNT</p>
+											<p>₹{0}</p>
+										</div>{" "}
+										<div className="cart-billing-tax">
+											<p>TAX</p>
+											<p>₹{cartItem.taxPrice}</p>
+										</div>{" "}
+										<div className="cart-billing-shipping">
+											<p>SHIPPING</p>
+											<p>{cartItem.shippingPrice}</p>
+										</div>{" "}
+										<div className="cart-billing-shipping">
+											<b>TOTAL</b>
+											<b>₹{cartItem.TotalProductPrice}</b>
+										</div>
+									</div>
+
+									<button onClick={(e) => handleSubmit(e)}>Place Order</button>
+
+									<hr />
+									{/* <p className="cart-delivery-day">
+										Delivery In <span>4 To 5 Days</span>
+									</p> */}
+								</div>
 							</div>
 						</div>
 					</div>

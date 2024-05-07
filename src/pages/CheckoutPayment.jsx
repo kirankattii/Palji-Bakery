@@ -314,11 +314,11 @@ const CheckoutPayment = () => {
 								</div>
 							</div>
 							<div onClick={(e) => ManageCurrnetPage(e)}>
-								<button onClick={handleSubmit}>proceed to checkout</button>
+								<button onClick={handleSubmit}>Proceed To Payment</button>
 							</div>
 							<hr />
 							<p className="cart-delivery-day">
-								estimated delivery by <span>29 february, 24</span>
+								Delivery <span>4 To 5 Days</span>
 							</p>
 						</div>
 						<div className="cart-promocode">

@@ -194,7 +194,7 @@ const MyWatchlist = ({ search, category, minPrice, maxPrice }) => {
 										onClick={() => toggleWishlist(item?.products?._id)}
 									/>
 									{/* <Link to={`/openproduct/${item?.products?._id}`}> */}
-									<Link to={`/productdisplay/${item?.products?._id}`}>
+									<Link to={`/product/product-details/${item?.products?._id}`}>
 										<img
 											src={item?.products?.thumbnail}
 											alt=""

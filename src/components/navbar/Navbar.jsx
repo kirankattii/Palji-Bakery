@@ -175,9 +175,10 @@ const Navbar = () => {
 					</li>
 					<li className="product-navbar">
 						<Link to="/product/all-products">
-							Shop <MdArrowDropDown />
+							Shop
+							{/* <MdArrowDropDown /> */}
 						</Link>
-						<ProductDropdown />
+						{/* <ProductDropdown /> */}
 					</li>
 					<li>
 						<Link to="/aboutus">ABOUT US</Link>
