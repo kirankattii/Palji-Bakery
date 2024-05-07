@@ -230,28 +230,28 @@ function Allproduct({ search, category, minPrice, maxPrice }) {
 											<>
 												{isInCart(product._id) ? (
 													<div className="Add_to_cart_and_watchlist_child Add_to_cart_and_watchlist_child1">
-														{/* {AddTocartLoader ? (
+														{AddTocartLoader ? (
 															<div>
 																{" "}
 																<HorizotalLoader />{" "}
 															</div>
-														) : ( */}
-														<div className="cart-quantity">
-															<img
-																src={RemoveIcon}
-																alt="AddIcon"
-																className="Icon_add_to_cart"
-																onClick={() => removeFromCart(product._id)}
-															/>
-															<span>{getProductQuantity(product._id)}</span>
-															<img
-																src={AddIcon}
-																alt="AddIcon"
-																className="Icon_add_to_cart"
-																onClick={() => addToCart(product._id)}
-															/>
-														</div>
-														{/* )} */}
+														) : (
+															<div className="cart-quantity">
+																<img
+																	src={RemoveIcon}
+																	alt="AddIcon"
+																	className="Icon_add_to_cart"
+																	onClick={() => removeFromCart(product._id)}
+																/>
+																<span>{getProductQuantity(product._id)}</span>
+																<img
+																	src={AddIcon}
+																	alt="AddIcon"
+																	className="Icon_add_to_cart"
+																	onClick={() => addToCart(product._id)}
+																/>
+															</div>
+														)}
 													</div>
 												) : (
 													<div>

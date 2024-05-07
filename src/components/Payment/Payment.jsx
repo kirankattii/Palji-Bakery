@@ -5,9 +5,10 @@ import Orderbar from "../orderbar/orderbar.jsx"
 
 import CartCalculation from "../CartCalculation/cartCalculation.jsx"
 import { useNavigate } from "react-router-dom"
-import SucessGIF from "../../assets/cupcakes.png"
+import SucessGIF from "../../assets/Order Placed.gif"
 import Primaryloader from "../loaders/primaryloader.jsx"
 import { makeApi } from "../../api/callApi"
+import { ToastContainer, toast } from "react-toastify"
 
 const Payment = () => {
 	const navigation = useNavigate()
@@ -27,32 +28,16 @@ const Payment = () => {
 		fetchCartItem()
 	}, [])
 
-	const fetchShippingAddresses = async () => {
-		try {
-			setLoading(true)
-			const response = await makeApi("/api/get-my-shiped-address", "GET")
-			setShippingAddresses(response.data.shipedaddress)
-			setLoading(false)
-		} catch (error) {
-			console.error("Error fetching shipping addresses: ", error)
-			setLoading(false)
-		}
-	}
-
-	useEffect(() => {
-		fetchShippingAddresses()
-	}, [])
-
-	const handleAddressSelect = (address) => {
-		setSelectedAddress(address)
-	}
-
 	const handlepaymentmethodSelect = (payment) => {
 		setSelectPaymentMethod(payment)
 	}
 
 	const handleSubmit = async (event) => {
 		event.preventDefault()
+		if (!selectPaymentMethod) {
+			toast("Please select payment method")
+			return
+		}
 		const data = {
 			shippingAddress: selectedAddress,
 			paymentMethod: selectPaymentMethod,
@@ -72,8 +57,20 @@ const Payment = () => {
 			setLoading(false)
 		}
 	}
+
 	return (
 		<div className="payment">
+			<ToastContainer
+				position="top-center"
+				autoClose={3000}
+				hideProgressBar={false}
+				newestOnTop={false}
+				closeOnClick
+				rtl={false}
+				pauseOnFocusLoss
+				draggable
+				pauseOnHover
+			/>
 			{orderPlaced && (
 				<div className="success-gif-container">
 					<img
@@ -85,61 +82,6 @@ const Payment = () => {
 			)}
 			{!orderPlaced && (
 				<div>
-					{/* {currentPage === "CHECKOUT" ? (
-						<div>
-							<div>
-								<Orderbar activeOptionName="CHECKOUT" />
-							</div>
-							<div className="main_checkout_div">
-						
-								<div className="shipping-address-container Order_page_display_none ">
-									<div className="shipping-address-title">Shipping Address</div>
-									<div className="shipping-address-list">
-										{loading && (
-											<div>
-												{" "}
-												<Primaryloader />{" "}
-											</div>
-										)}
-										{!loading &&
-											shippingAddresses.map((address, index) => (
-												<div
-													key={index}
-													className="address-item"
-												>
-													<input
-														type="radio"
-														id={`address-${index}`}
-														name="shipping-address"
-														value={address._id}
-														checked={selectedAddress === address}
-														onChange={() => handleAddressSelect(address)}
-														className="address-radio"
-													/>
-													<label
-														htmlFor={`address-${index}`}
-														className="address-label"
-													>
-														{`${address.firstname} ${address.lastname}, ${address.address}, ${address.city}, ${address.state}, ${address.country}`}
-													</label>
-												</div>
-											))}
-									</div>
-								</div>
-						
-								<div onClick={() => setCurrentPage("PAYMENT")}>
-									<CartCalculation
-										tax={cartItem.taxPrice}
-										shipping={cartItem.shippingPrice}
-										total={cartItem.totalPrice}
-										CoupanApplied={cartItem.Iscoupanapplied}
-										Final={cartItem.TotalProductPrice}
-										ButtonName="PROCEED TO PAYMENT"
-									/>
-								</div>
-							</div>
-						</div>
-					) : ( */}
 					<div>
 						<div>
 							<Orderbar activeOptionName="PAYMENT" />
@@ -158,7 +100,7 @@ const Payment = () => {
 										<input
 											type="radio"
 											id={`Cash On Delievery`}
-											name="shipping-address"
+											name="payment-method"
 											value="Cash On Delievery"
 											checked={selectPaymentMethod === "Cash On Delievery"}
 											onChange={() =>
@@ -167,7 +109,7 @@ const Payment = () => {
 											className="address-radio"
 										/>
 										<label
-											htmlFor={`payment`}
+											htmlFor={`Cash On Delivery`}
 											className="address-label"
 										>
 											Cash On Delievery
@@ -180,14 +122,14 @@ const Payment = () => {
 										<input
 											type="radio"
 											id={`Razorpay`}
-											name="shipping-address"
+											name="payment-method"
 											value="Razorpay"
 											checked={selectPaymentMethod === "Razorpay"}
 											onChange={() => handlepaymentmethodSelect("Razorpay")}
 											className="address-radio"
 										/>
 										<label
-											htmlFor={`payment`}
+											htmlFor={`Razorpay`}
 											className="address-label"
 										>
 											Razorpay
@@ -203,6 +145,7 @@ const Payment = () => {
 									CoupanApplied={cartItem.Iscoupanapplied}
 									Final={cartItem.TotalProductPrice}
 									ButtonName="PLACE ORDER"
+									disabled={!selectPaymentMethod}
 								/>
 							</div>
 						</div>

@@ -6,11 +6,70 @@ import { Link } from "react-router-dom"
 import { ShopContext } from "../../context/ShopContext"
 import { assets } from "../../assets/assets"
 
-const MyWatchlist = (props) => {
+import Primaryloader from "../loaders/primaryloader.jsx"
+
+import Heartloader from "../loaders/hearloader.jsx"
+import HorizotalLoader from "../loaders/horizotalLoader.jsx"
+
+// import UserProfileSidebar from "./sidebar.jsx"
+
+const MyWatchlist = ({ search, category, minPrice, maxPrice }) => {
 	const [wishlistItems, setWishlistItems] = useState([])
 	const [loading, setLoading] = useState(false)
-	const { all_product, cartItems, addToCart, removeFromCart } =
-		useContext(ShopContext)
+	// const { all_product, cartItems, addToCart, removeFromCart } =
+	// 	useContext(ShopContext)
+	const [products, setProducts] = useState([])
+	const [cartItems, setCartItems] = useState([])
+	const [ResultPerPage, setResultPerPage] = useState(20)
+	const [currentPage, setCurrentPage] = useState(1)
+	const [totalPages, setTotalPages] = useState(0)
+	const [toalProduct, setToalProduct] = useState(0)
+	const [AllProductLoader, setAllProductLoader] = useState(false)
+	const [AddTocartLoader, setAddTocartLoader] = useState(false)
+	const [AddToWishlistLoader, setAddToWishlistLoader] = useState(false)
+	const [IsLogin, setIsLogin] = useState(false)
+	const [showPopup, setShowPopup] = useState(false)
+
+	useEffect(() => {
+		const token = localStorage.getItem("token")
+
+		if (token) {
+			setIsLogin(true)
+		} else {
+			setIsLogin(false)
+		}
+	}, [localStorage.getItem("token")])
+
+	const fetchProduct = async () => {
+		try {
+			setAllProductLoader(true)
+			const response = await makeApi(`/api/get-all-products`, "GET")
+			setProducts(response.data.products)
+			setToalProduct(response.data.totalProducts)
+		} catch (error) {
+			console.log(error)
+		} finally {
+			setAllProductLoader(false)
+		}
+	}
+	useEffect(() => {
+		const a = Math.ceil(toalProduct / ResultPerPage)
+		setTotalPages(a)
+	}, [products, ResultPerPage])
+	const fetchCart = async () => {
+		try {
+			const response = await makeApi("/api/my-cart", "GET")
+			setCartItems(
+				response.data.orderItems.map((item) => ({
+					productId: item.productId._id,
+					quantity: item.quantity,
+				}))
+			)
+		} catch (error) {
+			console.log(error)
+		}
+	}
+
 	useEffect(() => {
 		const fetchWishlist = async () => {
 			try {
@@ -22,6 +81,18 @@ const MyWatchlist = (props) => {
 		}
 		fetchWishlist()
 	}, [])
+
+	useEffect(() => {
+		fetchProduct()
+		fetchCart()
+	}, [search, category, minPrice, maxPrice, currentPage, ResultPerPage])
+
+	const isInCart = (productId) => {
+		return cartItems.some((item) => item.productId === productId)
+	}
+	const closePopup = () => {
+		setShowPopup(false)
+	}
 
 	const toggleWishlist = async (productId) => {
 		try {
@@ -35,6 +106,68 @@ const MyWatchlist = (props) => {
 		} catch (error) {
 			console.log(error)
 		}
+	}
+
+	const addToCart = async (productId) => {
+		if (!IsLogin) {
+			setShowPopup(true)
+		} else {
+			try {
+				setAddTocartLoader(true)
+				const method = "POST"
+				const endpoint = "/api/add-to-cart"
+				const data = await makeApi(endpoint, method, {
+					productId,
+					quantity: 1,
+					shippingPrice: 0,
+				})
+				setCartItems((prevState) => {
+					const existingItem = prevState.find(
+						(item) => item.productId === productId
+					)
+					if (existingItem) {
+						return prevState.map((item) => {
+							if (item.productId === productId) {
+								return { ...item, quantity: item.quantity + 1 }
+							}
+							return item
+						})
+					} else {
+						return [...prevState, { productId, quantity: 1 }]
+					}
+				})
+			} catch (error) {
+				console.log(error.response.data)
+			} finally {
+				fetchCart()
+				setAddTocartLoader(false)
+			}
+		}
+	}
+
+	const removeFromCart = async (productId) => {
+		try {
+			setAddTocartLoader(true)
+			const method = "POST"
+			const endpoint = "/api/remove-from-cart"
+			const data = await makeApi(endpoint, method, { productId })
+			setCartItems((prevState) =>
+				prevState.filter((item) => item.productId !== productId)
+			)
+		} catch (error) {
+			console.log(error)
+		} finally {
+			fetchCart()
+			setAddTocartLoader(false)
+		}
+	}
+
+	const getProductQuantity = (productId) => {
+		const cartItem = cartItems.find((item) => item.productId === productId)
+		return cartItem ? cartItem.quantity : 0
+	}
+	const handlePageClick = (pageNumber) => {
+		setCurrentPage(pageNumber)
 	}
 
 	return (
@@ -80,7 +213,7 @@ const MyWatchlist = (props) => {
 									{/* You need to handle cartItems and addToCart/removeFromCart */}
 
 									<div className="item-cart">
-										{!cartItems[item?.products?._id] ? (
+										{/* {cartItems[item?.products?._id] ? (
 											<div
 												className="item-addto-cart "
 												onClick={() => addToCart(item?.products._id)}
@@ -102,6 +235,49 @@ const MyWatchlist = (props) => {
 													src={assets.add_icon_green}
 													alt=""
 												/>
+											</div>
+										)} */}
+
+										{isInCart(item._id) ? (
+											<div className="Add_to_cart_and_watchlist_child">
+												{AddTocartLoader ? (
+													<div>
+														{" "}
+														<HorizotalLoader />{" "}
+													</div>
+												) : (
+													<div className="cart-quantity food-item-counter">
+														<img
+															src={assets.add_icon_red}
+															alt="AddIcon"
+															className="Icon_add_to_cart"
+															onClick={() => removeFromCart(item.products._id)}
+														/>
+														<span>{getProductQuantity(item.products._id)}</span>
+														<img
+															src={assets.add_icon_green}
+															alt="AddIcon"
+															className="Icon_add_to_cart"
+															onClick={() => addToCart(item.products._id)}
+														/>
+													</div>
+												)}
+											</div>
+										) : (
+											<div>
+												{AddTocartLoader ? (
+													<div>
+														{" "}
+														<HorizotalLoader />{" "}
+													</div>
+												) : (
+													<div
+														className="Add_to_cart_button item-addto-cart"
+														onClick={() => addToCart(item.products._id)}
+													>
+														Add to Cart
+													</div>
+												)}
 											</div>
 										)}
 									</div>

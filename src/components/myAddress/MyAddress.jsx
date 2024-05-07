@@ -95,44 +95,57 @@ const MyAddress = () => {
 					the following addresses will be used on the checkout page by default.
 				</p>
 				<div className="shipping-billing-flex d-flex justify-content-between">
-					<div className="d-flex flex-column gap-5">
-						{billingAddresses.map((address) => (
-							<div
-								key={address._id}
-								className="billing-address"
-							>
-								<h2>BILLING ADDRESS</h2>
-								<div className="billing-address-flex">
-									<h3>BILLING ADDRESS</h3>
-									<div>
-										<button onClick={() => navigator("/billing-address")}>
-											Add
-										</button>
-										<button onClick={() => setDeleteProductId(address._id)}>
-											DELETE
-										</button>
-									</div>
-								</div>
-								<p>
-									{`${address.name}, ${address.address}, ${address.city}, ${address.state} ${address.pincode}`}
-								</p>
-							</div>
-						))}
-					</div>
-					<div className="billing-address">
+					<div>
+						<h2 className="n_shipp_bill">BILLING ADDRESS</h2>
 						<div className="d-flex flex-column gap-5">
+							<button
+								className="ship_bill_add"
+								onClick={() => navigator("/billing-address")}
+							>
+								Add Billing Address
+							</button>
+							{billingAddresses.map((address) => (
+								<div
+									key={address._id}
+									className="billing-address a_shipp_bill"
+								>
+									<div className="billing-address-flex">
+										<h3>BILLING ADDRESS</h3>
+										<div>
+											<button onClick={() => navigator("/billing-address")}>
+												Edit
+											</button>
+											<button onClick={() => setDeleteProductId(address._id)}>
+												DELETE
+											</button>
+										</div>
+									</div>
+									<p>
+										{`${address.name}, ${address.address}, ${address.city}, ${address.state} ${address.pincode}`}
+									</p>
+								</div>
+							))}
+						</div>
+					</div>
+					<div className="billing-addressz">
+						<h2 className="n_shipp_bill">SHIPPING ADDRESS</h2>
+						<div className="d-flex flex-column gap-5">
+							<button
+								className="ship_bill_add"
+								onClick={() => navigator("/shipping-address")}
+							>
+								Add Shipping Address
+							</button>
 							{ShipppingAddresses.map((address) => (
 								<div
 									key={address._id}
-									className="billing-address"
+									className="billing-address a_shipp_bill"
 								>
-									<h2>SHIPPING ADDRESS</h2>
-
 									<div className="billing-address-flex">
 										<h3>Shippping ADDRESS</h3>
 										<div>
 											<button onClick={() => navigator("/shipping-address")}>
-												Add
+												Edit
 											</button>
 											<button onClick={() => setDeleteProductId(address._id)}>
 												DELETE

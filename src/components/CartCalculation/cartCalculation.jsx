@@ -21,34 +21,34 @@ function CartCalculation({
 						<div className="cart-billing-subtotal">
 							<p>SUBTOTAL</p>
 							<p>₹ {formatNumber(Final)}</p>
-						</div>{" "}
+						</div>
 						<div className="cart-billing-discount">
 							<p>DISCOUNT</p>
 							<p>₹ {0}</p>
-						</div>{" "}
+						</div>
 						<div className="cart-billing-tax">
 							<p>TAX</p>
 							<p> 5%</p>
-						</div>{" "}
+						</div>
 						<div className="cart-billing-shipping">
 							<p>SHIPPING</p>
 							<p> {formatNumber(shipping)}</p>
-						</div>{" "}
+						</div>
 						<div className="cart-billing-shipping">
 							<b>TOTAL</b>
 							<b>₹ {formatNumber(total)}</b>
 						</div>
 					</div>
 					<Link
-						to="/order/checkout"
+						to="/cart/checkoutpayment/"
 						className="css-for-link-tag"
 					>
 						<div className="cart_calculation_button">{ButtonName}</div>
 					</Link>
 					<hr />
-					<p className="cart-delivery-day">
-						estimated delivery by <span>29 february, 24</span>
-					</p>
+					{/* <p className="cart-delivery-day">
+						Delivery In <span>4 to 5 Days</span>
+					</p> */}
 				</div>
 			</div>
 			{/* <div className="cart_calculation_main_div">

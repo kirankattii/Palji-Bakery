@@ -68,7 +68,7 @@ const ProductSidebar = () => {
 						</div>
 					</div>
 					{/* product category */}
-					<div className="product_sliderbar_options">
+					<div className="product_sliderbar_options a_product_sliderbar_options">
 						<div className="proudct_sidebar_heading"> Product Category:</div>
 						{/* drop down */}
 						<div>

@@ -3,19 +3,22 @@ import { useNavigate, useParams } from "react-router-dom"
 
 // import "../../styles/product/productDetails.css"
 import "../../pages/CSS/product/productDetails.css"
-
+import LoginPopup from "../../components/LoginPopup/LoginPopup.jsx"
 import AddIcon from "../../assets/add_icon_green.png"
 import RemoveIcon from "../../assets/remove_icon_red.png"
 import Primaryloader from "../loaders/primaryloader.jsx"
 import BackButton from "./backButton.jsx"
 import HorizotalLoader from "../loaders/horizotalLoader.jsx"
 import { makeApi } from "../../api/callApi"
+import { ToastContainer, toast } from "react-toastify"
 // import { makeApi } from "../../api/callApi.js"
 
 function ProductDetails() {
 	const history = useNavigate()
 	const { productId } = useParams()
 	const [product, setProduct] = useState()
+	const [showPopup, setShowPopup] = useState(false)
+
 	const [selectedImage, setSelectedImage] = useState("")
 	const [loading, setLoading] = useState(false)
 	const [AddTocartLoader, setAddTocartLoader] = useState(false)
@@ -23,7 +26,18 @@ function ProductDetails() {
 	const [wishlistItems, setWishlistItems] = useState([])
 	const [cartItems, setCartItems] = useState([])
 	const [isInCart, setIsInCart] = useState(false)
+	const [IsLogin, setIsLogin] = useState(false)
 	// fetch data
+
+	useEffect(() => {
+		const token = localStorage.getItem("token")
+
+		if (token) {
+			setIsLogin(true)
+		} else {
+			setIsLogin(false)
+		}
+	}, [localStorage.getItem("token")])
 	// product details
 	const fetchProduct = async () => {
 		try {
@@ -91,35 +105,39 @@ function ProductDetails() {
 	}
 	// add to cart
 	const addToCart = async (productId) => {
-		try {
-			setAddTocartLoader(true)
-			const method = "POST"
-			const endpoint = "/api/add-to-cart"
-			const data = await makeApi(endpoint, method, {
-				productId,
-				quantity: 1,
-				shippingPrice: 0,
-			})
-			setCartItems((prevState) => {
-				const existingItem = prevState.find(
-					(item) => item.productId === productId
-				)
-				if (existingItem) {
-					return prevState.map((item) => {
-						if (item.productId === productId) {
-							return { ...item, quantity: item.quantity + 1 }
-						}
-						return item
-					})
-				} else {
-					return [...prevState, { productId, quantity: 1 }]
-				}
-			})
-		} catch (error) {
-			console.log(error)
-		} finally {
-			fetchCart()
-			setAddTocartLoader(false)
+		if (!IsLogin) {
+			setShowPopup(true)
+		} else {
+			try {
+				setAddTocartLoader(true)
+				const method = "POST"
+				const endpoint = "/api/add-to-cart"
+				const data = await makeApi(endpoint, method, {
+					productId,
+					quantity: 1,
+					shippingPrice: 0,
+				})
+				setCartItems((prevState) => {
+					const existingItem = prevState.find(
+						(item) => item.productId === productId
+					)
+					if (existingItem) {
+						return prevState.map((item) => {
+							if (item.productId === productId) {
+								return { ...item, quantity: item.quantity + 1 }
+							}
+							return item
+						})
+					} else {
+						return [...prevState, { productId, quantity: 1 }]
+					}
+				})
+			} catch (error) {
+				console.log(error)
+			} finally {
+				fetchCart()
+				setAddTocartLoader(false)
+			}
 		}
 	}
 	const removeFromCart = async (productId) => {
@@ -140,25 +158,39 @@ function ProductDetails() {
 	}
 	// Function to handle "BUY NOW" button click
 	const handleBuyNow = async () => {
-		try {
-			if (!isInCart) {
-				setAddTocartLoader(true)
-				const method = "POST"
-				const endpoint = "/api/add-to-cart"
-				await makeApi(endpoint, method, {
-					productId,
-					quantity: 1,
-					shippingPrice: 0,
-				})
-				history("/order/my-cart")
-			} else {
-				history("/order/my-cart")
+		if (!IsLogin) {
+			setShowPopup(true)
+		} else {
+			try {
+				if (!isInCart) {
+					setAddTocartLoader(true)
+					const method = "POST"
+					const endpoint = "/api/add-to-cart"
+					await makeApi(endpoint, method, {
+						productId,
+						quantity: 1,
+						shippingPrice: 0,
+					})
+					history("/cart")
+				} else {
+					history("/cart")
+				}
+			} catch (error) {
+				console.log(error)
+			} finally {
+				fetchCart()
+				setAddTocartLoader(false)
 			}
-		} catch (error) {
-			console.log(error)
-		} finally {
-			fetchCart()
-			setAddTocartLoader(false)
+		}
+	}
+	const closePopup = () => {
+		setShowPopup(false)
+	}
+	const handleAddToCart = (productId, quantity, availableQuantity) => {
+		if (quantity < availableQuantity) {
+			addToCart(productId)
+		} else {
+			toast("Cannot add more than available quantity.", { type: "error" })
 		}
 	}
 
@@ -172,6 +204,8 @@ function ProductDetails() {
 
 	return (
 		<>
+			{showPopup && <LoginPopup onClose={closePopup} />}
+			<ToastContainer />
 			{loading ? (
 				<div className="All_Product_loader">
 					<div
@@ -185,7 +219,9 @@ function ProductDetails() {
 				<div>
 					{product && (
 						<div>
-							<BackButton pageLocation="/product/all-products" />
+							<div className="product_display_back_btn">
+								<BackButton pageLocation="/product/all-products" />
+							</div>
 
 							<div className="productDisplay">
 								<div className="product-display-left">

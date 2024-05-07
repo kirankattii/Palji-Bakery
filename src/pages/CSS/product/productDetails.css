@@ -6,6 +6,11 @@
   min-height: 100vh;
 }
 
+.product_display_back_btn {
+  position: absolute;
+  padding-top: 100px;
+}
+
 .product-display-left {
   display: flex;
   gap: 5px;

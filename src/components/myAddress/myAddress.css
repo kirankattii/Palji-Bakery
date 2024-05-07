@@ -15,14 +15,23 @@
 
 }
 
+.ship_bill_add {
+  /* width: 50%; */
+  width: 250px;
+  padding: 5px 10px;
+  border: 2px solid #000;
+  border-radius: 25px;
+}
+
 .shipping-billing-flex {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   gap: 20px;
 }
 
 .billing-address, .shipping-address {
-  width: 50%;
+  /* width: 50%; */
+  width: 350px;
 }
 
 .billing-address-flex, .shipping-address-flex {
@@ -37,6 +46,16 @@
   align-items: center;
   gap: 10px;
   margin-top: -10px;
+}
+
+.a_shipp_bill {
+  margin-top: -60px;
+}
+
+.n_shipp_bill {
+  font-size: 24px;
+  color: #AE7B37;
+  width: 200%;
 }
 
 .billing-address h3, .shipping-address h3 {

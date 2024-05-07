@@ -135,7 +135,16 @@
     flex-direction: row;
     gap: 0px;
     padding: 10px 5px;
+    align-items: center;
     justify-content: center;
+  }
+
+  .a_product_sliderbar_options {
+    margin-top: 100px;
+  }
+
+  .more_icon_sidebar {
+    margin-top: 100px;
   }
 
   .proudct_sidebar_heading {

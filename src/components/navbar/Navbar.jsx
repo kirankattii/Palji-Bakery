@@ -17,8 +17,12 @@ import NavSearchList from "../navSearchList/NavSearchList"
 const Navbar = () => {
 	const [showNavbar, setShowNavbar] = useState(false)
 	const [categoryDropdownVisible, setCategoryDropdownVisible] = useState(false)
+	const [cartItem, setCartItem] = useState([])
+	const [myCartData, setMyCartData] = useState([])
+
 	const [isloggedIn, setIsloggedIn] = useState(false)
 	const { getTotalCartItems } = useContext(ShopContext)
+	const [totalQuantities, setTotalQuantities] = useState(0)
 	useEffect(() => {
 		const timeoutId = setTimeout(() => {
 			setShowNavbar(true)
@@ -26,6 +30,33 @@ const Navbar = () => {
 
 		return () => clearTimeout(timeoutId)
 	}, [])
+	useEffect(() => {
+		const fetchCartItem = async () => {
+			try {
+				const response = await makeApi("/api/my-cart", "GET")
+				const orderItems = response.data.orderItems
+				let total = 0
+				orderItems.forEach((item) => {
+					total += item.quantity
+				})
+				setTotalQuantities(total)
+				setMyCartData(orderItems) // Update myCartData state with fetched data
+			} catch (error) {
+				console.log(error)
+			}
+		}
+
+		// Fetch cart item initially
+		fetchCartItem()
+
+		// Set up interval to periodically fetch cart item
+		const intervalId = setInterval(() => {
+			fetchCartItem()
+		}, 15000) // Fetch every minute
+
+		// Clean up interval on component unmount
+		return () => clearInterval(intervalId)
+	}, [setMyCartData])
 
 	const location = useLocation()
 
@@ -144,7 +175,7 @@ const Navbar = () => {
 					</li>
 					<li className="product-navbar">
 						<Link to="/product/all-products">
-							Products <MdArrowDropDown />
+							Shop <MdArrowDropDown />
 						</Link>
 						<ProductDropdown />
 					</li>
@@ -183,7 +214,7 @@ const Navbar = () => {
 						allProduct={allProduct}
 					/>
 				</div>
-				{/* {isloggedIn ? (
+				{isloggedIn ? (
 					<div
 						// to="/Signup"
 						className="media-profile-icon"
@@ -196,19 +227,15 @@ const Navbar = () => {
 						/>
 					</div>
 				) : (
-					<button className="btn btn-primary">
+					<button className="btn btn-primary media-login">
 						<Link to="/login">LOGIN</Link>
 					</button>
-				)} */}
+				)}
 				{isloggedIn && (
 					<Link to="/cart">
 						<div className="nav-cart">
-							<span className="cart-no">{getTotalCartItems()}</span>
-							<HiMiniShoppingBag
-								className={
-									shouldApplySpecialStyles() ? "special-cart-icon" : "cart-icon"
-								}
-							/>
+							<span className="cart-no">{totalQuantities}</span>
+							<HiMiniShoppingBag className="cart-icon" />
 						</div>
 					</Link>
 				)}
@@ -269,12 +296,12 @@ const Navbar = () => {
 							</li>{" "} */}
 							<li className="click-dropdown">
 								<Link
-									to="#"
-									onClick={toggleCategoryDropdown}
+									to="/product/all-products"
+									// onClick={toggleCategoryDropdown}
 								>
 									PRODUCTS <MdArrowDropDown />
 								</Link>
-								{categoryDropdownVisible && (
+								{/* {categoryDropdownVisible && (
 									<div className="category-dropdown">
 										{categories.map((item, id) => {
 											return (
@@ -290,7 +317,7 @@ const Navbar = () => {
 											)
 										})}
 									</div>
-								)}
+								)} */}
 							</li>
 							<li>
 								<Link

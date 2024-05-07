@@ -5,6 +5,9 @@ import { ShopContext } from "../context/ShopContext"
 import { assets } from "../assets/assets"
 import { useNavigate } from "react-router"
 import { makeApi } from "../api/callApi"
+import Orderbar from "../components/orderbar/orderbar"
+import { ToastContainer } from "react-toastify"
+import Primaryloader from "../components/loaders/primaryloader"
 
 const Cart = () => {
 	const {
@@ -12,7 +15,7 @@ const Cart = () => {
 		getTotalCartDiscountAmount,
 		all_product,
 
-		removeFromCart,
+		// removeFromCart,
 		getTotalCartAmount,
 	} = useContext(ShopContext)
 
@@ -32,7 +35,9 @@ const Cart = () => {
 	const [cartItem, setCartItem] = useState([])
 	const [cartPoductList, setCartProductList] = useState([])
 	const [coupanCode, setCoupanCode] = useState(null)
-
+	const [AllProductLoader, setAllProductLoader] = useState(false)
+	const [productLoaders, setProductLoaders] = useState({})
+	const [IscartEmpty, setIsCartEmpty] = useState(false)
 	const fetchShippingAddresses = async () => {
 		try {
 			setLoading(true)
@@ -44,14 +49,43 @@ const Cart = () => {
 			setLoading(false)
 		}
 	}
-	useEffect(() => {
-		const fetchCartItem = async () => {
+	// useEffect(() => {
+	// 	const fetchCartItem = async () => {
+	// 		const response = await makeApi("/api/my-cart", "GET")
+	// 		setCartItem(response.data)
+	// 		setCartProductList(response.data.orderItems)
+	// 	}
+	// 	fetchCartItem()
+	// }, [])
+
+	// useEffect(() => {
+	// 	fetchCartItem()
+	// }, [])
+
+	// useEffect(() => {
+	const fetchCartItem = async () => {
+		try {
+			setAllProductLoader(true)
 			const response = await makeApi("/api/my-cart", "GET")
+			console.log("Cart Items Response:", response.data) // Log the response data
+			// Update state with cart items
 			setCartItem(response.data)
+			if (response.data.orderItems.length === 0) {
+				setIsCartEmpty(true)
+			}
 			setCartProductList(response.data.orderItems)
+		} catch (error) {
+			console.log(error)
+			if (error.response.data.message === "Cart not found") {
+				setIsCartEmpty(true)
+			}
+		} finally {
+			setAllProductLoader(false)
 		}
-		fetchCartItem()
-	}, [])
+	}
+	// fetchCartItem()
+	// }, [])
+
 	// action
 	console.log("coupanCode", coupanCode)
 	const SubmitCoupan = async (e) => {
@@ -74,51 +108,96 @@ const Cart = () => {
 		fetchShippingAddresses()
 	}, [])
 
+	const removeFromCart = async (productId) => {
+		try {
+			setProductLoaders((prevState) => ({
+				...prevState,
+				[productId]: true,
+			}))
+			const method = "POST"
+			const endpoint = "/api/remove-from-cart"
+			const data = await makeApi(endpoint, method, { productId })
+			// setCartItems(prevState => prevState.filter(item => item.productId !== productId));
+		} catch (error) {
+			console.log(error)
+		} finally {
+			fetchCartItem()
+			setProductLoaders((prevState) => ({
+				...prevState,
+				[productId]: false,
+			}))
+		}
+	}
+
+	useEffect(() => {
+		fetchCartItem()
+	}, [])
+
 	return (
-		<div className="cart-container">
-			<div className="cart-item">
-				<div className="cart-items-title cart-items-title2">
-					<p>Items</p>
-					<p>Name</p>
-					<p>Price</p>
-					<p>Qty</p>
-					<p>Total:</p>
-					<p>X</p>
+		<>
+			<ToastContainer />
+			{AllProductLoader ? (
+				<div className="All_Product_loader">
+					<div className="">
+						<Primaryloader />
+					</div>
 				</div>
-				<br />
-				<hr />
-				{cartPoductList &&
-					cartPoductList.map((item, index) => (
-						<div key={index}>
-							<div className="cart-items-title cart-items-item">
-								<img
-									src={item.productId.thumbnail}
-									alt=""
-								/>
-								<p>{item.productId.name}</p>
-								<p>₹{item.productId.price}</p>
-								<p>{item.quantity}</p>
-								<p>₹{item.totalPrice}</p>
-								<p
-									className="cross"
-									onClick={() => removeFromCart(item._id)}
-								>
-									<img
-										className="remove-cart"
-										src={assets.cart_remove}
-										alt=""
-									/>
-								</p>
-							</div>
-							{/* <hr /> */}
+			) : (
+				<div className="cart-container">
+					{IscartEmpty && (
+						<div className="empty_cart_div">
+							<img
+								src={assets.empty_cart}
+								alt=" No cart "
+								className="NO_cart_image"
+							/>
 						</div>
-					))}
-			</div>
-			<div className="cart-bottomm">
-				<div className="cart-address">
-					{/* <h2>ADDRESS</h2> */}
-					<div className="cart-shipping-address">
-						{/* {!loading && shippingAddresses.map((address, index) => (
+					)}
+					{!IscartEmpty && (
+						<div>
+							<div className="cart-item">
+								<div className="cart-items-title cart-items-title2">
+									<p>Items</p>
+									<p>Name</p>
+									<p>Price</p>
+									<p>Qty</p>
+									<p>Total:</p>
+									<p>X</p>
+								</div>
+								<br />
+								<hr />
+								{cartPoductList &&
+									cartPoductList.map((item, index) => (
+										<div key={index}>
+											<div className="cart-items-title cart-items-item">
+												<img
+													src={item.productId.thumbnail}
+													alt=""
+												/>
+												<p>{item.productId.name}</p>
+												<p>₹{item.productId.price}</p>
+												<p>{item.quantity}</p>
+												<p>₹{item.totalPrice}</p>
+												<p
+													className="cross"
+													onClick={() => removeFromCart(item.productId._id)}
+												>
+													<img
+														className="remove-cart"
+														src={assets.cart_remove}
+														alt=""
+													/>
+												</p>
+											</div>
+											{/* <hr /> */}
+										</div>
+									))}
+							</div>
+							<div className="cart-bottomm">
+								<div className="cart-address">
+									{/* <h2>ADDRESS</h2> */}
+									<div className="cart-shipping-address">
+										{/* {!loading && shippingAddresses.map((address, index) => (
 							<div key={index} className="address-item">
 								<input
 									type="radio"
@@ -134,42 +213,47 @@ const Cart = () => {
 								</label>
 							</div>
 						))} */}
-					</div>
-				</div>
-				<div className="cart-billing">
-					<div className="cart-order-summary">
-						<h2>order summary</h2>
-						<div className="cart-billing-charges">
-							<div className="cart-billing-subtotal">
-								<p>SUBTOTAL</p>
-								<p>₹{cartItem.totalPrice}</p>
-							</div>{" "}
-							<div className="cart-billing-discount">
-								<p>DISCOUNT</p>
-								<p>₹{totalDiscount}</p>
-							</div>{" "}
-							<div className="cart-billing-tax">
-								<p>TAX</p>
-								<p>₹{cartItem.taxPrice}</p>
-							</div>{" "}
-							<div className="cart-billing-shipping">
-								<p>SHIPPING</p>
-								<p>{cartItem.shippingPrice}</p>
-							</div>{" "}
-							<div className="cart-billing-shipping">
-								<b>TOTAL</b>
-								<b>₹{cartItem.TotalProductPrice}</b>
-							</div>
-						</div>
-						<button onClick={() => navigate("./checkoutpayment")}>
-							proceed to checkout
-						</button>
-						<hr />
-						<p className="cart-delivery-day">
-							estimated delivery by <span>29 february, 24</span>
-						</p>
-					</div>
-					{/* <div className="cart-promocode">
+									</div>
+								</div>
+								<div className="cart-billing">
+									<div className="cart-order-summary">
+										<h2>order summary</h2>
+										<div className="cart-billing-charges">
+											<div className="cart-billing-subtotal">
+												<p>SUBTOTAL</p>
+												<p>
+													₹
+													{cartItem.totalPrice
+														? cartItem.totalPrice.toFixed(2)
+														: "0.00"}
+												</p>
+											</div>{" "}
+											<div className="cart-billing-discount">
+												<p>DISCOUNT</p>
+												<p>₹{totalDiscount}</p>
+											</div>{" "}
+											<div className="cart-billing-tax">
+												<p>TAX</p>
+												<p>₹{cartItem.taxPrice}</p>
+											</div>{" "}
+											<div className="cart-billing-shipping">
+												<p>SHIPPING</p>
+												<p>{cartItem.shippingPrice}</p>
+											</div>{" "}
+											<div className="cart-billing-shipping">
+												<b>TOTAL</b>
+												<b>₹{cartItem.TotalProductPrice}</b>
+											</div>
+										</div>
+										<button onClick={() => navigate("./checkoutpayment")}>
+											proceed to checkout
+										</button>
+										<hr />
+										<p className="cart-delivery-day">
+											estimated delivery by <span>29 february, 24</span>
+										</p>
+									</div>
+									{/* <div className="cart-promocode">
 						<h2>HAVE A COUPON ?</h2>
 						<div className="cart-promocode-input">
 							<input
@@ -181,9 +265,13 @@ const Cart = () => {
 							<button onClick={(e) => SubmitCoupan(e)}>APPLY</button>
 						</div>
 					</div> */}
+								</div>
+							</div>
+						</div>
+					)}
 				</div>
-			</div>
-		</div>
+			)}
+		</>
 	)
 }
 

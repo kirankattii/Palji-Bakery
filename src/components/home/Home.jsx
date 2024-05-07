@@ -6,6 +6,8 @@ import Banner from "./banner/Banner"
 import Hampers from "./hampers/Hampers"
 import Customer from "./customer/Customer"
 import Loader from "./loader/Loader.jsx"
+import FeaturedProduct from "./featuredProducts/FeaturedProduct.jsx"
+import HomeGifts from "./homeGifts/HomeGifts.jsx"
 
 const Home = () => {
 	const [isloading, setIsLoading] = useState(true)
@@ -24,9 +26,11 @@ const Home = () => {
 	) : (
 		<div className="home">
 			<Header />
-			<Products />
+			{/* <Products /> */}
+			<FeaturedProduct />
 			<Banner />
-			<Hampers />
+			{/* <Hampers /> */}
+			<HomeGifts />
 			<Customer />
 		</div>
 	)

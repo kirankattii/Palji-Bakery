@@ -35,6 +35,7 @@
   flex-direction: column;
   gap: 30px;
   margin-top: 50px;
+  margin-bottom: 50px;
 
 }
 
@@ -42,6 +43,7 @@
   display: flex;
   flex-direction: column;
   gap: 10px;
+  width: 100%;
 }
 
 .check-outt h2 {
@@ -63,12 +65,12 @@
   background: transparent;
   border: 0;
   outline: 0;
-  width: 50%;
+  /* width: 50%; */
   border-radius: 10px;
   border: 2px solid #000;
   border-radius: 50px;
   display: flex;
-
+  margin-bottom: -10px;
   justify-content: center;
 }
 
@@ -77,9 +79,11 @@
   /* align-items: center; */
   flex-direction: column;
   gap: 20px;
-  width: 60%;
+  margin: auto;
+  width: 100%;
+  /* width: 60%; */
 
-  margin-left: -30px;
+  margin-left: 0px;
 }
 
 .address-item {
@@ -97,6 +101,10 @@
   line-height: 44.65px;
   text-align: left;
   color: #AE7B37;
+}
+
+.a_orderbar_checkout {
+  margin-top: -80px;
 }
 
 .shipping-address-editdelete {
@@ -151,6 +159,10 @@
 
 }
 
+.a_add_checkout_address {
+  width: 350px;
+}
+
 @media(max-width:1000px) {
   .checkoutpayment-div {
     display: flex;
@@ -158,6 +170,7 @@
     flex-direction: column;
     justify-content: space-between;
     margin: 0 100px;
+    align-items: center;
     gap: 30px;
   }
 

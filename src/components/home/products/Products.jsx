@@ -27,8 +27,8 @@ function Arrow(props) {
 
 const Products = () => {
 	const [products, setProducts] = useState([])
-
-	const { cartItems, addToCart, removeFromCart } = useContext(ShopContext)
+	const { cartItems, setCartItems } = useContext(ShopContext)
+	// const { cartItems, addToCart, removeFromCart } = useContext(ShopContext)
 	useEffect(() => {
 		async function fetchCategories() {
 			try {
@@ -46,6 +46,39 @@ const Products = () => {
 		}
 		fetchCategories()
 	}, [])
+
+	const addToCart = async (productId) => {
+		try {
+			const response = await makeApi("/api/add-to-cart", "POST", {
+				productId,
+				quantity: 1,
+				shippingPrice: 0,
+			})
+			if (response.status === 200) {
+				setCartItems((prevCartItems) => [
+					...prevCartItems,
+					{ productId, quantity: 1 },
+				])
+			}
+		} catch (error) {
+			console.log("Error adding product to cart:", error)
+		}
+	}
+
+	const removeFromCart = async (productId) => {
+		try {
+			const response = await makeApi("/api/remove-from-cart", "POST", {
+				productId,
+			})
+			if (response.status === 200) {
+				setCartItems((prevCartItems) =>
+					prevCartItems.filter((item) => item.productId !== productId)
+				)
+			}
+		} catch (error) {
+			console.log("Error removing product from cart:", error)
+		}
+	}
 
 	const product1 = {
 		id: products.length > 0 ? products[0]?._id : "",
@@ -117,7 +150,7 @@ const Products = () => {
 					{...settings}
 					className="product-slide"
 				>
-					<div>
+					{/* <div>
 						<Sliders products={product1} />
 					</div>
 					<div>
@@ -125,6 +158,31 @@ const Products = () => {
 					</div>
 					<div>
 						<Sliders products={product3} />
+					</div> */}
+
+					<div>
+						<Sliders
+							products={product1}
+							addToCart={addToCart}
+							removeFromCart={removeFromCart}
+							cartItems={cartItems}
+						/>
+					</div>
+					<div>
+						<Sliders
+							products={product2}
+							addToCart={addToCart}
+							removeFromCart={removeFromCart}
+							cartItems={cartItems}
+						/>
+					</div>
+					<div>
+						<Sliders
+							products={product3}
+							addToCart={addToCart}
+							removeFromCart={removeFromCart}
+							cartItems={cartItems}
+						/>
 					</div>
 				</Slider>
 			</div>

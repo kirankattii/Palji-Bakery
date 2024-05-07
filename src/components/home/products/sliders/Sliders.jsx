@@ -8,7 +8,7 @@ import { ShopContext } from "../../../../context/ShopContext"
 import LoginPopup from "../../../LoginPopup/LoginPopup.jsx"
 // import { ShopContext } from "../../../../context/ShopContext"
 import { makeApi } from "../../../../api/callApi.tsx"
-const Sliders = ({ products }) => {
+const Sliders = ({ products, addToCart, removeFromCart, cartItemsProp }) => {
 	// const { cartItems, addToCart, removeFromCart } = useContext(ShopContext)
 	// const navigate = useNavigate()
 	// const handleAddToCart = () => {
@@ -71,50 +71,50 @@ const Sliders = ({ products }) => {
 	// 	fetchCart()
 	// }, [])
 
-	const isInCart = (productId) => {
-		return cartItems.some((item) => item.productId === productId)
-	}
+	// const isInCart = (productId) => {
+	// 	return cartItems.some((item) => item.productId === productId)
+	// }
 
-	const closePopup = () => {
-		setShowPopup(false)
-	}
+	// const closePopup = () => {
+	// 	setShowPopup(false)
+	// }
 
-	const addToCart = async (productId) => {
-		try {
-			// Make API request to add product to cart
-			const response = await makeApi("/api/add-to-cart", "POST", {
-				productId,
-				quantity: 1, // You can adjust quantity as needed
-				shippingPrice: 0, // Adjust shipping price if applicable
-			})
-			// If API call is successful, update cartItems state
-			if (response.status === 200) {
-				setCartItems((prevCartItems) => [
-					...prevCartItems,
-					{ productId, quantity: 1 },
-				])
-			}
-		} catch (error) {
-			console.log("Error adding product to cart:", error)
-		}
-	}
+	// const addToCart = async (productId) => {
+	// 	try {
+	// 		// Make API request to add product to cart
+	// 		const response = await makeApi("/api/add-to-cart", "POST", {
+	// 			productId,
+	// 			quantity: 1, // You can adjust quantity as needed
+	// 			shippingPrice: 0, // Adjust shipping price if applicable
+	// 		})
+	// 		// If API call is successful, update cartItems state
+	// 		if (response.status === 200) {
+	// 			setCartItems((prevCartItems) => [
+	// 				...prevCartItems,
+	// 				{ productId, quantity: 1 },
+	// 			])
+	// 		}
+	// 	} catch (error) {
+	// 		console.log("Error adding product to cart:", error)
+	// 	}
+	// }
 
-	const removeFromCart = async (productId) => {
-		try {
-			// Make API request to remove product from cart
-			const response = await makeApi("/api/remove-from-cart", "POST", {
-				productId,
-			})
-			// If API call is successful, update cartItems state
-			if (response.status === 200) {
-				setCartItems((prevCartItems) =>
-					prevCartItems.filter((item) => item.productId !== productId)
-				)
-			}
-		} catch (error) {
-			console.log("Error removing product from cart:", error)
-		}
-	}
+	// const removeFromCart = async (productId) => {
+	// 	try {
+	// 		// Make API request to remove product from cart
+	// 		const response = await makeApi("/api/remove-from-cart", "POST", {
+	// 			productId,
+	// 		})
+	// 		// If API call is successful, update cartItems state
+	// 		if (response.status === 200) {
+	// 			setCartItems((prevCartItems) =>
+	// 				prevCartItems.filter((item) => item.productId !== productId)
+	// 			)
+	// 		}
+	// 	} catch (error) {
+	// 		console.log("Error removing product from cart:", error)
+	// 	}
+	// }
 
 	const getProductQuantity = (productId) => {
 		const cartItem = cartItems.find((item) => item.productId === productId)
@@ -168,7 +168,33 @@ const Sliders = ({ products }) => {
 								/>
 							</div>
 						)} */}
-						{!cartItems.some((item) => item.productId === products._id) ? (
+						{/* {!cartItemsProp.some((item) => item.productId === products.id) ? (
+							<div
+								className="item-addto-cart1"
+								onClick={() => addToCart(products._id)}
+							>
+								ADD TO CART
+							</div>
+						) : (
+							<div className="food-item-counter1">
+								<img
+									onClick={() => removeFromCart(products.id)}
+									src={assets.add_icon_red}
+									alt=""
+								/>
+								<p className="cart-item-no1">
+									{getProductQuantity(products.id)}
+								</p>
+								<img
+									onClick={() => addToCart(products.id)}
+									src={assets.add_icon_green}
+									alt=""
+								/>
+							</div>
+						)} */}
+
+						{cartItemsProp &&
+						!cartItemsProp.some((item) => item.productId === products._id) ? (
 							<div
 								className="item-addto-cart1"
 								onClick={() => addToCart(products._id)}

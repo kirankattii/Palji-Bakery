@@ -84,7 +84,7 @@ const LoginPopup = ({ onClose }) => {
 							<span>
 								<Link
 									className="css-for-link-tag golden-color-text"
-									to="/auth/signup"
+									to="/Signup"
 								>
 									Sign Up
 								</Link>

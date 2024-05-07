@@ -12,11 +12,15 @@ function Orderbar({ activeOptionName }) {
 		<>
 			<div className="main_orderbar_div">
 				<div className={activeOption === "CART" ? "active" : ""}>CART</div>
-				<div className="orderbar_line"></div>
+				{/* <div className="orderbar_line"> */}
+				<hr className="orderbar-hr" />
+				{/* </div> */}
 				<div className={activeOption === "CHECKOUT" ? "active" : ""}>
 					CHECKOUT
 				</div>
-				<div className="orderbar_line"></div>
+				{/* <div className="orderbar_line"> */}
+				<hr className="orderbar-hr" />
+				{/* </div> */}
 				<div className={activeOption === "PAYMENT" ? "active" : ""}>
 					PAYMENT
 				</div>

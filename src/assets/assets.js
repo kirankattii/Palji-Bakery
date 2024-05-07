@@ -49,6 +49,7 @@ import user_watchlist from "./userprofile_watchlist.png"
 import password_reset from "./Password Reset.png"
 import profile_reset from "./profile_reset.png"
 import userprofile_menu from "./menu_icon.png"
+import empty_cart from "./empty-cart.svg"
 
 export const assets = {
 	userprofile_menu,
@@ -102,4 +103,5 @@ export const assets = {
 	user_watchlist,
 	password_reset,
 	profile_reset,
+	empty_cart,
 }
