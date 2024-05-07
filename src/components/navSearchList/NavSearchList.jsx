@@ -8,7 +8,7 @@ const NavSearchList = ({ product }) => {
 				{product.map((result, id) => {
 					return (
 						<Link
-							to={`/openproduct/${result._id}`}
+							to={`/product/product-details/${result._id}`}
 							className="result-list"
 						>
 							<img

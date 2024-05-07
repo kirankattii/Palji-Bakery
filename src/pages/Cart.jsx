@@ -8,6 +8,7 @@ import { makeApi } from "../api/callApi"
 import Orderbar from "../components/orderbar/orderbar"
 import { ToastContainer } from "react-toastify"
 import Primaryloader from "../components/loaders/primaryloader"
+import { Link } from "react-router-dom"
 
 const Cart = () => {
 	const {
@@ -151,6 +152,9 @@ const Cart = () => {
 								alt=" No cart "
 								className="NO_cart_image"
 							/>
+							<Link to="/product/all-products">
+								<h2>Explore products</h2>
+							</Link>
 						</div>
 					)}
 					{!IscartEmpty && (
@@ -245,7 +249,7 @@ const Cart = () => {
 												<b>₹{cartItem.TotalProductPrice}</b>
 											</div>
 										</div>
-										<button onClick={() => navigate("./checkoutpayment")}>
+										<button onClick={() => navigate("./checkout")}>
 											proceed to checkout
 										</button>
 										<hr />

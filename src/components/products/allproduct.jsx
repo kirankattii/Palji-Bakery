@@ -213,7 +213,7 @@ function Allproduct({ search, category, minPrice, maxPrice }) {
 								>
 									<div className="product_div_all_product">
 										<Link to={`/product/product-details/${product._id}`}>
-											<div>
+											<div className="ab_product_div_all_product">
 												<img
 													src={product.thumbnail}
 													alt="product"
@@ -231,7 +231,7 @@ function Allproduct({ search, category, minPrice, maxPrice }) {
 												{isInCart(product._id) ? (
 													<div className="Add_to_cart_and_watchlist_child Add_to_cart_and_watchlist_child1">
 														{AddTocartLoader ? (
-															<div>
+															<div className="hori_loading">
 																{" "}
 																<HorizotalLoader />{" "}
 															</div>
@@ -256,7 +256,7 @@ function Allproduct({ search, category, minPrice, maxPrice }) {
 												) : (
 													<div>
 														{AddTocartLoader ? (
-															<div>
+															<div className="hori_loading">
 																{" "}
 																<HorizotalLoader />{" "}
 															</div>
@@ -272,7 +272,7 @@ function Allproduct({ search, category, minPrice, maxPrice }) {
 												)}
 											</>
 
-											<div className="Add_to_cart_and_watchlist_child">
+											<div className="Add_to_cart_and_watchlist_child a_Add_to_cart_and_watchlist_child">
 												{AddToWishlistLoader ? (
 													<div className="heart_loader_all_product">
 														{" "}

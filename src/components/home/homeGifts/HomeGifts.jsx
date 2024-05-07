@@ -146,7 +146,7 @@ const HomeGifts = () => {
 			<div className="a_Our_collection_main_div  ">
 				{/* Main Heading */}
 				<div className="a_Main_Home_heading text-center b_homegift_heading">
-					<h1 style={{ color: "#E5087E" }}>EXCITING RANGE OF HAMPERS </h1>
+					<h1 className="exiting_range_hampers">EXCITING RANGE OF HAMPERS </h1>
 					<p>Discover our Signature Selection</p>
 				</div>
 

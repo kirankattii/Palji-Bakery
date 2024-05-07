@@ -287,15 +287,9 @@ const Banner = () => {
 											}`}
 										>
 											<h2>{item.name}</h2>
-											<p>{item.subTitle}</p>
+											<p>Premium Cookies</p>
 										</div>
-										<p
-											className={`content ${
-												currentSlide === index ? "show" : ""
-											}`}
-										>
-											{item.content}
-										</p>
+										<p>{item.description}</p>
 									</div>
 									<div
 										className="cart5"

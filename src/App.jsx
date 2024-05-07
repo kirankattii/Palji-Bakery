@@ -26,6 +26,7 @@ import ForgotPasswordForm from "./components/login/sendMail"
 import OtpVerifiedForm from "./components/login/otp"
 import ProductDetails from "./components/productDetails/ProductDetails"
 import Products from "./pages/products.jsx"
+import Checkout from "./components/pay/Checkout.jsx"
 
 function App() {
 	// const [categories, setCategories] = useState([])
@@ -116,6 +117,10 @@ function App() {
 				<Route
 					path="/billing-address"
 					element={<BillingAddress />}
+				/>
+				<Route
+					path="/cart/checkout"
+					element={<Checkout />}
 				/>
 				<Route
 					path="/cart/checkoutpayment"

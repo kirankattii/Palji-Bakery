@@ -40,7 +40,7 @@ function CartCalculation({
 						</div>
 					</div>
 					<Link
-						to="/cart/checkoutpayment/"
+						to="/cart/checkout/"
 						className="css-for-link-tag"
 					>
 						<div className="cart_calculation_button">{ButtonName}</div>

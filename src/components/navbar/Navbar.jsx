@@ -23,13 +23,7 @@ const Navbar = () => {
 	const [isloggedIn, setIsloggedIn] = useState(false)
 	const { getTotalCartItems } = useContext(ShopContext)
 	const [totalQuantities, setTotalQuantities] = useState(0)
-	useEffect(() => {
-		const timeoutId = setTimeout(() => {
-			setShowNavbar(true)
-		}, 1000)
 
-		return () => clearTimeout(timeoutId)
-	}, [])
 	useEffect(() => {
 		const fetchCartItem = async () => {
 			try {

@@ -18,6 +18,8 @@
   padding-top: 20px;
 }
 
+
+
 .b_homegift_heading p {
   color: #000;
   font-size: 18px;
@@ -27,4 +29,21 @@
 .b_gift_image {
   width: 180px;
   left: 60px;
+}
+
+.b_homegift_heading h1 {
+
+  color: #E5087E;
+
+}
+
+@media (max-width:500px) {
+  .exiting_range_hampers {
+    font-size: 18px;
+    color: #E5087E;
+  }
+
+  .b_homegift_heading h1 {
+    font-size: 28px;
+  }
 }

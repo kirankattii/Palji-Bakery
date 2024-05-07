@@ -6,6 +6,8 @@
   min-height: 100vh;
 }
 
+
+
 .product_display_back_btn {
   position: absolute;
   padding-top: 100px;
@@ -65,7 +67,7 @@
   color: var(--golden-color);
 }
 
-.product-display-right p {
+.aproduct_display_price {
   width: 550px;
   width: 100%;
   font-family: Kumbh Sans;
@@ -73,6 +75,11 @@
   font-weight: 400;
   line-height: 34.73px;
   text-align: justified;
+  color: #AE7B37;
+  margin-left: 30px;
+}
+
+.productdisplay-cart-item-no {
   color: #fff;
 }
 
@@ -135,6 +142,7 @@
   width: 25px;
   height: 25px;
 }
+
 
 
 .productdisplay-food-item-counter {

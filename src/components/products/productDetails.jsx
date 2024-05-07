@@ -269,6 +269,11 @@ function ProductDetails() {
                      </div> */}
 										</div>
 									</div>
+									<div className="">
+										<p className="aproduct_display_price">
+											₹ {product.PriceAfterDiscount}
+										</p>
+									</div>
 									{/* <button onClick={() => addToCart(id)}>ADD To CART</button> */}
 									<div className="productdisplay-item-cart productdisplay-item-car1">
 										{!isInCart ? (
@@ -302,7 +307,9 @@ function ProductDetails() {
 												) : ( */}
 												<p className="productdisplay-cart-item-no">
 													{/* {cartItems[product._id]} */}
-													<span>{getProductQuantity(product._id)}</span>
+													<span style={{ color: "#fff" }}>
+														{getProductQuantity(product._id)}
+													</span>
 												</p>
 												{/* )} */}
 												<img
