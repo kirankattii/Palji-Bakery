@@ -8,7 +8,7 @@ import { GiHamburgerMenu } from "react-icons/gi"
 import { MdArrowDropDown } from "react-icons/md"
 
 import "./navbar.css"
-import { ShopContext } from "../../context/ShopContext"
+
 import ProductDropdown from "../productDropdown/ProductDropdown"
 import ProfileDropdown from "../profileDropdown/ProfileDropdown"
 import { makeApi } from "../../api/callApi"
@@ -21,7 +21,7 @@ const Navbar = () => {
 	const [myCartData, setMyCartData] = useState([])
 
 	const [isloggedIn, setIsloggedIn] = useState(false)
-	const { getTotalCartItems } = useContext(ShopContext)
+
 	const [totalQuantities, setTotalQuantities] = useState(0)
 
 	useEffect(() => {
@@ -44,13 +44,13 @@ const Navbar = () => {
 		fetchCartItem()
 
 		// Set up interval to periodically fetch cart item
-		const intervalId = setInterval(() => {
-			fetchCartItem()
-		}, 15000) // Fetch every minute
+		// const intervalId = setInterval(() => {
+		// 	fetchCartItem()
+		// }, 15000)
 
 		// Clean up interval on component unmount
-		return () => clearInterval(intervalId)
-	}, [setMyCartData])
+		// return () => clearInterval(intervalId)
+	}, [])
 
 	const location = useLocation()
 
